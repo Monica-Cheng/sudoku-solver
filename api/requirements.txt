@@ -1,0 +1,5 @@
+# Deployed dependencies for the inference function (Vercel installs these).
+# No TensorFlow, no matplotlib, no imutils.
+numpy<2
+opencv-python-headless==4.11.0.86
+onnxruntime==1.22.1
