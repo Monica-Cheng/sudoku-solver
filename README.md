@@ -24,10 +24,6 @@ python3 algo4_run.py easy.txt medium.txt hard.txt
 
 python sudoku_main.py --img_fpath "data/sudoku_images/2.jpg" --output_path "recognized_sudoku.txt"
 
-# To run ocr
-
-python3 sudoku-ocr-Tesseract.py --image images/test.jpg --out recognized_sudoku.txt
-
 # Git Hub sources and other resources
 
 Algorithim 1: https://github.com/CharKeaney/sudoku-solver/blob/master/sudosolver.py
