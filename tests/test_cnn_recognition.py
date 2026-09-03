@@ -17,20 +17,38 @@ import json
 import os
 import sys
 
-import numpy as np
-
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CNN_DIR = os.path.join(REPO, "CNN", "cv-sudoku-solver")
 FIX = os.path.join(REPO, "tests", "fixtures")
-sys.path.insert(0, CNN_DIR)
-
-import tensorflow as tf  # noqa: E402
-import sudoku_utils as su  # noqa: E402
 
 MODEL = os.path.join(CNN_DIR, "models", "model_fonts_mnist.keras")
 
 
+def _load_cnn():
+    """Heavy imports deferred so `pytest tests/` can collect this file even
+    without tensorflow/opencv installed."""
+    sys.path.insert(0, CNN_DIR)
+    import numpy as np
+    import tensorflow as tf
+    import sudoku_utils as su
+    return np, tf, su
+
+
+def test_cnn_recognition_baseline():
+    try:
+        np, tf, su = _load_cnn()
+    except Exception as exc:  # pragma: no cover - CNN deps optional here
+        import pytest
+        pytest.skip(f"CNN deps unavailable: {exc}")
+    _run(np, tf, su)
+
+
 def main():
+    np, tf, su = _load_cnn()
+    _run(np, tf, su, exit_on_fail=True)
+
+
+def _run(np, tf, su, exit_on_fail=False):
     gt = {k: v for k, v in json.load(open(os.path.join(FIX, "gt.json"))).items()
           if not k.startswith("_")}
     model = tf.keras.models.load_model(MODEL)
@@ -91,16 +109,11 @@ def main():
     print(f"confidence when wrong  {(np.mean(conf_wrong) if conf_wrong else float('nan')):.4f}")
     print("per-image errors:      " + ", ".join(f"{n}:{e}" for n, e in per_image if e))
 
-    ok = True
-    if acc < 0.995:
-        print(f"FAIL: accuracy {acc:.4%} < 99.5%"); ok = False
-    if fp + fn != 0:
-        print(f"FAIL: detector errors {fp + fn} != 0"); ok = False
-    if conf_wrong and np.mean(conf_wrong) > 0.85:
-        print(f"FAIL: confidence-when-wrong {np.mean(conf_wrong):.3f} > 0.85 "
-              f"(normalisation not applied?)"); ok = False
-    print("OK" if ok else "REGRESSION")
-    sys.exit(0 if ok else 1)
+    assert acc >= 0.995, f"accuracy {acc:.4%} < 99.5%"
+    assert fp + fn == 0, f"detector errors {fp + fn} != 0"
+    assert not conf_wrong or np.mean(conf_wrong) <= 0.85, \
+        f"confidence-when-wrong {np.mean(conf_wrong):.3f} > 0.85 (normalisation not applied?)"
+    print("OK")
 
 
 if __name__ == "__main__":
