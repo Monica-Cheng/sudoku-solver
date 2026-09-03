@@ -9,7 +9,7 @@ import { dirname, resolve } from "node:path";
 import { solve, SOLVERS, type SolverName } from "../dist/index.js";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const ROOT = resolve(HERE, "../..");
+const ROOT = resolve(HERE, "../../../..");
 
 function readPuzzles(rel: string): string[] {
   const d = readFileSync(resolve(ROOT, rel), "utf8").replace(/[^0-9]/g, "");

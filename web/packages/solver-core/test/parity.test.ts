@@ -13,7 +13,7 @@ import { describe, expect, it } from "vitest";
 import { solve, type SolverName } from "../src/index.js";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const REF_PATH = resolve(HERE, "../../tests/fixtures/solver_reference.json");
+const REF_PATH = resolve(HERE, "../../../../tests/fixtures/solver_reference.json");
 
 interface Row {
   set: string;

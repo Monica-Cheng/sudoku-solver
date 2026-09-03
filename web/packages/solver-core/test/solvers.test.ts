@@ -14,7 +14,7 @@ import {
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 function readPuzzles(rel: string): string[] {
-  const d = readFileSync(resolve(HERE, "../..", rel), "utf8").replace(/[^0-9]/g, "");
+  const d = readFileSync(resolve(HERE, "../../../..", rel), "utf8").replace(/[^0-9]/g, "");
   const out: string[] = [];
   for (let i = 0; i + 81 <= d.length; i += 81) out.push(d.slice(i, i + 81));
   return out;
