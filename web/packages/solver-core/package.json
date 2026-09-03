@@ -20,7 +20,7 @@
     }
   },
   "files": ["dist", "src"],
-  "sideEffects": false,
+  "sideEffects": ["./dist/worker/solverWorker.js", "./src/worker/solverWorker.ts"],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
