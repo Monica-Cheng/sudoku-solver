@@ -1,0 +1,6 @@
+node_modules/
+dist/
+*.tsbuildinfo
+bench/ts_results.json
+bench/ts_bench.log
+bench/py_results.json
