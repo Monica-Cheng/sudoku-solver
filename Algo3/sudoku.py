@@ -7,30 +7,39 @@ cols = "ABCDEFGHI"
 
 class Sudoku:
 
+    # The coordinate list and the (line/row/square) constraint graph do not
+    # depend on the puzzle, only on the 9x9 shape, but generate_binary_constraints
+    # is O(n^2) in the number of arcs. Build them once and share the same objects
+    # across every Sudoku instance. Nothing in the search mutates cells,
+    # binary_constraints or related_cells (AC3 copies the queue), so sharing is safe.
+    _cells = None
+    _binary_constraints = None
+    _related_cells = None
+
     """
-    INITIALIZATION 
+    INITIALIZATION
     """
     def __init__(self, grid):
         game = list(grid)
-        
-        # generation of all the coords of the grid
-        self.cells = list()
-        self.cells = self.generate_coords()
+
+        cls = type(self)
+        if cls._cells is None:
+            cls._cells = self.generate_coords()
+            rule_constraints = self.generate_rules_constraints()
+            cls._binary_constraints = self.generate_binary_constraints(rule_constraints)
+            # generate_related_cells reads self.cells / self.binary_constraints
+            self.cells = cls._cells
+            self.binary_constraints = cls._binary_constraints
+            cls._related_cells = self.generate_related_cells()
+
+        # puzzle-independent, shared
+        self.cells = cls._cells
+        self.binary_constraints = cls._binary_constraints
+        self.related_cells = cls._related_cells
 
         # generation of all the possibilities for each one of these coords
         self.possibilities = dict()
         self.possibilities = self.generate_possibilities(grid)
-   
-        # generation of the line / row / square constraints
-        rule_constraints = self.generate_rules_constraints()
-
-        # convertion of these constraints to binary constraints
-        self.binary_constraints = list()
-        self.binary_constraints = self.generate_binary_constraints(rule_constraints)
-
-        # generating all constraint-related cells for each of them
-        self.related_cells = dict()
-        self.related_cells = self.generate_related_cells()
 
         #prune
         self.pruned = dict()
