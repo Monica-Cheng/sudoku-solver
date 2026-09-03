@@ -22,7 +22,7 @@ python3 algo4_run.py easy.txt medium.txt hard.txt
 
 # To run cnn
 
-python sudoku_main.py --img_fpath "data/sudoku_images/2.jpg" --output_path "recognized_sudoku.txt"
+python sudoku_main.py --img_fpath "../../tests/fixtures/images/2.jpg" --output_path "recognized_sudoku.txt"
 
 # Git Hub sources and other resources
 
@@ -44,12 +44,10 @@ CNN: https://github.com/rg1990/cv-sudoku-solver
 https://pyimagesearch.com/2020/08/10/opencv-sudoku-solver-and-ocr/
 
 Run Combine File:
-python sudoku_integrated_solver.py --image external1.jpg
+python sudoku_integrated_solver.py --image tests/fixtures/images/external1.jpg
 
 1. Clone all the codes to your IDE
    Command: git clone https://github.com/Monica-Cheng/Soduky
-
-![Image description/Alt text](doc_image/image.png)
 
 2. Create virtual environment with python 3.10
    Commands:
@@ -57,18 +55,8 @@ python sudoku_integrated_solver.py --image external1.jpg
    b. py -3.10 -m venv venv
    c. venv\Scripts\activate
 
-![Image description/Alt text](doc_image/image2.png)
-
 3. Set up dependencies
    Commands: pip install -r requirements.txt
 
-![Image description/Alt text](doc_image/image3.png)
-
 4. Run the main python script and passes your image as input
-   Commands: python sudoku_integrated_solver.py --image external1.jpg
-   Output:
-
-![Image description/Alt text](doc_image/image4.png)
-![Image description/Alt text](doc_image/image5.png)
-![Image description/Alt text](doc_image/image6.png)
-![Image description/Alt text](doc_image/image7.png)
+   Commands: python sudoku_integrated_solver.py --image tests/fixtures/images/external1.jpg

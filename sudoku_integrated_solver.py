@@ -375,7 +375,7 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python sudoku_integrated_solver.py --image data/sudoku_images/puzzle1.jpg
+  python sudoku_integrated_solver.py --image tests/fixtures/images/1.jpg
   python sudoku_integrated_solver.py --image puzzle.jpg --model custom_model.keras
   python sudoku_integrated_solver.py --image puzzle.jpg --no-viz
         """
