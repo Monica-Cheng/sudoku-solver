@@ -13,7 +13,7 @@ from pathlib import Path
 # Add paths for imports
 SCRIPT_DIR = Path(__file__).parent
 CNN_DIR = SCRIPT_DIR / "CNN" / "cv-sudoku-solver"
-ALGO3_DIR = SCRIPT_DIR / "algo3"
+ALGO3_DIR = SCRIPT_DIR / "Algo3"
 
 # Add directories to path
 sys.path.insert(0, str(CNN_DIR))
