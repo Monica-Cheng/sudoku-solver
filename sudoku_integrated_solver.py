@@ -5,30 +5,20 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
-import tempfile
 import time
-import tracemalloc
 from pathlib import Path
 
-# Add paths for imports
 SCRIPT_DIR = Path(__file__).parent
 CNN_DIR = SCRIPT_DIR / "CNN" / "cv-sudoku-solver"
-ALGO3_DIR = SCRIPT_DIR / "Algo3"
 
-# Add directories to path
+# CNN helpers live in a directory that is not a package; the solver package is.
 sys.path.insert(0, str(CNN_DIR))
-sys.path.insert(0, str(ALGO3_DIR))
+sys.path.insert(0, str(SCRIPT_DIR))
 
-# Import CNN modules
 import sudoku_utils as sutils
 from sudoku_solver_class import SudokuSolver as CNNSolver
 
-# Import Algorithm 3 modules
-from sudoku import Sudoku
-from ac3 import AC3
-from backtrack import recursive_backtrack_algorithm
-from heuristics import select_unassigned_variable, order_domain_values
-from utils import is_consistent, assign, unassign
+from solvers import solve as solve_sudoku
 
 
 class IntegratedSudokuSolver:
@@ -100,121 +90,32 @@ class IntegratedSudokuSolver:
         
     def solve_with_ac3(self, puzzle_string):
         """
-        Solve puzzle using AC-3 + Backtracking
-        
-        Args:
-            puzzle_string: 81-character string (0 for empty cells)
-            
+        Solve puzzle using AC-3 + Backtracking (solvers.ac3).
+
         Returns:
             tuple: (solution_string, runtime, memory_mb, success)
         """
         print("\n[3/5] Solving with AC-3 + Backtracking algorithm")
-        
+
         if len(puzzle_string) != 81:
             raise ValueError(f"Puzzle must be 81 characters, got {len(puzzle_string)}")
-        
-        # Reset metrics
-        self.nodes = 0
-        self.backtracks = 0
-        
-        # Start tracking
-        tracemalloc.start()
-        start_time = time.perf_counter()
-        
-        success = False
-        solution = None
-        
-        try:
-            # Create Sudoku object
-            sudoku = Sudoku(puzzle_string)
-            
-            # Phase 1: AC-3
-            print("  [Phase 1] Running AC-3 constraint propagation...")
-            ac3_result = AC3(sudoku)
-            
-            if not ac3_result:
-                print(" AC-3 determined no solution exists")
-                success = False
-            elif sudoku.isFinished():
-                print("AC-3 alone solved the puzzle!")
-                success = True
-            else:
-                # Phase 2: Backtracking
-                print("[Phase 2] AC-3 reduced search space. Starting backtracking...")
-                
-                assignment = {}
-                for cell in sudoku.cells:
-                    if len(sudoku.possibilities[cell]) == 1:
-                        assignment[cell] = sudoku.possibilities[cell][0]
-                
-                result = self._tracked_backtrack(assignment, sudoku)
-                
-                if result:
-                    for cell in sudoku.possibilities:
-                        if cell in result:
-                            sudoku.possibilities[cell] = [result[cell]]
-                    success = True
-                else:
-                    success = False
-            
-            # Get solution string if successful
-            if success:
-                solution = self._sudoku_to_string(sudoku)
-                
-        except Exception as e:
-            print(f"  ✗ Error: {str(e)}")
-            success = False
-            
-        # Stop tracking
-        end_time = time.perf_counter()
-        current, peak = tracemalloc.get_traced_memory()
-        tracemalloc.stop()
-        
-        runtime = end_time - start_time
-        peak_mb = peak / (1024 * 1024)
-        
-        if success:
+
+        result = solve_sudoku(puzzle_string, "ac3")
+        self.nodes = result.nodes
+        self.backtracks = result.backtracks
+        runtime = result.runtime_ms / 1000.0
+
+        if result.solved:
             print(f"Solved in {runtime:.4f}s")
             print(f"Nodes visited: {self.nodes}")
             print(f"Backtracks: {self.backtracks}")
-            print(f"Memory used: {peak_mb:.2f} MB")
         else:
-            print(f"Failed after {runtime:.4f}s")
-            
-        return solution, runtime, peak_mb, success
-        
-    def _tracked_backtrack(self, assignment, sudoku):
-        """Backtracking with metrics tracking"""
-        self.nodes += 1
-        
-        if len(assignment) == len(sudoku.cells):
-            return assignment
-        
-        cell = select_unassigned_variable(assignment, sudoku)
-        
-        for value in order_domain_values(sudoku, cell):
-            if is_consistent(sudoku, assignment, cell, value):
-                assign(sudoku, cell, value, assignment)
-                result = self._tracked_backtrack(assignment, sudoku)
-                
-                if result:
-                    return result
-                
-                unassign(sudoku, cell, assignment)
-                self.backtracks += 1
-        
-        return False
-        
-    def _sudoku_to_string(self, sudoku):
-        """Convert Sudoku object to 81-character string"""
-        result = []
-        for cell in sudoku.cells:
-            if len(sudoku.possibilities[cell]) == 1:
-                result.append(str(sudoku.possibilities[cell][0]))
-            else:
-                result.append('0')
-        return ''.join(result)
-        
+            print(f"Failed after {runtime:.4f}s ({result.terminated_reason})")
+
+        # memory_mb is kept in the return signature for callers; not measured
+        return result.solution, runtime, 0.0, result.solved
+
+
     def visualize_results(self, original_img, detected_grid, solved_grid):
         """Display original image, detected grid, and solution"""
         print("\n[4/5] Visualizing results")
