@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sudoku-solvers"
+version = "0.2.0"
+description = "Importable, instrumentable Sudoku solvers (backtracking, forward-checking, AC-3, min-conflicts)"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.optional-dependencies]
+cli = ["tabulate>=0.9"]
+test = ["pytest>=7"]
+
+[tool.setuptools]
+packages = ["solvers", "solvers.backtracking", "solvers.forward_checking",
+            "solvers.ac3", "solvers.min_conflicts", "harness"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-q -m 'not slow'"
+markers = [
+    "slow: end-to-end parity / hard-puzzle runs (minutes). Run with -m slow or -m ''.",
+]
