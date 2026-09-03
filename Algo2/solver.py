@@ -108,14 +108,15 @@ def minimum_remaining_values(sudoku_puzzle, domains):
 ###############################################################################
 
 def forward_checking(sudoku_puzzle, heuristic):
-    """Entry function for backtracking + forward checking."""
+    """Entry function for backtracking + forward checking.
+
+    Runs the search in place on sudoku_puzzle.board and returns whether it
+    succeeded. Node count is left in sudoku_puzzle.unique_states and dead-end
+    count in sudoku_puzzle.backtracks for the caller to read.
+    """
     domains = set_domains(sudoku_puzzle)
     sudoku_puzzle.unique_states = 0
-    start = time.time()
-    solved = forward_checking_rec(sudoku_puzzle, heuristic, domains)
-    end = time.time()
-    print(f"Solved: {solved}, Time: {round(end-start,3)}s, Steps: {sudoku_puzzle.unique_states}")
-    return solved
+    return forward_checking_rec(sudoku_puzzle, heuristic, domains)
 
 
 def forward_checking_rec(sudoku_puzzle, heuristic, domains):

@@ -1,110 +1,43 @@
 import sys
 import os
+import io
 import time
 import csv
 import tracemalloc
 from tabulate import tabulate
 from typing import List, Dict
 
-# Sudoku setup
+# Algorithm 2: Backtracking + Forward Checking + MRV
+# The search itself lives in solver.py / SudokuBoard.py (adapted from
+# https://github.com/paccionesawyer/sudokuSolver-CSP). This runner only wraps a
+# single puzzle string into a SudokuBoard and collects metrics.
+from SudokuBoard import SudokuBoard
+from solver import forward_checking, minimum_remaining_values
 
-ROWS = "ABCDEFGHI"
-COLS = "123456789"
-DIGITS = COLS
-squares = [r + c for r in ROWS for c in COLS]
-values = {}
+DIGITS = set("123456789")
 
-def sudosetup():
-    global units, unit, lines, peers
-    unitrows = []
-    for r in range(3):
-        for i in range(3):
-            unitrows.append(list(map(lambda x: x + r * 3,
-                                     [1, 1, 1, 2, 2, 2, 3, 3, 3])))
-    unitlist = [j for i in unitrows for j in i]
-
-    units = {i: [] for i in range(1, 10)}
-    for (i, s) in enumerate(squares):
-        units[unitlist[i]].append(s)
-
-    unit = {squares[i]: unitlist[i] for i in range(81)}
-    lines = {}
-    for row_or_col in ROWS + COLS:
-        members = []
-        for s in squares:
-            if row_or_col in s:
-                members.append(s)
-        lines[row_or_col] = members
-
-    peers = {}
-    for s in squares:
-        peerlist = [units[unit[s]], lines[s[0]] + lines[s[1]]]
-        peers[s] = set(p for p in [j for i in peerlist for j in i] if p != s)
-
-# Sudoku validation & brute-force solving
-def sudo_validate():
-    if "0" in values.values():
-        return False
-    for l in lines.keys():
-        if set(values[s] for s in lines[l]) != set(DIGITS):
-            return False
-    for u in units.keys():
-        if set(values[s] for s in units[u]) != set(DIGITS):
-            return False
-    return True
-
-
-def sudo_brute_force(counters):
-    """Recursive brute-force solver with node/backtrack counters."""
-    if sudo_validate():
-        return True
-
-    # Find first empty cell
-    current_square = None
-    for s, v in values.items():
-        if v == "0":
-            current_square = s
-            break
-
-    cs_peer_values = [values[s] for s in peers[current_square]]
-    cs_possibilities = [d for d in DIGITS if d not in cs_peer_values]
-    if not cs_possibilities:
-        counters["backtracks"] += 1
-        return False
-
-    for d in cs_possibilities:
-        counters["nodes"] += 1
-        values[current_square] = d
-        if sudo_brute_force(counters):
-            return True
-
-    values[current_square] = "0"
-    counters["backtracks"] += 1
-    return False
 
 # Single puzzle solver
 def solve_single_puzzle(puzzle_string: str, show_output=True):
-    global values
     if len(puzzle_string) != 81:
         raise ValueError(
             f"Puzzle must be exactly 81 characters, got {len(puzzle_string)}"
         )
 
-    # Assign puzzle values
-    values = {squares[i]: puzzle_string[i] for i in range(81)}
+    # Adapt the 81-char string into the file-like object SudokuBoard expects.
+    board = SudokuBoard(io.StringIO(puzzle_string))
 
     if show_output:
         print("ORIGINAL PUZZLE:")
-        print_puzzle(values)
-
-    counters = {"nodes": 0, "backtracks": 0}
+        print_puzzle(puzzle_string)
 
     tracemalloc.start()
     start = time.perf_counter()
 
     success = False
     try:
-        success = sudo_brute_force(counters)
+        forward_checking(board, minimum_remaining_values)
+        success = _is_solved(board.board)
     except Exception as e:
         print(f" ERROR: {e}")
         success = False
@@ -116,25 +49,51 @@ def solve_single_puzzle(puzzle_string: str, show_output=True):
     runtime = end - start
     memory_mb = peak / (1024 * 1024)
 
-    solved_string = "".join(values[s] for s in squares)
+    # forward_checking counts search nodes in unique_states and dead ends in
+    # backtracks on the board object.
+    nodes = getattr(board, "unique_states", 0)
+    backtracks = getattr(board, "backtracks", 0)
+
+    solved_string = "".join(
+        str(board.board[r][c]) for r in range(9) for c in range(9)
+    )
     if show_output and success:
         print("SOLVED PUZZLE:")
-        print_puzzle(values)
+        print_puzzle(solved_string)
 
     return (
         solved_string if success else None,
         runtime,
         memory_mb,
-        counters["nodes"],
-        counters["backtracks"],
+        nodes,
+        backtracks,
         success,
     )
 
+
+def _is_solved(grid: List[List[int]]) -> bool:
+    """True if grid is a completely filled, valid Sudoku."""
+    for i in range(9):
+        row = [grid[i][j] for j in range(9)]
+        col = [grid[j][i] for j in range(9)]
+        if set(map(str, row)) != DIGITS or set(map(str, col)) != DIGITS:
+            return False
+    for br in range(0, 9, 3):
+        for bc in range(0, 9, 3):
+            box = [grid[br + i][bc + j] for i in range(3) for j in range(3)]
+            if set(map(str, box)) != DIGITS:
+                return False
+    return True
+
+
 # Print Sudoku
-def print_puzzle(values):
+def print_puzzle(puzzle_string: str):
     print()
     for r in range(9):
-        row = [values[ROWS[r] + COLS[c] ] for c in range(9)]
+        row = [
+            puzzle_string[r * 9 + c] if puzzle_string[r * 9 + c] != "0" else "."
+            for c in range(9)
+        ]
         print(
             " ".join(row[0:3]) + " | "
             + " ".join(row[3:6]) + " | "
@@ -143,6 +102,7 @@ def print_puzzle(values):
         if r in [2, 5]:
             print("-" * 21)
     print()
+
 
 # CSV + batch solving
 def read_puzzles_from_file(filename):
@@ -158,7 +118,7 @@ def read_puzzles_from_file(filename):
     return puzzles
 
 
-def log_to_csv(row: Dict, csv_filename="performance_log_bruteforce.csv"):
+def log_to_csv(row: Dict, csv_filename="performance_log_fc_mrv.csv"):
     file_exists = os.path.isfile(csv_filename)
     with open(csv_filename, "a", newline="", encoding="utf-8") as f:
         fieldnames = [
@@ -171,12 +131,13 @@ def log_to_csv(row: Dict, csv_filename="performance_log_bruteforce.csv"):
         writer.writerow(row)
         f.flush()
 
+
 def solve_all_puzzles(filenames: List[str]):
     print(f"\n{'='*70}")
     print("SUDOKU SOLVER - Backtracking + Forward Checking + MRV")
     print(f"{'='*70}\n")
 
-    log_file = "performance_log_bruteforce.csv"
+    log_file = "performance_log_fc_mrv.csv"
     if os.path.exists(log_file):
         os.remove(log_file)
         print(f"Cleared existing {log_file}\n")
@@ -295,10 +256,10 @@ def solve_all_puzzles(filenames: List[str]):
     print(f"Algorithm: Backtracking + Forward Checking + MRV")
     print(f"{'='*70}\n")
 
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: python algo2_run.py easy.txt medium.txt hard.txt")
         sys.exit(1)
 
-    sudosetup()
     solve_all_puzzles(sys.argv[1:])
