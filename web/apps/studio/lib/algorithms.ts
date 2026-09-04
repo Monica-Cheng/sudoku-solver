@@ -4,9 +4,19 @@ export interface AlgoMeta {
   id: AlgorithmName;
   label: string;
   short: string;
-  /** placeholder explainer — the real per-algorithm essays land next phase */
-  blurb: string;
+  /** the event types this algorithm emits, for the sidebar caption */
   emits: string;
+  /** one line for cards and chips */
+  tagline: string;
+  /** plain-language explanation, three short paragraphs, no undefined jargon */
+  explainer: string[];
+  /** what the animation shows, tied to the actual events */
+  onScreen: string;
+  /** measured, with numbers from /benchmarks */
+  strengths: string;
+  weaknesses: string;
+  /** when it wins, when it loses, and why */
+  verdict: string;
 }
 
 export const ALGOS: AlgoMeta[] = [
@@ -14,39 +24,110 @@ export const ALGOS: AlgoMeta[] = [
     id: "backtracking",
     label: "Backtracking",
     short: "BT",
-    blurb:
-      "Fill the first blank cell with the first digit that isn't already used by a peer, recurse, and undo on a dead end. No domains, no propagation — it only ever assigns and unassigns. On a hard puzzle it has nothing to prune with, so it guesses blind.",
     emits: "assign · unassign",
+    tagline: "Guess a digit, recurse, undo on a dead end. No look-ahead.",
+    explainer: [
+      "Backtracking is the textbook brute-force method: a depth-first search that tries digits one cell at a time. Take the first empty cell, put in the smallest digit that doesn't already clash with a filled neighbour in the same row, column, or 3×3 box, and move to the next empty cell. If you reach a cell where no digit fits, the last guess was wrong — erase it, go back, and try the next digit there. Repeat until the grid is full.",
+      "The thing to notice is what it doesn't do. It never looks ahead. After placing a 5, it doesn't check whether that 5 has just left some other cell with no legal options — it only finds out later, when it crashes into that cell and has to unwind. It keeps no per-cell notes about what's still possible. Every decision is made from the raw board.",
+      "That makes it simple and, on gentle puzzles, perfectly fast. But on a hard puzzle it has nothing to steer with. It will happily explore a branch hundreds of thousands of guesses deep before the contradiction that kills it surfaces. It is the baseline the other three are measured against.",
+    ],
+    onScreen:
+      "Only two things happen: a cell lights up as a digit is placed (assign), or a cell clears with a red flash as a guess is taken back (unassign). No candidate marks, no dimming, no propagation — the grid just fills and empties. When the backtrack flashes come in fast bursts, that is the search thrashing inside a doomed branch.",
+    strengths:
+      "Trivial to implement and low overhead per step. On the easy and medium sets it solves every puzzle, median 2,025 and 786 search nodes. When a puzzle has enough clues to keep branches short, it is genuinely quick — low single-digit milliseconds.",
+    weaknesses:
+      "No pruning means no protection against a bad branch. Worst case on the easy set alone is 254,857 nodes — one puzzle where the digit order happened to be adversarial. On the extreme set it exhausts a 1.4-million-node budget on half the puzzles and solves 6 of 12 — the ones with enough clues to keep branches short.",
+    verdict:
+      "Wins on well-constrained puzzles where its lack of bookkeeping is pure speed. Loses the moment the puzzle is sparse enough that a wrong early guess hides a contradiction thousands of levels down — it cannot see that coming, so it pays the full price every time.",
   },
   {
     id: "forward_checking",
     label: "Forward checking + MRV",
     short: "FC",
-    blurb:
-      "Keep a set of remaining candidates per cell. Always branch on the cell with the fewest left (MRV). After each assignment, remove that value from every peer's candidate set; if any set empties, backtrack.",
     emits: "assign · unassign · eliminate · restore",
+    tagline: "Track each cell's remaining options; always branch on the most constrained.",
+    explainer: [
+      "Forward checking adds one piece of bookkeeping to backtracking: for every empty cell it keeps a list of digits still legal there — the cell's candidates. Each time it places a digit, it immediately removes that digit from the candidate lists of every cell in the same row, column, and box. If any cell's list becomes empty, the current path is already dead, so it backtracks now instead of discovering the problem ten guesses later.",
+      "The second idea is which cell to try next. Instead of the first empty cell, it picks the one with the fewest candidates left — the \"minimum remaining values\" or MRV rule. If some cell is down to a single candidate, fill that; if the fewest anywhere is two, you have a coin-flip instead of a nine-way guess. Choosing the most constrained cell keeps the search tree narrow.",
+      "Together these turn the search from blind to sighted. It still guesses and still backtracks, but it almost never wanders far, because a bad guess usually empties some candidate list within a move or two and gets rejected.",
+    ],
+    onScreen:
+      "Alongside the assign and unassign of plain backtracking you see candidate digits dim inside cells (eliminate) as each placement prunes its neighbours, and light back up (restore) when a guess is undone. The next cell chosen is always one of the sparsest — watch the search jump to wherever the fewest candidates remain rather than moving left to right.",
+    strengths:
+      "The MRV rule flattens difficulty. Median search is 56, 59, and 63 nodes on easy, medium, and hard — essentially the same tiny number regardless of tier. It solves all 90 puzzles in those three sets and all 12 in the extreme set. Fastest of the four in wall-clock terms on ordinary puzzles: about 0.14 ms in the TypeScript port.",
+    weaknesses:
+      "It only checks one step ahead. It can still walk into a trap where no single placement empties a list but the combination is already unsatisfiable — its one pathological hard-set puzzle took 149,731 nodes where AC-3 took 1,235. On the extreme set its median is 9,903 nodes against AC-3's 7,310 — AC-3's deeper propagation starts to earn its keep.",
+    verdict:
+      "Wins on the vast majority of puzzles: same node count as AC-3 with far less overhead, because it does no upfront work. Loses on the rare puzzle whose contradictions are two or more moves deep — there, the heavier propagation AC-3 does before searching would have paid off.",
   },
   {
     id: "ac3",
     label: "AC-3 + backtracking",
     short: "AC3",
-    blurb:
-      "Before searching, enforce arc-consistency: for every ordered pair of peer cells, drop values from one that no value of the other allows. Often this alone solves the puzzle. Whatever's left goes to an MRV/LCV backtracking search.",
-    emits: "ac3_revise · eliminate · assign · unassign · restore",
+    emits: "ac3_revise · eliminate · restore · assign · unassign",
+    tagline: "Propagate constraints to a fixed point first, then search what's left.",
+    explainer: [
+      "AC-3 (the name is just its number in the paper that introduced it) enforces a property called arc consistency before any guessing happens. An \"arc\" is an ordered pair of cells that share a row, column, or box. A pair is consistent when, for every candidate digit in the first cell, the second cell has some candidate that doesn't conflict. If a digit in the first cell has no such partner, it can never be used, so it is removed.",
+      "Removing a candidate can break consistency for other arcs that were fine a moment ago, so AC-3 keeps a queue: revise an arc, and if it changed anything, re-add every arc pointing back into that cell. It runs until the queue empties and nothing more can be removed. For many puzzles this alone collapses every cell to a single candidate — the puzzle falls out with no search at all.",
+      "Whatever arc consistency can't finish is handed to a backtracking search with the same MRV cell-ordering as forward checking, now working on the already-shrunken candidate lists.",
+    ],
+    onScreen:
+      "During the opening propagation you see pairs of cells pulse (ac3_revise) as each arc is checked, with candidates dimming (eliminate) all over the grid. This phase can run for a while before a single digit is committed. Once it settles, the search begins and looks just like forward checking — assign, eliminate, the occasional unassign and restore.",
+    strengths:
+      "The tightest worst cases of the four. On the hard set its worst puzzle is 1,235 nodes versus forward checking's 149,731; on easy, 384 versus backtracking's 254,857. It solves all 90 easy/medium/hard puzzles and all 12 extreme puzzles, with the lowest median node count on the extreme set (7,310).",
+    weaknesses:
+      "The propagation is not free. Every solve pays for the full arc-consistency pass whether or not it was needed, which is why AC-3 is the slowest of the deterministic three on easy puzzles — roughly 1.6 ms against forward checking's 0.14 ms in TypeScript, despite the two exploring a near-identical number of nodes.",
+    verdict:
+      "Wins when a puzzle is hard enough that propagation prevents a blow-up the one-step check would have missed — its bounded worst case is the whole point. Loses on easy puzzles, where it does a lot of upfront work to reach the same answer forward checking gets to immediately.",
   },
   {
     id: "min_conflicts",
     label: "Min-conflicts",
     short: "MC",
-    blurb:
-      "Local search: start from a random full grid (each row a permutation), then repeatedly pick a conflicted cell and swap within its row to reduce total conflicts. Incomplete — on a sparse puzzle it thrashes in local minima and gives up.",
-    emits: "swap · reassign · conflicts",
+    emits: "conflicts · swap · reassign",
+    tagline: "Start from a full random grid; repair the worst cell, over and over.",
+    explainer: [
+      "Min-conflicts is a local search, which means it never builds a solution piece by piece — it starts with a complete, wrong grid and tries to fix it. Each row is filled with a random permutation that already contains the digits 1–9 exactly once, so rows are never in conflict; all the errors live in the columns and boxes. The givens are locked in place.",
+      "Each iteration: pick a cell that is currently in conflict, look at every other non-given cell in its row, and swap the pair if doing so lowers the total number of conflicts across the grid. Keep the best swap. If nothing helps, reset the cell to a random low-conflict value and count that as a restart. A counter tracks total conflicts; the search stops when it hits zero.",
+      "This is a completely different strategy from the other three. There is no tree, no backtracking, no notion of a partial solution — just a full grid getting less wrong, most of the time. It is the approach that scales to problems far larger than Sudoku, which is why it is worth showing even though it is the wrong tool here.",
+    ],
+    onScreen:
+      "No cell ever empties. You see two values inside a row trade places (swap) and a running conflict count (conflicts) that ticks down as the grid improves — then stalls. When it flatlines above zero, the search is stuck in a configuration where no single swap helps but the grid is still wrong.",
+    strengths:
+      "On puzzles with a wide margin of freedom it converges fast without any search tree. It clears the hard set at a median of 847 iterations. As a technique it is the only one here that generalises to million-variable constraint problems.",
+    weaknesses:
+      "Incomplete: it can get permanently stuck, and it does. It times out on 5–7 of every 90 attempts on the easy, medium, and hard sets even with three random starts each, and on the extreme set it solves 4 of 36 attempts. A 17-clue puzzle leaves it almost no fixed structure to hill-climb toward.",
+    verdict:
+      "Wins on large, loosely constrained problems where systematic search can't fit in memory — not really Sudoku. Loses on sparse, rigid puzzles: with few givens the landscape is full of local minima, and with no backtracking it has no way out of them.",
   },
 ];
 
 export const ALGO_BY_ID: Record<AlgorithmName, AlgoMeta> = Object.fromEntries(
   ALGOS.map((a) => [a.id, a]),
 ) as Record<AlgorithmName, AlgoMeta>;
+
+/**
+ * "Failure explained" — shown when a run gives up. States the cap that was hit
+ * and why this puzzle defeats this technique in particular.
+ */
+export function failureText(
+  algo: AlgorithmName,
+  opts: { clues: number; nodes: number; cap: number },
+): string {
+  const { clues, nodes, cap } = opts;
+  const capStr = cap.toLocaleString("en-US");
+  const nodeStr = nodes.toLocaleString("en-US");
+  switch (algo) {
+    case "backtracking":
+      return `Stopped after ${nodeStr} search nodes, at the ${capStr}-node cap. This puzzle has ${clues} clues. Backtracking keeps no record of what each empty cell can still hold, so a wrong digit placed early only reveals itself as a contradiction many levels deeper — and there are far too many wrong early digits here to grind through. Forward checking or AC-3 solve this same puzzle in roughly ten thousand nodes.`;
+    case "forward_checking":
+      return `Stopped after ${nodeStr} nodes, at the ${capStr}-node cap — unusual for this algorithm. Forward checking only tests one move ahead, so it can still descend into a branch where no single placement empties a candidate list but the combination is already unsatisfiable. This is the rare puzzle shaped to exploit exactly that blind spot; AC-3's fixed-point propagation would catch it earlier.`;
+    case "ac3":
+      return `Stopped after ${nodeStr} nodes, at the ${capStr}-node cap. Arc consistency thinned the candidates but did not finish the puzzle, and the search that followed still could not close it inside the budget. With ${clues} clues this is at the edge of what constraint propagation plus MRV search can do without stronger inference.`;
+    case "min_conflicts":
+      return `Gave up after ${nodeStr} iterations at the ${capStr}-iteration cap, with conflicts still above zero. Min-conflicts is a local search with no backtracking: once it reaches a grid where no single swap reduces the conflict count, it cannot escape. A ${clues}-clue puzzle leaves almost no fixed structure, so the search space is dense with these dead ends — it is the wrong technique for a puzzle this sparse, not a tuning problem.`;
+  }
+}
 
 /** step / node budget by whether the puzzle looks hard */
 export function budgetFor(puzzle: string): { maxSteps: number; maxEvents: number } {

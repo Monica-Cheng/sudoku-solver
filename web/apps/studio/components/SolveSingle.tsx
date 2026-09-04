@@ -7,7 +7,8 @@ import { Board } from "@/components/Board";
 import { Metric, fmtInt, fmtMs } from "@/components/Metrics";
 import { GridModel } from "@/lib/gridState";
 import { useSolver } from "@/lib/useSolver";
-import { ALGOS, ALGO_BY_ID, budgetFor } from "@/lib/algorithms";
+import { ALGOS, ALGO_BY_ID, budgetFor, failureText } from "@/lib/algorithms";
+import { AlgoExplainer } from "@/components/AlgoExplainer";
 
 interface Props {
   puzzle: string;
@@ -190,14 +191,8 @@ export function SolveSingle({ puzzle, initialAlgo }: Props) {
         {/* outcome banner */}
         <OutcomeBanner running={running} settled={settled} puzzle={puzzle} algo={algo} />
 
-        {/* explainer (placeholder copy this phase) */}
-        <div className="rounded border border-border bg-bg-raised p-4">
-          <h2 className="num text-[12px] text-text">{meta.label}</h2>
-          <p className="mt-1 num text-[10px] text-text-faint">emits: {meta.emits}</p>
-          <p className="mt-2 text-[12px] leading-relaxed text-text-dim">
-            {meta.blurb}
-          </p>
-        </div>
+        {/* explainer */}
+        <AlgoExplainer meta={meta} />
 
         <button
           onClick={() => router.push("/")}
@@ -294,13 +289,21 @@ function OutcomeBanner({
   if (r?.terminatedReason === "max_steps") {
     return (
       <div className="rounded border border-accent/40 bg-accent/5 p-3 text-[12px] leading-relaxed text-text-dim">
-        <span className="num text-accent">gave up</span> after {fmtInt(r.nodes)}{" "}
-        nodes.{" "}
-        {algo === "backtracking"
-          ? `This puzzle has ${clues} clues and naive backtracking has no way to prune — it can only guess and undo.`
-          : algo === "min_conflicts"
-            ? `Min-conflicts is a local search: on a puzzle this sparse it settles into local minima it can't escape.`
-            : `Hit the step budget before finishing.`}
+        <p>
+          <span className="num text-accent">gave up</span> —{" "}
+          {failureText(algo, {
+            clues,
+            nodes: r.nodes,
+            cap: budgetFor(puzzle).maxSteps,
+          })}
+        </p>
+        <p className="mt-1.5 text-text-faint">
+          That&rsquo;s the designed outcome, not an error — see{" "}
+          <a href="/benchmarks" className="text-accent hover:underline">
+            benchmarks
+          </a>{" "}
+          for how often each algorithm hits this.
+        </p>
       </div>
     );
   }
