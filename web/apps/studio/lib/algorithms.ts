@@ -140,10 +140,29 @@ export function failureText(
   }
 }
 
-/** step / node budget by whether the puzzle looks hard */
-export function budgetFor(puzzle: string): { maxSteps: number; maxEvents: number } {
+/**
+ * Step / node budget for one algorithm on one puzzle.
+ *
+ * The three complete searches (backtracking, forward-checking, AC-3) get a
+ * cap that scales with how sparse the puzzle looks — a 17-clue puzzle needs
+ * far more nodes to exhaust than a 30-clue one, so the live page gives it a
+ * bigger budget the same way benchmarks/run_solver_bench.py does.
+ *
+ * min-conflicts always gets a flat 200,000 — its own DEFAULT_MAX_STEPS
+ * (solvers/min_conflicts/core.py, src/solvers/minConflicts.ts) and the same
+ * cap used for every tier on /benchmarks. It does NOT scale with clue count:
+ * scaling it up the way the complete searches are scaled would let it solve
+ * far more often live than the published "4 of 36 on the extreme set"
+ * describes, for the same puzzles.
+ */
+export function budgetFor(
+  puzzle: string,
+  algo: AlgorithmName,
+): { maxSteps: number; maxEvents: number } {
   const clues = 81 - (puzzle.match(/0/g)?.length ?? 0);
-  if (clues <= 20) return { maxSteps: 1_400_000, maxEvents: 6000 };
-  if (clues <= 25) return { maxSteps: 500_000, maxEvents: 5000 };
-  return { maxSteps: 200_000, maxEvents: 4000 };
+  const maxEvents = clues <= 20 ? 6000 : clues <= 25 ? 5000 : 4000;
+  if (algo === "min_conflicts") return { maxSteps: 200_000, maxEvents };
+  if (clues <= 20) return { maxSteps: 1_400_000, maxEvents };
+  if (clues <= 25) return { maxSteps: 500_000, maxEvents };
+  return { maxSteps: 200_000, maxEvents };
 }

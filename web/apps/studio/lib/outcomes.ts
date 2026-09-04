@@ -93,7 +93,7 @@ export function outcomeFor(
         detail: failureText(ctx.algo, {
           clues: 81 - (ctx.puzzle.match(/0/g)?.length ?? 0),
           nodes: r.nodes,
-          cap: budgetFor(ctx.puzzle).maxSteps,
+          cap: budgetFor(ctx.puzzle, ctx.algo).maxSteps,
         }),
         isError: false,
       };

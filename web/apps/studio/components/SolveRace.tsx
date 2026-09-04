@@ -14,7 +14,9 @@ const EVENTS_PER_FRAME = 900; // per grid
 
 export function SolveRace({ puzzle }: { puzzle: string }) {
   const router = useRouter();
-  const budget = budgetFor(puzzle);
+  // min-conflicts runs to its own fixed cap regardless of clue count; see
+  // budgetFor's doc comment. Used below for the "runs to its N cap" note.
+  const mcBudget = budgetFor(puzzle, "min_conflicts");
 
   // one solver hook per algorithm (fixed order, unconditional)
   const s0 = useSolver();
@@ -39,6 +41,7 @@ export function SolveRace({ puzzle }: { puzzle: string }) {
     settledRef.current = [null, null, null, null];
     startedAtRef.current = performance.now();
     ALGOS.forEach((a, i) => {
+      const budget = budgetFor(puzzle, a.id);
       solvers[i].start({
         puzzle,
         algorithm: a.id,
@@ -158,7 +161,7 @@ export function SolveRace({ puzzle }: { puzzle: string }) {
               backtracking, forward-checking and AC-3 each explored the whole
               space and <em>proved</em> it. Min-conflicts can&rsquo;t: local
               search only ever reports &ldquo;didn&rsquo;t find one&rdquo;, so it
-              runs to its {fmtInt(budget.maxSteps)}-iteration cap.
+              runs to its {fmtInt(mcBudget.maxSteps)}-iteration cap.
             </>
           ) : (
             <>

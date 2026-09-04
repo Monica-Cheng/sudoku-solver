@@ -98,11 +98,30 @@ describe("failureText", () => {
 });
 
 describe("budgetFor", () => {
-  it("scales the node budget to how hard the puzzle looks", () => {
-    const seventeen = "0".repeat(64) + "1234567890123456".slice(0, 17);
-    expect(budgetFor("1".repeat(17) + "0".repeat(64)).maxSteps).toBe(1_400_000);
-    expect(budgetFor("1".repeat(24) + "0".repeat(57)).maxSteps).toBe(500_000);
-    expect(budgetFor("1".repeat(30) + "0".repeat(51)).maxSteps).toBe(200_000);
-    void seventeen;
+  const SEVENTEEN_CLUES = "1".repeat(17) + "0".repeat(64);
+  const TWENTY_FOUR_CLUES = "1".repeat(24) + "0".repeat(57);
+  const THIRTY_CLUES = "1".repeat(30) + "0".repeat(51);
+  const COMPLETE_SEARCHES = ["backtracking", "forward_checking", "ac3"] as const;
+
+  it("scales the complete searches' node budget to how hard the puzzle looks", () => {
+    for (const algo of COMPLETE_SEARCHES) {
+      expect(budgetFor(SEVENTEEN_CLUES, algo).maxSteps).toBe(1_400_000);
+      expect(budgetFor(TWENTY_FOUR_CLUES, algo).maxSteps).toBe(500_000);
+      expect(budgetFor(THIRTY_CLUES, algo).maxSteps).toBe(200_000);
+    }
+  });
+
+  it("gives min-conflicts a flat 200,000-iteration cap regardless of clue count", () => {
+    // this is min_conflicts' own DEFAULT_MAX_STEPS and the cap used for every
+    // tier on /benchmarks; scaling it up would let it solve far more often
+    // live than the published "4 of 36 on the extreme set" describes.
+    expect(budgetFor(SEVENTEEN_CLUES, "min_conflicts").maxSteps).toBe(200_000);
+    expect(budgetFor(TWENTY_FOUR_CLUES, "min_conflicts").maxSteps).toBe(200_000);
+    expect(budgetFor(THIRTY_CLUES, "min_conflicts").maxSteps).toBe(200_000);
+  });
+
+  it("still scales maxEvents (animation sampling) for min-conflicts by tier", () => {
+    expect(budgetFor(SEVENTEEN_CLUES, "min_conflicts").maxEvents).toBe(6000);
+    expect(budgetFor(THIRTY_CLUES, "min_conflicts").maxEvents).toBe(4000);
   });
 });

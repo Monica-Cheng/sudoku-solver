@@ -22,7 +22,7 @@ export function SolveSingle({ puzzle, initialAlgo }: Props) {
   const router = useRouter();
   const solver = useSolver();
   const [algo, setAlgo] = useState<AlgorithmName>(initialAlgo);
-  const budget = budgetFor(puzzle);
+  const budget = budgetFor(puzzle, algo);
 
   const modelRef = useRef(new GridModel(puzzle, algo));
   const eventsRef = useRef<StepEvent[]>([]);
