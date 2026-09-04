@@ -16,7 +16,35 @@ describe("ALGOS explainer content", () => {
       expect(a.strengths).toMatch(/\d/); // cites a number
       expect(a.weaknesses).toMatch(/\d/);
       expect(a.verdict.toLowerCase()).toContain("win");
+      expect(a.frame.length).toBeGreaterThan(120);
     }
+  });
+
+  it("every algorithm's frame uses the shared O(b^d) vocabulary", () => {
+    for (const a of ALGOS) {
+      expect(a.frame).toMatch(/b\^d|branching factor|no tree|no branching/i);
+    }
+  });
+
+  it("names 'fail-first' where MRV is introduced", () => {
+    expect(ALGO_BY_ID.forward_checking.frame + ALGO_BY_ID.forward_checking.explainer.join(" "))
+      .toMatch(/fail-first/i);
+  });
+
+  it("min-conflicts names its three failure modes and the N-Queens contrast", () => {
+    const mc = ALGO_BY_ID.min_conflicts;
+    expect(mc.onScreen).toMatch(/local minim/i);
+    expect(mc.onScreen).toMatch(/plateau/i);
+    expect(mc.onScreen).toMatch(/ridge/i);
+    expect(mc.verdict).toMatch(/n-queens/i);
+    expect(mc.verdict).toMatch(/94%|253 of 270/);
+    expect(mc.verdict).toMatch(/4 of 36/);
+  });
+
+  it("min-conflicts explainer text is not backwards about clue count", () => {
+    const mc = ALGO_BY_ID.min_conflicts;
+    const all = [mc.frame, ...mc.explainer, mc.onScreen, mc.strengths, mc.weaknesses, mc.verdict].join(" ");
+    expect(all).not.toMatch(/sparse|few givens|almost no (fixed )?structure/i);
   });
 
   it("ties each explainer to the events it emits", () => {

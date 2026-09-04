@@ -31,6 +31,7 @@ export function AlgoExplainer({ meta }: { meta: AlgoMeta }) {
           ))}
         </div>
 
+        <Section title="in complexity terms">{meta.frame}</Section>
         <Section title="on screen">{meta.onScreen}</Section>
 
         <button

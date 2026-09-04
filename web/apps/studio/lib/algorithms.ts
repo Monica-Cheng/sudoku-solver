@@ -8,6 +8,8 @@ export interface AlgoMeta {
   emits: string;
   /** one line for cards and chips */
   tagline: string;
+  /** the shared complexity frame — how this algorithm relates to O(b^d) search */
+  frame: string;
   /** plain-language explanation, three short paragraphs, no undefined jargon */
   explainer: string[];
   /** what the animation shows, tied to the actual events */
@@ -26,6 +28,8 @@ export const ALGOS: AlgoMeta[] = [
     short: "BT",
     emits: "assign · unassign",
     tagline: "Guess a digit, recurse, undo on a dead end. No look-ahead.",
+    frame:
+      "A naive backtracking search is O(b^d): d levels deep — one per empty cell — and at each level up to b digits to try, the branching factor. Nothing here shrinks either number: b is the full set of candidates, d is every blank on the board. The worst case is the entire exponential tree. The other three algorithms are all ways to cut b, cut d, or both.",
     explainer: [
       "Backtracking is the textbook brute-force method: a depth-first search that tries digits one cell at a time. Take the first empty cell, put in the smallest digit that doesn't already clash with a filled neighbour in the same row, column, or 3×3 box, and move to the next empty cell. If you reach a cell where no digit fits, the last guess was wrong — erase it, go back, and try the next digit there. Repeat until the grid is full.",
       "The thing to notice is what it doesn't do. It never looks ahead. After placing a 5, it doesn't check whether that 5 has just left some other cell with no legal options — it only finds out later, when it crashes into that cell and has to unwind. It keeps no per-cell notes about what's still possible. Every decision is made from the raw board.",
@@ -46,9 +50,11 @@ export const ALGOS: AlgoMeta[] = [
     short: "FC",
     emits: "assign · unassign · eliminate · restore",
     tagline: "Track each cell's remaining options; always branch on the most constrained.",
+    frame:
+      "Same O(b^d) frame — b digits tried per cell, d cells deep. Forward checking attacks b: removing a placed digit from its peers' candidate lists shrinks the branching factor at every level below it. MRV attacks d: it always branches on the cell with the fewest candidates left. That is the \"fail-first\" heuristic — if a choice is going to fail, force the failure near the top of the tree, where one wrong turn is cheap to undo, rather than forty cells deep.",
     explainer: [
       "Forward checking adds one piece of bookkeeping to backtracking: for every empty cell it keeps a list of digits still legal there — the cell's candidates. Each time it places a digit, it immediately removes that digit from the candidate lists of every cell in the same row, column, and box. If any cell's list becomes empty, the current path is already dead, so it backtracks now instead of discovering the problem ten guesses later.",
-      "The second idea is which cell to try next. Instead of the first empty cell, it picks the one with the fewest candidates left — the \"minimum remaining values\" or MRV rule. If some cell is down to a single candidate, fill that; if the fewest anywhere is two, you have a coin-flip instead of a nine-way guess. Choosing the most constrained cell keeps the search tree narrow.",
+      "The second idea is which cell to try next. Instead of the first empty cell, it picks the one with the fewest candidates left — the \"minimum remaining values\" or MRV rule. If some cell is down to a single candidate, fill that; if the fewest anywhere is two, you have a coin-flip instead of a nine-way guess. This is \"fail-first\" thinking: take the hardest decision while the tree above it is still small, so a wrong guess costs one cheap undo instead of unwinding a deep branch.",
       "Together these turn the search from blind to sighted. It still guesses and still backtracks, but it almost never wanders far, because a bad guess usually empties some candidate list within a move or two and gets rejected.",
     ],
     onScreen:
@@ -66,6 +72,8 @@ export const ALGOS: AlgoMeta[] = [
     short: "AC3",
     emits: "ac3_revise · eliminate · restore · assign · unassign",
     tagline: "Propagate constraints to a fixed point first, then search what's left.",
+    frame:
+      "The same O(b^d) frame, and AC-3 attacks b hardest. Forward checking only prunes the peers of a digit it just placed; AC-3 keeps propagating — every elimination triggers re-checks of the arcs feeding into that cell — until nothing more can be removed. On many puzzles that drives b to 1 for every cell, which collapses d to zero: no search at all. The MRV/LCV ordering in whatever search remains is the fail-first idea again — surface a contradiction near the root, not deep in the tree.",
     explainer: [
       "AC-3 (the name is just its number in the paper that introduced it) enforces a property called arc consistency before any guessing happens. An \"arc\" is an ordered pair of cells that share a row, column, or box. A pair is consistent when, for every candidate digit in the first cell, the second cell has some candidate that doesn't conflict. If a digit in the first cell has no such partner, it can never be used, so it is removed.",
       "Removing a candidate can break consistency for other arcs that were fine a moment ago, so AC-3 keeps a queue: revise an arc, and if it changed anything, re-add every arc pointing back into that cell. It runs until the queue empties and nothing more can be removed. For many puzzles this alone collapses every cell to a single candidate — the puzzle falls out with no search at all.",
@@ -86,19 +94,21 @@ export const ALGOS: AlgoMeta[] = [
     short: "MC",
     emits: "conflicts · swap · reassign",
     tagline: "Start from a full random grid; repair the worst cell, over and over.",
+    frame:
+      "The other three live inside the O(b^d) search tree and try to shrink b and d. Min-conflicts has no tree — no branching factor, no depth. It holds one complete grid and edits it toward fewer conflicts, like walking downhill on a landscape whose height is the conflict count. That trades the exponential worst case for a different failure: the walk reaching a spot it can't leave. It pays off where solutions are dense and the landscape is smooth — N-Queens is the classic fit — and works against you where constraints are tight and the landscape is jagged, which is Sudoku.",
     explainer: [
       "Min-conflicts is a local search, which means it never builds a solution piece by piece — it starts with a complete, wrong grid and tries to fix it. Each row is filled with a random permutation that already contains the digits 1–9 exactly once, so rows are never in conflict; all the errors live in the columns and boxes. The givens are locked in place.",
       "Each iteration: pick a cell that is currently in conflict, look at every other non-given cell in its row, and swap the pair if doing so lowers the total number of conflicts across the grid. Keep the best swap. If nothing helps, reset the cell to a random low-conflict value and count that as a restart. A counter tracks total conflicts; the search stops when it hits zero.",
       "This is a completely different strategy from the other three. There is no tree, no backtracking, no notion of a partial solution — just a full grid getting less wrong, most of the time. It is the approach that scales to problems far larger than Sudoku, which is why it is worth showing even though it is the wrong tool here.",
     ],
     onScreen:
-      "No cell ever empties. You see two values inside a row trade places (swap) and a running conflict count (conflicts) that ticks down as the grid improves — then stalls. When it flatlines above zero, the search is stuck in a configuration where no single swap helps but the grid is still wrong.",
+      "No cell ever empties. You see two values inside a row trade places (swap) and a conflict count that drops fast at first, then slows, then sticks. A flat line above zero is one of three traps: a local minimum, where every available swap makes things worse; a plateau, where swaps neither help nor hurt and the walk wanders without progress; or a ridge, where progress needs two coordinated swaps and the search only ever makes one. It cannot tell which it is in, or climb out of any of them.",
     strengths:
-      "On puzzles with a wide margin of freedom it converges fast without any search tree. It clears the hard set at a median of 847 iterations. As a technique it is the only one here that generalises to million-variable constraint problems.",
+      "On problems with a wide margin of freedom — many solutions, loose constraints — it converges fast with no search tree and a flat memory footprint. It clears the hard set at a median of 847 iterations, and the technique scales to constraint problems with millions of variables.",
     weaknesses:
-      "Incomplete: it can get permanently stuck, and it does. It times out on 5–7 of every 90 attempts on the easy, medium, and hard sets even with three random starts each, and on the extreme set it solves 4 of 36 attempts. A 17-clue puzzle leaves it almost no fixed structure to hill-climb toward.",
+      "Incomplete: it can get permanently stuck, and on Sudoku it often does. It times out on 5–7 of every 90 attempts across the easy, medium, and hard sets even with three random starts each, and on the extreme set it solves just 4 of 36. That isn't about clue count — it's that tight constraints make the conflict landscape almost all local minima, plateaus, and ridges.",
     verdict:
-      "Wins on large, loosely constrained problems where systematic search can't fit in memory — not really Sudoku. Loses on sparse, rigid puzzles: with few givens the landscape is full of local minima, and with no backtracking it has no way out of them.",
+      "Wins on loosely constrained problems where solutions are dense and a systematic search would run out of memory — the textbook case is N-Queens, where min-conflicts places a million queens in seconds. Sudoku is the opposite: tightly constrained, very few solutions, a landscape full of traps. Our numbers show the split — 253 of 270 easy/medium/hard attempts solved (94%), but only 4 of 36 on the extreme set (ten of its twelve puzzles are 17-clue minimums). It's the constraint tightness that breaks it, not the number of givens.",
   },
 ];
 
