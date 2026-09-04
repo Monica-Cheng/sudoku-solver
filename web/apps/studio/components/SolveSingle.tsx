@@ -120,7 +120,18 @@ export function SolveSingle({ puzzle, initialAlgo }: Props) {
     : (settled?.result?.runtimeMs ?? 0);
 
   const stepShown = model.step;
-  const stepDenom = settled?.result ? settled.result.nodes : budget.maxSteps;
+  // Denominator for "step X of Y". While running, the primary-work cap is the
+  // best available bound. Once settled, the true total is the tick ordinal on
+  // the final (solved/stopped) event — this is what playback scrubs through.
+  // `result.nodes` is wrong for AC-3, whose ticks also count arc revisions and
+  // which can finish in the propagation phase with zero search nodes.
+  const finalStep = settled
+    ? (() => {
+        const evs = eventsRef.current;
+        const last = evs.length ? evs[evs.length - 1] : undefined;
+        return last && typeof last.step === "number" ? last.step : null;
+      })()
+    : budget.maxSteps;
 
   const stepForward = () => {
     followRef.current = false;
@@ -176,7 +187,11 @@ export function SolveSingle({ puzzle, initialAlgo }: Props) {
             label="step"
             value={fmtInt(stepShown)}
             accent
-            sub={`of ${fmtInt(stepDenom)}${budget.maxEvents < 1e9 ? " · sampled" : ""}`}
+            sub={
+              finalStep != null
+                ? `of ${fmtInt(finalStep)} · sampled`
+                : "sampled"
+            }
           />
           <Metric label="elapsed" value={fmtMs(elapsed)} />
           <Metric label="nodes" value={fmtInt(model.nodes)} />

@@ -45,23 +45,27 @@ describe("failureText", () => {
     }
   });
 
-  it("cites the clue count where the puzzle's sparsity is the point", () => {
-    for (const algo of ["backtracking", "ac3", "min_conflicts"] as const) {
-      expect(
-        failureText(algo, { clues: 17, nodes: 200000, cap: 200000 }),
-      ).toContain("17");
+  it("stays factually correct at a HIGH clue count — no 'sparse' / 'no structure'", () => {
+    for (const algo of cases) {
+      const t = failureText(algo, { clues: 35, nodes: 200_000, cap: 200_000 });
+      expect(t).not.toMatch(/sparse|almost no (fixed )?structure|few clues|this sparse/i);
     }
   });
 
-  it("gives backtracking a puzzle-specific reason, not a generic one", () => {
-    const t = failureText("backtracking", { clues: 17, nodes: 900000, cap: 1_400_000 });
-    expect(t).toMatch(/no record|contradiction|deeper/i);
+  it("backtracking blames the lack of pruning and the empty-cell count, not clue scarcity", () => {
+    const t = failureText("backtracking", { clues: 30, nodes: 900_000, cap: 1_400_000 });
+    expect(t).toMatch(/no pruning|exponential|no legal value/i);
     expect(t).toContain("900,000");
+    expect(t).toContain(String(81 - 30)); // 51 empty cells
   });
 
-  it("frames min-conflicts failure as wrong-technique, not tuning", () => {
-    const t = failureText("min_conflicts", { clues: 17, nodes: 200000, cap: 200000 });
-    expect(t).toMatch(/local search|no backtracking|wrong technique/i);
+  it("min-conflicts: local minima + can't-detect-contradiction, clue-count-independent", () => {
+    const t = failureText("min_conflicts", { clues: 29, nodes: 200_000, cap: 200_000 });
+    expect(t).toMatch(/local minimum|local search/i);
+    expect(t).toMatch(/no backtracking|no memory/i);
+    expect(t).toMatch(/contradict|impossible|no conflict-free/i);
+    expect(t).toMatch(/depend.* on how many clues|regardless/i);
+    expect(t).not.toContain("29"); // the reasoning must not hinge on the clue count
   });
 });
 

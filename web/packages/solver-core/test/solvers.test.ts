@@ -87,6 +87,19 @@ describe("basic correctness", () => {
     const mc = solve(puzzle, "min_conflicts", { seed: 0, maxSteps: 20_000 });
     expect(mc.terminatedReason).toBe("max_steps");
   });
+
+  it("AC-3 that ends in the propagation phase: nodes is 0 but the final event's step is not", () => {
+    // The solve page's "step X of Y" denominator must come from the last event's
+    // step (total primary ticks: arc revisions + search nodes), NOT result.nodes,
+    // which is 0 when AC-3 finishes before any backtracking node.
+    const evs: StepEvent[] = [];
+    const r = solve("11" + "0".repeat(79), "ac3", { maxEvents: 6000, onStep: (e) => evs.push(e) });
+    expect(r.terminatedReason).toBe("no_solution");
+    expect(r.nodes).toBe(0);
+    const last = evs[evs.length - 1];
+    expect(last.type).toBe("stopped");
+    expect(last.step).toBeGreaterThan(0);
+  });
 });
 
 describe("determinism", () => {

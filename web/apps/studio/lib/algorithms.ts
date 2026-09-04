@@ -117,15 +117,16 @@ export function failureText(
   const { clues, nodes, cap } = opts;
   const capStr = cap.toLocaleString("en-US");
   const nodeStr = nodes.toLocaleString("en-US");
+  const emptyCells = 81 - clues;
   switch (algo) {
     case "backtracking":
-      return `Stopped after ${nodeStr} search nodes, at the ${capStr}-node cap. This puzzle has ${clues} clues. Backtracking keeps no record of what each empty cell can still hold, so a wrong digit placed early only reveals itself as a contradiction many levels deeper — and there are far too many wrong early digits here to grind through. Forward checking or AC-3 solve this same puzzle in roughly ten thousand nodes.`;
+      return `Stopped after ${nodeStr} search nodes, at the ${capStr}-node cap. Backtracking has no pruning: it commits to a digit, recurses, and only finds out a choice was wrong when the search later reaches a cell with no legal value. The number of arrangements it may have to try grows exponentially with the number of empty cells (${emptyCells} here), and the cap arrived before it could exhaust them. Forward checking or AC-3 prune the same puzzle to roughly ten thousand nodes.`;
     case "forward_checking":
       return `Stopped after ${nodeStr} nodes, at the ${capStr}-node cap — unusual for this algorithm. Forward checking only tests one move ahead, so it can still descend into a branch where no single placement empties a candidate list but the combination is already unsatisfiable. This is the rare puzzle shaped to exploit exactly that blind spot; AC-3's fixed-point propagation would catch it earlier.`;
     case "ac3":
-      return `Stopped after ${nodeStr} nodes, at the ${capStr}-node cap. Arc consistency thinned the candidates but did not finish the puzzle, and the search that followed still could not close it inside the budget. With ${clues} clues this is at the edge of what constraint propagation plus MRV search can do without stronger inference.`;
+      return `Stopped after ${nodeStr} nodes, at the ${capStr}-node cap — rare for AC-3. Arc consistency pruned the domains but couldn't reduce every cell to a single value, and the MRV/LCV search that followed still didn't close the puzzle within the budget. A grid that resists both needs a stronger form of inference than arc-consistency — reasoning over pairs isn't enough here — and this solver doesn't implement one.`;
     case "min_conflicts":
-      return `Gave up after ${nodeStr} iterations at the ${capStr}-iteration cap, with conflicts still above zero. Min-conflicts is a local search with no backtracking: once it reaches a grid where no single swap reduces the conflict count, it cannot escape. A ${clues}-clue puzzle leaves almost no fixed structure, so the search space is dense with these dead ends — it is the wrong technique for a puzzle this sparse, not a tuning problem.`;
+      return `Gave up after ${nodeStr} iterations at the ${capStr}-iteration cap, with conflicts still above zero. Min-conflicts is local search: it swaps values within a row to lower the total conflict count and only succeeds if that count reaches zero. With no backtracking and no memory it can't climb out of a local minimum — a state where no single swap helps. It also can't tell a stuck search from an impossible one: if the grid is contradictory there is no conflict-free arrangement to reach, so it runs to the cap regardless. Neither failure depends on how many clues the puzzle has.`;
   }
 }
 
