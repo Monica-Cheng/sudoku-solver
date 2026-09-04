@@ -511,12 +511,12 @@ def sort_cells_into_grid(cells):
     # Sort by x value
     points_sorted = np.array(sorted(points, key=lambda x: x[1]))
     # Reshape to give an array with 9 rows
-    rows = np.reshape(points_sorted, newshape=(9, 9, 2))
+    rows = np.reshape(points_sorted, (9, 9, 2))
     # Sort by y value for every row in rows
     final = np.array([sorted(row, key=lambda x: x[0]) for row in rows])
     
     # Make sure all value combinations in final are actually present in the dictionary
-    final_reshaped = np.reshape(final, newshape=(81, 2))
+    final_reshaped = np.reshape(final, (81, 2))
     for i in range(len(x_vals)):
         assert any(np.equal(final_reshaped, [x_vals[i], y_vals[i]]).all(1))
         
@@ -591,7 +591,7 @@ def get_predicted_sudoku_grid(model, cells):
     indices = np.where([cell['contains_digit'] for cell in cells])[0]
     grid_array = np.zeros((81), dtype=int)
     grid_array[indices] = pred_labels
-    grid_array = np.reshape(grid_array, newshape=(9, 9))
+    grid_array = np.reshape(grid_array, (9, 9))
     return grid_array
 
 

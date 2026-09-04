@@ -23,13 +23,6 @@ MODEL = os.path.join(CNN_DIR, "models", "model_fonts_mnist.keras")
 
 sys.path.insert(0, CNN_DIR)
 import numpy as np  # noqa: E402
-
-# sudoku_utils.py predates NumPy 2, which dropped the np.reshape(newshape=...) kwarg.
-_np_reshape = np.reshape
-def _reshape_compat(a, newshape=None, shape=None, order="C", **kw):  # noqa: ANN001
-    return _np_reshape(a, shape if shape is not None else newshape, order=order, **kw)
-np.reshape = _reshape_compat
-
 import tensorflow as tf  # noqa: E402
 import sudoku_utils as su  # noqa: E402
 
