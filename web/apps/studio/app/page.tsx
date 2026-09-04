@@ -3,6 +3,7 @@
 import { useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Board } from "@/components/Board";
+import { EditableGrid } from "@/components/EditableGrid";
 import { GridModel } from "@/lib/gridState";
 import { useAppStore } from "@/lib/store";
 import { recognizeImage } from "@/lib/api";
@@ -29,7 +30,6 @@ export default function InputPage() {
   const [tab, setTab] = useState<Tab>("library");
   const [tier, setTier] = useState<Tier>("easy");
   const [grid, setGrid] = useState<string>(BLANK);
-  const [editTick, setEditTick] = useState(0);
   const [upload, setUpload] = useState<
     | { state: "idle" }
     | { state: "loading" }
@@ -37,8 +37,8 @@ export default function InputPage() {
     | { state: "no-grid"; result: RecognitionResult }
   >({ state: "idle" });
 
-  // a throwaway GridModel just to render the preview / manual editor
-  const model = useMemo(() => new GridModel(grid, "backtracking"), [grid, editTick]);
+  // a throwaway GridModel just to render the non-editable preview
+  const model = useMemo(() => new GridModel(grid, "backtracking"), [grid]);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const clues = clueCount(grid);
@@ -78,16 +78,17 @@ export default function InputPage() {
     <div className="mx-auto grid w-full max-w-[1400px] flex-1 gap-8 px-4 py-8 lg:grid-cols-[minmax(0,1fr)_380px]">
       {/* ---- the grid, centre of the screen ---- */}
       <section className="flex flex-col items-center justify-start gap-3">
-        <div className="w-full max-w-[560px]">
-          <Board
-            model={model}
-            tick={editTick}
-            editable={tab === "manual"}
-            onEdit={(cell, value) => {
-              setGrid((g) => g.slice(0, cell) + String(value) + g.slice(cell + 1));
-            }}
+        {tab === "manual" ? (
+          <EditableGrid
+            grid={grid}
+            onChange={setGrid}
+            className="w-full max-w-[560px]"
           />
-        </div>
+        ) : (
+          <div className="w-full max-w-[560px]">
+            <Board model={model} />
+          </div>
+        )}
         <p className="num text-[12px] text-text-faint">
           {clues === 0
             ? "no puzzle loaded"
@@ -120,25 +121,22 @@ export default function InputPage() {
         {tab === "manual" && (
           <div className="rounded border border-border bg-bg-raised p-4 text-[13px] leading-relaxed text-text-dim">
             <p>
-              Click a cell and type <span className="num text-text">1–9</span>.
-              Backspace clears. Fill in at least the givens, leave the rest blank.
+              Click a cell, type <span className="num text-text">1–9</span> (it
+              advances to the next cell). Arrow keys or Tab move around,{" "}
+              <span className="num text-text">0</span> / Backspace clears, Esc
+              deselects. On a phone, a keypad appears when a cell is selected.
+              Fill in the givens, leave the rest blank.
             </p>
             <div className="mt-3 flex gap-2 num text-[12px]">
               <button
                 className="rounded border border-border px-2 py-1 text-text-dim hover:text-text"
-                onClick={() => {
-                  setGrid(BLANK);
-                  setEditTick((n) => n + 1);
-                }}
+                onClick={() => setGrid(BLANK)}
               >
                 clear
               </button>
               <button
                 className="rounded border border-border px-2 py-1 text-text-dim hover:text-text"
-                onClick={() => {
-                  setGrid(PUZZLE_LIBRARY.easy[0].puzzle);
-                  setEditTick((n) => n + 1);
-                }}
+                onClick={() => setGrid(PUZZLE_LIBRARY.easy[0].puzzle)}
               >
                 load an example
               </button>

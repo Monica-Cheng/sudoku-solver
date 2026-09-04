@@ -66,6 +66,7 @@ input.num,
 .cell {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
+  font-size: inherit;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,6 +76,16 @@ input.num,
   transition: background-color 120ms linear, color 120ms linear,
     box-shadow 120ms linear;
   user-select: none;
+  /* interactive cells are <button>; neutralise the UA chrome here so both
+     the <div> and <button> forms render identically */
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+button.cell {
+  cursor: pointer;
 }
 .cell--given {
   color: var(--color-text);
@@ -102,6 +113,33 @@ input.num,
 }
 .cell--editing {
   box-shadow: inset 0 0 0 1.5px var(--color-text-dim);
+}
+
+/* legality conflict — the specific clashing cells, drawn hot */
+.cell--conflict {
+  color: var(--color-fail);
+  background: color-mix(in oklab, var(--color-fail) 20%, var(--color-bg-raised));
+  box-shadow: inset 0 0 0 1px var(--color-fail);
+  animation: cell-conflict-in 160ms ease-out;
+}
+@keyframes cell-conflict-in {
+  from {
+    background: color-mix(in oklab, var(--color-fail) 55%, var(--color-bg-raised));
+  }
+}
+
+/* selected cell in an editable grid — the keyboard / tap cursor */
+.cell--selected {
+  box-shadow: inset 0 0 0 2px var(--color-accent);
+  z-index: 2;
+}
+.cell--selected.cell--conflict {
+  box-shadow: inset 0 0 0 2px var(--color-accent),
+    inset 0 0 0 4px color-mix(in oklab, var(--color-fail) 60%, transparent);
+}
+
+.board-grid > button.cell:focus-visible {
+  outline: none;
 }
 
 @keyframes cell-fail {

@@ -1,15 +1,18 @@
 "use client";
 
-import { memo, useEffect, useRef } from "react";
+import { memo } from "react";
 import { CellStatus, GridModel } from "@/lib/gridState";
 
 interface BoardProps {
   model: GridModel;
   /** bump to force a re-read of the mutable model */
   tick?: number;
-  editable?: boolean;
-  onEdit?: (cell: number, value: number) => void;
-  editingCell?: number | null;
+  /** currently selected cell (interactive grids only) */
+  selectedCell?: number | null;
+  /** cells that are part of a legality conflict — drawn in the fail colour */
+  conflictCells?: ReadonlySet<number>;
+  /** when provided, cells become clickable and report their index */
+  onCellClick?: (cell: number) => void;
   lowConfidence?: ReadonlySet<number>;
   className?: string;
 }
@@ -18,8 +21,9 @@ function cellClass(
   model: GridModel,
   i: number,
   now: number,
-  editing: boolean,
   low: boolean,
+  selected: boolean,
+  conflict: boolean,
 ): string {
   const parts = ["cell"];
   const st = model.status[i];
@@ -29,7 +33,8 @@ function cellClass(
   if (model.flashUntil[i] > now) parts.push("cell--failed");
   if (model.pulseUntil[i] > now) parts.push("cell--pulse");
   if (low) parts.push("cell--lowconf");
-  if (editing) parts.push("cell--editing");
+  if (conflict) parts.push("cell--conflict");
+  if (selected) parts.push("cell--selected");
   return parts.join(" ");
 }
 
@@ -48,13 +53,14 @@ function PencilMarks({ mask }: { mask: number }) {
 
 export const Board = memo(function Board({
   model,
-  editable = false,
-  onEdit,
-  editingCell = null,
+  selectedCell = null,
+  conflictCells,
+  onCellClick,
   lowConfidence,
   className = "",
 }: BoardProps) {
   const now = typeof performance !== "undefined" ? performance.now() : 0;
+  const interactive = typeof onCellClick === "function";
 
   return (
     <div
@@ -65,101 +71,37 @@ export const Board = memo(function Board({
       {Array.from({ length: 81 }, (_, i) => {
         const v = model.values[i];
         const low = !!lowConfidence?.has(i);
-        const isEditing = editingCell === i;
-        const digitCells = editable
-          ? // in editable mode show the value, or a placeholder
-            v > 0
-            ? v
-            : ""
-          : v > 0
-            ? v
-            : "";
+        const conflict = !!conflictCells?.has(i);
+        const selected = selectedCell === i;
+        const cls = cellClass(model, i, now, low, selected, conflict);
+        const mask = v > 0 ? 0 : model.cands[i];
+
+        if (interactive) {
+          return (
+            <button
+              key={i}
+              type="button"
+              className={cls}
+              role="gridcell"
+              aria-label={`row ${Math.floor(i / 9) + 1} column ${(i % 9) + 1}${
+                v > 0 ? `, ${v}` : ", empty"
+              }`}
+              aria-selected={selected}
+              data-i={i}
+              tabIndex={-1}
+              onClick={() => onCellClick!(i)}
+            >
+              {v > 0 ? v : <PencilMarks mask={mask} />}
+            </button>
+          );
+        }
+
         return (
-          <CellView
-            key={i}
-            index={i}
-            display={digitCells}
-            className={cellClass(model, i, now, isEditing, low)}
-            editable={editable && model.status[i] !== CellStatus.Given}
-            mask={v > 0 ? 0 : model.cands[i]}
-            onEdit={onEdit}
-          />
+          <div key={i} className={cls} role="gridcell" data-i={i}>
+            {v > 0 ? v : <PencilMarks mask={mask} />}
+          </div>
         );
       })}
     </div>
   );
 });
-
-function CellView({
-  index,
-  display,
-  className,
-  editable,
-  mask,
-  onEdit,
-}: {
-  index: number;
-  display: number | string;
-  className: string;
-  editable: boolean;
-  mask: number;
-  onEdit?: (cell: number, value: number) => void;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  // keep the DOM node's contentEditable text in sync only when not focused
-  useEffect(() => {
-    if (!editable || !ref.current) return;
-    if (document.activeElement !== ref.current) {
-      ref.current.textContent = display === "" ? "" : String(display);
-    }
-  }, [display, editable]);
-
-  if (!editable) {
-    return (
-      <div className={className} role="gridcell" data-i={index}>
-        {display === "" ? <PencilMarks mask={mask} /> : display}
-      </div>
-    );
-  }
-
-  return (
-    <div
-      ref={ref}
-      className={className}
-      role="gridcell"
-      data-i={index}
-      contentEditable
-      suppressContentEditableWarning
-      inputMode="numeric"
-      onFocus={(e) => {
-        const el = e.currentTarget;
-        const r = document.createRange();
-        r.selectNodeContents(el);
-        window.getSelection()?.removeAllRanges();
-        window.getSelection()?.addRange(r);
-      }}
-      onKeyDown={(e) => {
-        if (e.key === "Backspace" || e.key === "Delete" || e.key === "0") {
-          e.preventDefault();
-          onEdit?.(index, 0);
-          e.currentTarget.textContent = "";
-        } else if (/^[1-9]$/.test(e.key)) {
-          e.preventDefault();
-          onEdit?.(index, Number(e.key));
-          e.currentTarget.textContent = e.key;
-          e.currentTarget.blur();
-        } else if (e.key !== "Tab" && !e.key.startsWith("Arrow")) {
-          e.preventDefault();
-        }
-      }}
-      onBlur={(e) => {
-        const t = e.currentTarget.textContent?.trim() ?? "";
-        if (/^[1-9]$/.test(t)) onEdit?.(index, Number(t));
-        else if (t === "") onEdit?.(index, 0);
-      }}
-    >
-      {display === "" ? <PencilMarks mask={mask} /> : display}
-    </div>
-  );
-}

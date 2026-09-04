@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Board } from "@/components/Board";
-import { GridModel } from "@/lib/gridState";
+import { EditableGrid } from "@/components/EditableGrid";
+import { describeConflicts, findConflicts } from "@/lib/legality";
 import { useAppStore } from "@/lib/store";
 
 export default function VerifyPage() {
@@ -12,7 +12,7 @@ export default function VerifyPage() {
   const setPuzzle = useAppStore((s) => s.setPuzzle);
 
   const [grid, setGrid] = useState<string | null>(null);
-  const [tick, setTick] = useState(0);
+  const [flagged, setFlagged] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     if (recognition === null) {
@@ -20,14 +20,15 @@ export default function VerifyPage() {
       return;
     }
     setGrid(recognition.grid);
+    setFlagged(new Set(recognition.lowConfidenceCells));
   }, [recognition, router]);
 
-  const model = useMemo(
-    () => (grid ? new GridModel(grid, "backtracking") : null),
-    [grid, tick],
+  const conflicts = useMemo(
+    () => (grid ? findConflicts(grid) : []),
+    [grid],
   );
 
-  if (!recognition || !grid || !model) {
+  if (!recognition || grid === null) {
     return (
       <div className="flex flex-1 items-center justify-center text-[12px] text-text-faint num">
         loading…
@@ -35,29 +36,33 @@ export default function VerifyPage() {
     );
   }
 
-  const lowConf = new Set(recognition.lowConfidenceCells);
-  const flaggedCount = lowConf.size;
+  const cellsRead = 81 - (recognition.grid.match(/0/g)?.length ?? 0);
+
+  function clearFlag(cell: number) {
+    setFlagged((prev) => {
+      if (!prev.has(cell)) return prev;
+      const next = new Set(prev);
+      next.delete(cell);
+      return next;
+    });
+  }
 
   function go(mode: "single" | "race") {
-    setPuzzle(grid!, recognition!);
+    // the corrected grid — not the original recognition — is what gets solved
+    setPuzzle(grid!, { ...recognition!, grid: grid! });
     router.push(`/solve?puzzle=${grid}&mode=${mode}&algo=ac3`);
   }
 
   return (
     <div className="mx-auto grid w-full max-w-[1400px] flex-1 gap-8 px-4 py-8 lg:grid-cols-[minmax(0,1fr)_380px]">
       <section className="flex flex-col items-center gap-3">
-        <div className="w-full max-w-[560px]">
-          <Board
-            model={model}
-            tick={tick}
-            editable
-            lowConfidence={lowConf}
-            onEdit={(cell, value) => {
-              setGrid((g) => g!.slice(0, cell) + String(value) + g!.slice(cell + 1));
-              lowConf.delete(cell);
-            }}
-          />
-        </div>
+        <EditableGrid
+          grid={grid}
+          onChange={setGrid}
+          lowConfidence={flagged}
+          onClearFlag={clearFlag}
+          className="w-full max-w-[560px]"
+        />
         <p className="num text-[12px] text-text-faint">
           recognized from your photo · click any cell to correct it
         </p>
@@ -80,25 +85,23 @@ export default function VerifyPage() {
         <div className="rounded border border-border bg-bg-raised p-3 num text-[12px] text-text-dim">
           <div className="flex justify-between">
             <span>cells read</span>
-            <span className="text-text">
-              {81 - (recognition.grid.match(/0/g)?.length ?? 0)}
-            </span>
+            <span className="text-text">{cellsRead}</span>
           </div>
           <div className="mt-1 flex justify-between">
             <span>flagged to check</span>
-            <span className={flaggedCount ? "text-accent" : "text-text"}>
-              {flaggedCount}
+            <span className={flagged.size ? "text-accent" : "text-text"}>
+              {flagged.size}
             </span>
           </div>
         </div>
 
-        {recognition.error && (
-          <div className="rounded border border-border bg-bg-raised p-3 text-[12px] leading-relaxed text-text-dim">
-            <p className="text-accent">worth a closer look</p>
-            <p className="mt-1">{recognition.error}</p>
+        {conflicts.length > 0 && (
+          <div className="rounded border border-fail/40 bg-fail/5 p-3 text-[12px] leading-relaxed text-text-dim">
+            <p className="text-fail">worth a closer look</p>
+            <p className="mt-1">{describeConflicts(conflicts)}</p>
             <p className="mt-1 text-text-faint">
-              Two cells hold the same digit in a row, column or box — one of them
-              is probably a misread.
+              The clashing cells are outlined in red on the grid — one of each
+              pair is probably a misread. Fix it and this clears.
             </p>
           </div>
         )}
