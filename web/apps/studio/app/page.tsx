@@ -10,6 +10,7 @@ import { recognizeImage } from "@/lib/api";
 import type { RecognitionResult } from "@/lib/types";
 import { PUZZLE_LIBRARY, type LibraryPuzzle } from "@/lib/puzzles.generated";
 import { TIER_IDS, TIER_LABEL, type TierId } from "@/lib/tiers";
+import { conflictCellSet, describeConflicts, findConflicts } from "@/lib/legality";
 
 const BLANK = "0".repeat(81);
 const TABS = ["library", "manual", "image"] as const;
@@ -43,7 +44,9 @@ export default function InputPage() {
   const fileRef = useRef<HTMLInputElement>(null);
 
   const clues = clueCount(grid);
-  const ready = clues > 0 && isComplete81(grid);
+  const conflicts = useMemo(() => findConflicts(grid), [grid]);
+  const legal = conflicts.length === 0;
+  const ready = clues > 0 && isComplete81(grid) && legal;
 
   function loadLibrary(p: LibraryPuzzle) {
     setGrid(p.puzzle);
@@ -51,6 +54,9 @@ export default function InputPage() {
   }
 
   function go(mode: "single" | "race") {
+    // `ready` already includes the pre-solve legality check — an obviously
+    // illegal grid never starts the workers. A rule-legal but unsolvable grid
+    // is allowed through; that outcome is worth demonstrating.
     if (!ready) return;
     setPuzzle(grid, null);
     router.push(`/solve?puzzle=${grid}&mode=${mode}&algo=ac3`);
@@ -87,7 +93,10 @@ export default function InputPage() {
           />
         ) : (
           <div className="w-full max-w-[560px]">
-            <Board model={model} />
+            <Board
+              model={model}
+              conflictCells={legal ? undefined : conflictCellSet(conflicts)}
+            />
           </div>
         )}
         <p className="num text-[12px] text-text-faint">
@@ -164,6 +173,18 @@ export default function InputPage() {
             e.target.value = "";
           }}
         />
+
+        {/* ---- rule-violation warning ---- */}
+        {!legal && (
+          <div className="rounded border border-fail/40 bg-fail/5 p-3 text-[12px] leading-relaxed text-text-dim">
+            <p className="text-fail">this grid breaks the rules</p>
+            <p className="mt-1">{describeConflicts(conflicts)}</p>
+            <p className="mt-1 text-text-faint">
+              The clashing cells are outlined in red. Fix them before solving —
+              an illegal grid has no solution and isn&rsquo;t worth a solve run.
+            </p>
+          </div>
+        )}
 
         {/* ---- CTAs ---- */}
         <div className="mt-auto flex flex-col gap-2 pt-2">

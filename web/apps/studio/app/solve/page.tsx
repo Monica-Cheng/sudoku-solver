@@ -6,6 +6,7 @@ import Link from "next/link";
 import type { AlgorithmName } from "@sudoku/solver-core";
 import { SolveSingle } from "@/components/SolveSingle";
 import { SolveRace } from "@/components/SolveRace";
+import { describeConflicts, findConflicts } from "@/lib/legality";
 
 const ALGO_IDS: AlgorithmName[] = [
   "backtracking",
@@ -29,6 +30,24 @@ function SolveInner() {
         <p>no puzzle in the URL.</p>
         <Link href="/" className="text-accent underline">
           pick one →
+        </Link>
+      </div>
+    );
+  }
+
+  // pre-solve legality check: never start the workers on a rule-breaking grid.
+  const conflicts = findConflicts(puzzle);
+  if (conflicts.length > 0) {
+    return (
+      <div className="mx-auto flex max-w-[440px] flex-1 flex-col items-center justify-center gap-3 px-4 text-center text-[13px] leading-relaxed text-text-dim">
+        <p className="num text-fail">this grid breaks the Sudoku rules</p>
+        <p>{describeConflicts(conflicts)}</p>
+        <p className="text-text-faint">
+          A grid that already violates the rules has no solution, so there is
+          nothing to solve. Fix the clash and try again.
+        </p>
+        <Link href="/" className="text-accent underline">
+          ← back to input
         </Link>
       </div>
     );
