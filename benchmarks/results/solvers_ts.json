@@ -1,0 +1,247 @@
+{
+ "maxSteps": 1400000,
+ "mcMaxSteps": 200000,
+ "mcSeeds": [
+  0,
+  1,
+  2
+ ],
+ "reps": 3,
+ "node": "v24.3.0",
+ "tiers": {
+  "easy": {
+   "n": 30,
+   "algos": {
+    "backtracking": {
+     "runs": 30,
+     "solved": 30,
+     "reasons": {
+      "solved": 30
+     },
+     "nodesSolvedMedian": 2199,
+     "nodesWorst": 254857,
+     "msMedian": 3.2439580000000205,
+     "msP10": 0.35151659999999935,
+     "msP90": 18.856324699999973,
+     "msWorst": 377.580791
+    },
+    "forward_checking": {
+     "runs": 30,
+     "solved": 30,
+     "reasons": {
+      "solved": 30
+     },
+     "nodesSolvedMedian": 57,
+     "nodesWorst": 183,
+     "msMedian": 0.14179199999989578,
+     "msP10": 0.1106872000001431,
+     "msP90": 0.43044219999983396,
+     "msWorst": 1.0276249999999436
+    },
+    "ac3": {
+     "runs": 30,
+     "solved": 30,
+     "reasons": {
+      "solved": 30
+     },
+     "nodesSolvedMedian": 58,
+     "nodesWorst": 384,
+     "msMedian": 1.5370419999999285,
+     "msP10": 1.3829663999999866,
+     "msP90": 2.134241700000053,
+     "msWorst": 4.691082999999935
+    },
+    "min_conflicts": {
+     "runs": 90,
+     "solved": 85,
+     "reasons": {
+      "solved": 85,
+      "max_steps": 5
+     },
+     "nodesSolvedMedian": 449,
+     "nodesWorst": 200000,
+     "msMedian": 2.554916999999932,
+     "msP10": 0.9711666999993214,
+     "msP90": 13.960050299999939,
+     "msWorst": 1044.0566250000002
+    }
+   }
+  },
+  "medium": {
+   "n": 30,
+   "algos": {
+    "backtracking": {
+     "runs": 30,
+     "solved": 30,
+     "reasons": {
+      "solved": 30
+     },
+     "nodesSolvedMedian": 850,
+     "nodesWorst": 133270,
+     "msMedian": 1.3199589999994714,
+     "msP10": 0.30775390000026165,
+     "msP90": 47.81872529999966,
+     "msWorst": 186.67483300000004
+    },
+    "forward_checking": {
+     "runs": 30,
+     "solved": 30,
+     "reasons": {
+      "solved": 30
+     },
+     "nodesSolvedMedian": 59,
+     "nodesWorst": 412,
+     "msMedian": 0.16516599999977188,
+     "msP10": 0.1307878000007804,
+     "msP90": 0.5111831000004713,
+     "msWorst": 1.4692079999995258
+    },
+    "ac3": {
+     "runs": 30,
+     "solved": 30,
+     "reasons": {
+      "solved": 30
+     },
+     "nodesSolvedMedian": 63,
+     "nodesWorst": 280,
+     "msMedian": 1.524833000000399,
+     "msP10": 1.4395284999995965,
+     "msP90": 2.068970499999796,
+     "msWorst": 5.192833999999493
+    },
+    "min_conflicts": {
+     "runs": 90,
+     "solved": 83,
+     "reasons": {
+      "solved": 83,
+      "max_steps": 7
+     },
+     "nodesSolvedMedian": 478,
+     "nodesWorst": 200000,
+     "msMedian": 3.7828329999993002,
+     "msP10": 1.1980294000002687,
+     "msP90": 72.15702439999909,
+     "msWorst": 1523.6750420000008
+    }
+   }
+  },
+  "hard": {
+   "n": 30,
+   "algos": {
+    "backtracking": {
+     "runs": 30,
+     "solved": 28,
+     "reasons": {
+      "solved": 28,
+      "max_steps": 2
+     },
+     "nodesSolvedMedian": 2164,
+     "nodesWorst": 1400000,
+     "msMedian": 5.218124999999418,
+     "msP10": 0.5972166999974433,
+     "msP90": 64.92604199999917,
+     "msWorst": 3403.5080000000016
+    },
+    "forward_checking": {
+     "runs": 30,
+     "solved": 30,
+     "reasons": {
+      "solved": 30
+     },
+     "nodesSolvedMedian": 63,
+     "nodesWorst": 149731,
+     "msMedian": 0.2523750000000291,
+     "msP10": 0.1905170000012731,
+     "msP90": 0.8306713999976645,
+     "msWorst": 1012.9290830000027
+    },
+    "ac3": {
+     "runs": 30,
+     "solved": 30,
+     "reasons": {
+      "solved": 30
+     },
+     "nodesSolvedMedian": 59,
+     "nodesWorst": 1235,
+     "msMedian": 2.28741699999955,
+     "msP10": 2.0837961000008365,
+     "msP90": 2.8284255999984453,
+     "msWorst": 10.425125000001572
+    },
+    "min_conflicts": {
+     "runs": 90,
+     "solved": 85,
+     "reasons": {
+      "solved": 85,
+      "max_steps": 5
+     },
+     "nodesSolvedMedian": 847,
+     "nodesWorst": 200000,
+     "msMedian": 7.057374999996682,
+     "msP10": 1.5669871999969474,
+     "msP90": 29.962800300001582,
+     "msWorst": 1360.9052079999965
+    }
+   }
+  },
+  "extreme": {
+   "n": 12,
+   "algos": {
+    "backtracking": {
+     "runs": 12,
+     "solved": 6,
+     "reasons": {
+      "solved": 6,
+      "max_steps": 6
+     },
+     "nodesSolvedMedian": 304053,
+     "nodesWorst": 1400000,
+     "msMedian": 1876.9361250000002,
+     "msP10": 63.89621659999757,
+     "msP90": 2409.4687544999974,
+     "msWorst": 3609.865375000001
+    },
+    "forward_checking": {
+     "runs": 12,
+     "solved": 12,
+     "reasons": {
+      "solved": 12
+     },
+     "nodesSolvedMedian": 10339,
+     "nodesWorst": 44331,
+     "msMedian": 43.70599999999831,
+     "msP10": 0.6412868999977946,
+     "msP90": 55.271633299994576,
+     "msWorst": 174.51974999999948
+    },
+    "ac3": {
+     "runs": 12,
+     "solved": 12,
+     "reasons": {
+      "solved": 12
+     },
+     "nodesSolvedMedian": 9403,
+     "nodesWorst": 100560,
+     "msMedian": 56.78595800000039,
+     "msP10": 3.1598047999978016,
+     "msP90": 319.5740577000027,
+     "msWorst": 566.8660830000008
+    },
+    "min_conflicts": {
+     "runs": 36,
+     "solved": 4,
+     "reasons": {
+      "max_steps": 32,
+      "solved": 4
+     },
+     "nodesSolvedMedian": 44509,
+     "nodesWorst": 200000,
+     "msMedian": 1351.4618340000015,
+     "msP10": 673.042042000001,
+     "msP90": 2141.2922499999986,
+     "msWorst": 2351.6802089999983
+    }
+   }
+  }
+ }
+}

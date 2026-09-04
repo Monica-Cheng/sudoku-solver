@@ -27,7 +27,7 @@ behaviour in naive backtracking.
 | 11 | "Norvig hard" | 17 |
 | 12 | top1465 #1 | 25 |
 
-## Running
+## Running the per-puzzle solvers
 
 ```
 cd Algo1 && python3 algo1_run.py ../benchmarks/hard.txt
@@ -35,3 +35,27 @@ cd Algo2 && python3 algo2_run.py ../benchmarks/hard.txt
 cd Algo3 && python3 algo3_run.py ../benchmarks/hard.txt
 cd Algo4 && python3 algo4_run.py ../benchmarks/hard.txt
 ```
+
+## Full benchmark suite (feeds the /benchmarks page)
+
+```
+.venv/bin/python benchmarks/run_solver_bench.py        # solve rate, nodes, timing (Python)
+node web/packages/solver-core/bench/bench.ts           # same, TypeScript port
+.venv/bin/python benchmarks/run_cnn_bench.py           # digit CNN: accuracy, confusion, ablation
+.venv/bin/python scripts/pick_threshold.py             # confidence-threshold sweep
+```
+
+Output JSON lands in `benchmarks/results/`:
+
+| file | from | holds |
+|---|---|---|
+| `solvers_python.json` | `run_solver_bench.py` | per-puzzle solved / nodes / backtracks / ms, per tier, Python |
+| `solvers_ts.json` | `bench.ts` | the same for the TypeScript port |
+| `cnn.json` | `run_cnn_bench.py` | per-digit accuracy, confusion matrix, 4-way preprocessing ablation |
+| `threshold_sweep.txt` | `pick_threshold.py` | confidence stats and the FP/FN sweep from 0.70 to 0.97 |
+
+Caps: 1,400,000 search nodes for backtracking / forward-checking / AC-3;
+min-conflicts runs to its own 200,000-iteration default. Timing is wall-clock
+with no memory profiler attached and no per-step instrumentation. min-conflicts
+is run over seeds 0, 1, 2 per puzzle. The numbers on the studio `/benchmarks`
+page are transcribed into `web/apps/studio/lib/benchmarkData.ts`.

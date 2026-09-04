@@ -1,0 +1,6447 @@
+{
+ "max_steps": 1400000,
+ "mc_max_steps": 200000,
+ "mc_seeds": [
+  0,
+  1,
+  2
+ ],
+ "reps": 3,
+ "python": "3.11.2",
+ "tiers": {
+  "easy": {
+   "n": 30,
+   "algos": {
+    "backtracking": {
+     "runs": 30,
+     "solved": 30,
+     "reasons": {
+      "solved": 30
+     },
+     "nodes_all": [
+      65,
+      69,
+      77,
+      98,
+      376,
+      381,
+      536,
+      637,
+      697,
+      1419,
+      1531,
+      1718,
+      1748,
+      1788,
+      1851,
+      2199,
+      2909,
+      2975,
+      3552,
+      3971,
+      4111,
+      4166,
+      4208,
+      4518,
+      5395,
+      5669,
+      10924,
+      12749,
+      16645,
+      254857
+     ],
+     "nodes_solved_median": 2025.0,
+     "nodes_solved_p90": 11106.500000000002,
+     "nodes_worst": 254857,
+     "ms_median": 8.891833509551361,
+     "ms_p10": 0.452533015049994,
+     "ms_p90": 50.78821699135006,
+     "ms_worst": 1132.082124997396,
+     "per_run": [
+      {
+       "solved": true,
+       "nodes": 536,
+       "backtracks": 477,
+       "terminated_reason": "solved",
+       "ms": 2.932958013843745,
+       "index": 0,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 77,
+       "backtracks": 20,
+       "terminated_reason": "solved",
+       "ms": 0.452083011623472,
+       "index": 1,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 65,
+       "backtracks": 25,
+       "terminated_reason": "solved",
+       "ms": 0.3410420031286776,
+       "index": 2,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 3552,
+       "backtracks": 3494,
+       "terminated_reason": "solved",
+       "ms": 16.29891700576991,
+       "index": 3,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 5669,
+       "backtracks": 5617,
+       "terminated_reason": "solved",
+       "ms": 25.34854202531278,
+       "index": 4,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 10924,
+       "backtracks": 10870,
+       "terminated_reason": "solved",
+       "ms": 50.04229198675603,
+       "index": 5,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 1788,
+       "backtracks": 1731,
+       "terminated_reason": "solved",
+       "ms": 7.085165998432785,
+       "index": 6,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 1531,
+       "backtracks": 1480,
+       "terminated_reason": "solved",
+       "ms": 6.941959029063582,
+       "index": 7,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 1718,
+       "backtracks": 1663,
+       "terminated_reason": "solved",
+       "ms": 8.201042015571147,
+       "index": 8,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 1419,
+       "backtracks": 1361,
+       "terminated_reason": "solved",
+       "ms": 5.478499981109053,
+       "index": 9,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 254857,
+       "backtracks": 254800,
+       "terminated_reason": "solved",
+       "ms": 1132.082124997396,
+       "index": 10,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 381,
+       "backtracks": 330,
+       "terminated_reason": "solved",
+       "ms": 1.7617500270716846,
+       "index": 11,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 69,
+       "backtracks": 26,
+       "terminated_reason": "solved",
+       "ms": 0.39954198291525245,
+       "index": 12,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 16645,
+       "backtracks": 16593,
+       "terminated_reason": "solved",
+       "ms": 77.20466604223475,
+       "index": 13,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 637,
+       "backtracks": 590,
+       "terminated_reason": "solved",
+       "ms": 3.041874966584146,
+       "index": 14,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 98,
+       "backtracks": 55,
+       "terminated_reason": "solved",
+       "ms": 0.45258301543071866,
+       "index": 15,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 376,
+       "backtracks": 318,
+       "terminated_reason": "solved",
+       "ms": 1.8316249479539692,
+       "index": 16,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 2975,
+       "backtracks": 2922,
+       "terminated_reason": "solved",
+       "ms": 14.355332998093218,
+       "index": 17,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 5395,
+       "backtracks": 5340,
+       "terminated_reason": "solved",
+       "ms": 19.795041996985674,
+       "index": 18,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 12749,
+       "backtracks": 12695,
+       "terminated_reason": "solved",
+       "ms": 57.50154203269631,
+       "index": 19,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 4208,
+       "backtracks": 4157,
+       "terminated_reason": "solved",
+       "ms": 17.875041987281293,
+       "index": 20,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 1851,
+       "backtracks": 1800,
+       "terminated_reason": "solved",
+       "ms": 7.808875001501292,
+       "index": 21,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 2199,
+       "backtracks": 2148,
+       "terminated_reason": "solved",
+       "ms": 9.582625003531575,
+       "index": 22,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 4111,
+       "backtracks": 4060,
+       "terminated_reason": "solved",
+       "ms": 17.526333045680076,
+       "index": 23,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 2909,
+       "backtracks": 2858,
+       "terminated_reason": "solved",
+       "ms": 12.659957981668413,
+       "index": 24,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 1748,
+       "backtracks": 1697,
+       "terminated_reason": "solved",
+       "ms": 7.677625049836934,
+       "index": 25,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 4518,
+       "backtracks": 4467,
+       "terminated_reason": "solved",
+       "ms": 19.29383398965001,
+       "index": 26,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 697,
+       "backtracks": 646,
+       "terminated_reason": "solved",
+       "ms": 2.8371670050546527,
+       "index": 27,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 4166,
+       "backtracks": 4115,
+       "terminated_reason": "solved",
+       "ms": 17.717375012580305,
+       "index": 28,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 3971,
+       "backtracks": 3920,
+       "terminated_reason": "solved",
+       "ms": 17.079667013604194,
+       "index": 29,
+       "seed": null
+      }
+     ]
+    },
+    "forward_checking": {
+     "runs": 30,
+     "solved": 30,
+     "reasons": {
+      "solved": 30
+     },
+     "nodes_all": [
+      40,
+      43,
+      43,
+      49,
+      51,
+      51,
+      51,
+      51,
+      51,
+      51,
+      51,
+      51,
+      51,
+      51,
+      55,
+      57,
+      58,
+      58,
+      59,
+      59,
+      59,
+      62,
+      63,
+      66,
+      71,
+      72,
+      73,
+      79,
+      92,
+      183
+     ],
+     "nodes_solved_median": 56.0,
+     "nodes_solved_p90": 73.60000000000001,
+     "nodes_worst": 183,
+     "ms_median": 1.1428545112721622,
+     "ms_p10": 1.0125207947567105,
+     "ms_p90": 2.5024993927218024,
+     "ms_worst": 10.594375024084002,
+     "per_run": [
+      {
+       "solved": true,
+       "nodes": 63,
+       "backtracks": 5,
+       "terminated_reason": "solved",
+       "ms": 1.4886249555274844,
+       "index": 0,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 57,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.1465839925222099,
+       "index": 1,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 40,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 0.8843329851515591,
+       "index": 2,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 62,
+       "backtracks": 6,
+       "terminated_reason": "solved",
+       "ms": 1.5250410069711506,
+       "index": 3,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 79,
+       "backtracks": 29,
+       "terminated_reason": "solved",
+       "ms": 2.818249980919063,
+       "index": 4,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 92,
+       "backtracks": 45,
+       "terminated_reason": "solved",
+       "ms": 3.9340000366792083,
+       "index": 5,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 59,
+       "backtracks": 3,
+       "terminated_reason": "solved",
+       "ms": 1.300875039305538,
+       "index": 6,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 183,
+       "backtracks": 151,
+       "terminated_reason": "solved",
+       "ms": 10.594375024084002,
+       "index": 7,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 55,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.1064590071327984,
+       "index": 8,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 73,
+       "backtracks": 18,
+       "terminated_reason": "solved",
+       "ms": 2.2726250463165343,
+       "index": 9,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 58,
+       "backtracks": 2,
+       "terminated_reason": "solved",
+       "ms": 1.2234579771757126,
+       "index": 10,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 71,
+       "backtracks": 23,
+       "terminated_reason": "solved",
+       "ms": 2.4674159940332174,
+       "index": 11,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 43,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 0.906334025785327,
+       "index": 12,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 59,
+       "backtracks": 8,
+       "terminated_reason": "solved",
+       "ms": 1.5679580392315984,
+       "index": 13,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 49,
+       "backtracks": 3,
+       "terminated_reason": "solved",
+       "ms": 1.1592079536058009,
+       "index": 14,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 43,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 0.9159580222330987,
+       "index": 15,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 58,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.1391250300221145,
+       "index": 16,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 59,
+       "backtracks": 7,
+       "terminated_reason": "solved",
+       "ms": 1.507542037870735,
+       "index": 17,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 66,
+       "backtracks": 12,
+       "terminated_reason": "solved",
+       "ms": 1.8255000468343496,
+       "index": 18,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 72,
+       "backtracks": 20,
+       "terminated_reason": "solved",
+       "ms": 2.3258330184035003,
+       "index": 19,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 51,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.0307090124115348,
+       "index": 20,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 51,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.0279580019414425,
+       "index": 21,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 51,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.0232499917037785,
+       "index": 22,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 51,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.0269159683957696,
+       "index": 23,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 51,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.0273749940097332,
+       "index": 24,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 51,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.0234999936074018,
+       "index": 25,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 51,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.0325420298613608,
+       "index": 26,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 51,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.0238749673590064,
+       "index": 27,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 51,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.0242080315947533,
+       "index": 28,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 51,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.0258749825879931,
+       "index": 29,
+       "seed": null
+      }
+     ]
+    },
+    "ac3": {
+     "runs": 30,
+     "solved": 30,
+     "reasons": {
+      "solved": 30
+     },
+     "nodes_all": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      7,
+      32,
+      34,
+      53,
+      58,
+      61,
+      62,
+      62,
+      63,
+      63,
+      79,
+      103,
+      120,
+      132,
+      133,
+      144,
+      147,
+      200,
+      384
+     ],
+     "nodes_solved_median": 55.5,
+     "nodes_solved_p90": 144.3,
+     "nodes_worst": 384,
+     "ms_median": 18.513833492761478,
+     "ms_p10": 15.810186881572008,
+     "ms_p90": 19.953646115027368,
+     "ms_worst": 24.094541964586824,
+     "per_run": [
+      {
+       "solved": true,
+       "nodes": 384,
+       "backtracks": 324,
+       "terminated_reason": "solved",
+       "ms": 24.094541964586824,
+       "index": 0,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 62,
+       "backtracks": 4,
+       "terminated_reason": "solved",
+       "ms": 18.914417014457285,
+       "index": 1,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 7,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 13.120084011461586,
+       "index": 2,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 61,
+       "backtracks": 2,
+       "terminated_reason": "solved",
+       "ms": 19.400499993935227,
+       "index": 3,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 79,
+       "backtracks": 34,
+       "terminated_reason": "solved",
+       "ms": 18.62566702766344,
+       "index": 4,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 63,
+       "backtracks": 10,
+       "terminated_reason": "solved",
+       "ms": 18.539957993198186,
+       "index": 5,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 53,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 19.256416999269277,
+       "index": 6,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 200,
+       "backtracks": 154,
+       "terminated_reason": "solved",
+       "ms": 19.665166968479753,
+       "index": 7,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 120,
+       "backtracks": 67,
+       "terminated_reason": "solved",
+       "ms": 19.881792017258704,
+       "index": 8,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 63,
+       "backtracks": 4,
+       "terminated_reason": "solved",
+       "ms": 19.396415969822556,
+       "index": 9,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 58,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 19.043832959141582,
+       "index": 10,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 103,
+       "backtracks": 52,
+       "terminated_reason": "solved",
+       "ms": 18.03687500068918,
+       "index": 11,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 32,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 14.410874980967492,
+       "index": 12,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 144,
+       "backtracks": 91,
+       "terminated_reason": "solved",
+       "ms": 18.52162496652454,
+       "index": 13,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 34,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 15.965665981639177,
+       "index": 14,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 0,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 14.297707995865494,
+       "index": 15,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 147,
+       "backtracks": 88,
+       "terminated_reason": "solved",
+       "ms": 20.678709028288722,
+       "index": 16,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 62,
+       "backtracks": 8,
+       "terminated_reason": "solved",
+       "ms": 17.842792032752186,
+       "index": 17,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 133,
+       "backtracks": 84,
+       "terminated_reason": "solved",
+       "ms": 20.600332994945347,
+       "index": 18,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 132,
+       "backtracks": 81,
+       "terminated_reason": "solved",
+       "ms": 19.64283298002556,
+       "index": 19,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 0,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.381291010882705,
+       "index": 20,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 0,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.430458032526076,
+       "index": 21,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 0,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.4456660063006,
+       "index": 22,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 0,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.55983299901709,
+       "index": 23,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 0,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.43612501397729,
+       "index": 24,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 0,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.391499994322658,
+       "index": 25,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 0,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.480458005797118,
+       "index": 26,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 0,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.36074999300763,
+       "index": 27,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 0,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.467709014657885,
+       "index": 28,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 0,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.506042018998414,
+       "index": 29,
+       "seed": null
+      }
+     ]
+    },
+    "min_conflicts": {
+     "runs": 90,
+     "solved": 85,
+     "reasons": {
+      "solved": 85,
+      "max_steps": 5
+     },
+     "nodes_all": [
+      45,
+      85,
+      112,
+      114,
+      138,
+      151,
+      151,
+      153,
+      172,
+      178,
+      179,
+      186,
+      187,
+      200,
+      213,
+      213,
+      217,
+      221,
+      227,
+      258,
+      264,
+      266,
+      269,
+      277,
+      278,
+      294,
+      300,
+      303,
+      317,
+      319,
+      322,
+      328,
+      336,
+      338,
+      343,
+      360,
+      381,
+      382,
+      401,
+      410,
+      426,
+      429,
+      449,
+      455,
+      458,
+      465,
+      473,
+      489,
+      497,
+      522,
+      535,
+      536,
+      557,
+      559,
+      649,
+      653,
+      653,
+      693,
+      714,
+      726,
+      727,
+      750,
+      806,
+      864,
+      873,
+      878,
+      991,
+      1043,
+      1054,
+      1110,
+      1128,
+      1162,
+      1168,
+      1224,
+      1344,
+      1362,
+      1374,
+      1393,
+      1544,
+      1786,
+      1983,
+      2289,
+      2358,
+      2902,
+      4176,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000
+     ],
+     "nodes_solved_median": 449,
+     "nodes_solved_p90": 1369.1999999999998,
+     "nodes_worst": 200000,
+     "ms_median": 68.7521249637939,
+     "ms_p10": 25.01783748739399,
+     "ms_p90": 332.47446310124315,
+     "ms_worst": 42151.41970803961,
+     "per_run": [
+      {
+       "solved": true,
+       "nodes": 213,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 30.354209011420608,
+       "index": 0,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 726,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 103.77104103099555,
+       "index": 0,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 1393,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 216.4851250126958,
+       "index": 0,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 1043,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 144.37995798652992,
+       "index": 1,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 343,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 47.49812500085682,
+       "index": 1,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 1786,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 246.76358298165724,
+       "index": 1,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 151,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 15.020792023278773,
+       "index": 2,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 45,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 4.485499986913055,
+       "index": 2,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 114,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 11.386333033442497,
+       "index": 2,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 2289,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 324.41470900084823,
+       "index": 3,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 806,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 114.2381249810569,
+       "index": 3,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 991,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 139.85779200447723,
+       "index": 3,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 217,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 27.651333017274737,
+       "index": 4,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 278,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 35.42804199969396,
+       "index": 4,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 221,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 27.99562504515052,
+       "index": 4,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 693,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 91.57812496414408,
+       "index": 5,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 878,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 118.48870903486386,
+       "index": 5,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 303,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 41.06537502957508,
+       "index": 5,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 186,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 28.590874979272485,
+       "index": 6,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 2902,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 405.0122500048019,
+       "index": 6,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 4176,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 582.0200000307523,
+       "index": 6,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 300,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 38.009790994692594,
+       "index": 7,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 187,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 23.71137501904741,
+       "index": 7,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 535,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 67.0052079949528,
+       "index": 7,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 1362,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 186.96987500879914,
+       "index": 8,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 269,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 40.861417015548795,
+       "index": 8,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 653,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 101.45041602663696,
+       "index": 8,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 264,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 37.5050000147894,
+       "index": 9,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 178,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 25.643749977461994,
+       "index": 9,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 266,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 41.32487502647564,
+       "index": 9,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 497,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 69.84708301024511,
+       "index": 10,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 489,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 68.21537495125085,
+       "index": 10,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 750,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 104.00566703174263,
+       "index": 10,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 112,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 15.069291985128075,
+       "index": 11,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 382,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 50.45966600300744,
+       "index": 11,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 864,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 108.64870803197846,
+       "index": 11,
+       "seed": 2
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 29573.724333022255,
+       "index": 12,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 151,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 17.02270796522498,
+       "index": 12,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 319,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 35.6076669995673,
+       "index": 12,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 559,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 73.4499579994008,
+       "index": 13,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 401,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 102.90687496308237,
+       "index": 13,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 458,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 71.92733295960352,
+       "index": 13,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 1344,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 197.38358398899436,
+       "index": 14,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 465,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 65.24450000142679,
+       "index": 14,
+       "seed": 1
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 30742.23766697105,
+       "index": 14,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 213,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 38.77749998355284,
+       "index": 15,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 85,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 32.706875004805624,
+       "index": 15,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 172,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 41.73195798648521,
+       "index": 15,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 317,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 70.67370798904449,
+       "index": 16,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 426,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 129.9426659825258,
+       "index": 16,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 522,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 140.58200002182275,
+       "index": 16,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 336,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 95.21787497214973,
+       "index": 17,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 1110,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 233.39887498877943,
+       "index": 17,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 1983,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 471.53400001116097,
+       "index": 17,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 2358,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 837.6494169933721,
+       "index": 18,
+       "seed": 0
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 42151.41970803961,
+       "index": 18,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 429,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 57.70549998851493,
+       "index": 18,
+       "seed": 2
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 29146.358207974117,
+       "index": 19,
+       "seed": 0
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 28030.869250011165,
+       "index": 19,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 1224,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 160.8968329965137,
+       "index": 19,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 714,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 88.89166702283546,
+       "index": 20,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 227,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 28.257917030714452,
+       "index": 20,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 410,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 50.77050003455952,
+       "index": 20,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 536,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 66.16729102097452,
+       "index": 21,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 381,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 47.38587496103719,
+       "index": 21,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 1168,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 144.70662496751174,
+       "index": 21,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 557,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 69.28887497633696,
+       "index": 22,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 138,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 17.226749972905964,
+       "index": 22,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 649,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 80.35045798169449,
+       "index": 22,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 1054,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 130.64008299261332,
+       "index": 23,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 653,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 84.79741698829457,
+       "index": 23,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 258,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 32.10291697178036,
+       "index": 23,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 322,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 40.21325003122911,
+       "index": 24,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 153,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 19.13054200122133,
+       "index": 24,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 1128,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 141.88295899657533,
+       "index": 24,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 727,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 90.61262494651601,
+       "index": 25,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 1544,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 196.10470900079235,
+       "index": 25,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 277,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 34.59854202810675,
+       "index": 25,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 179,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 22.42245798697695,
+       "index": 26,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 338,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 42.36120800487697,
+       "index": 26,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 449,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 55.85662496741861,
+       "index": 26,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 328,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 40.91579094529152,
+       "index": 27,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 455,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 56.64079199777916,
+       "index": 27,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 1374,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 170.32512504374608,
+       "index": 27,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 360,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 45.28158396715298,
+       "index": 28,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 873,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 108.24162501376122,
+       "index": 28,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 1162,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 144.08912503859028,
+       "index": 28,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 200,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 25.162999983876944,
+       "index": 29,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 473,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 59.400875004939735,
+       "index": 29,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 294,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 36.91550000803545,
+       "index": 29,
+       "seed": 2
+      }
+     ]
+    }
+   }
+  },
+  "medium": {
+   "n": 30,
+   "algos": {
+    "backtracking": {
+     "runs": 30,
+     "solved": 30,
+     "reasons": {
+      "solved": 30
+     },
+     "nodes_all": [
+      111,
+      149,
+      158,
+      170,
+      205,
+      229,
+      446,
+      469,
+      538,
+      558,
+      564,
+      611,
+      660,
+      693,
+      721,
+      850,
+      1334,
+      1675,
+      1744,
+      3776,
+      4219,
+      5812,
+      5933,
+      16854,
+      19266,
+      28316,
+      31791,
+      40424,
+      47112,
+      133270
+     ],
+     "nodes_solved_median": 785.5,
+     "nodes_solved_p90": 32654.300000000014,
+     "nodes_worst": 133270,
+     "ms_median": 5.700228997739032,
+     "ms_p10": 0.9828130889218301,
+     "ms_p90": 206.13039550953548,
+     "ms_worst": 600.0540409586392,
+     "per_run": [
+      {
+       "solved": true,
+       "nodes": 133270,
+       "backtracks": 133213,
+       "terminated_reason": "solved",
+       "ms": 600.0540409586392,
+       "index": 0,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 5812,
+       "backtracks": 5755,
+       "terminated_reason": "solved",
+       "ms": 24.258916964754462,
+       "index": 1,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 446,
+       "backtracks": 389,
+       "terminated_reason": "solved",
+       "ms": 1.9271249766461551,
+       "index": 2,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 205,
+       "backtracks": 148,
+       "terminated_reason": "solved",
+       "ms": 0.9894589893519878,
+       "index": 3,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 5933,
+       "backtracks": 5876,
+       "terminated_reason": "solved",
+       "ms": 29.66641599778086,
+       "index": 4,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 19266,
+       "backtracks": 19209,
+       "terminated_reason": "solved",
+       "ms": 96.77112504141405,
+       "index": 5,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 1334,
+       "backtracks": 1277,
+       "terminated_reason": "solved",
+       "ms": 7.1732920478098094,
+       "index": 6,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 16854,
+       "backtracks": 16797,
+       "terminated_reason": "solved",
+       "ms": 87.45125000132248,
+       "index": 7,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 693,
+       "backtracks": 636,
+       "terminated_reason": "solved",
+       "ms": 3.3580409944988787,
+       "index": 8,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 40424,
+       "backtracks": 40367,
+       "terminated_reason": "solved",
+       "ms": 267.3352910205722,
+       "index": 9,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 149,
+       "backtracks": 94,
+       "terminated_reason": "solved",
+       "ms": 0.92299998505041,
+       "index": 10,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 1675,
+       "backtracks": 1620,
+       "terminated_reason": "solved",
+       "ms": 8.933915989473462,
+       "index": 11,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 558,
+       "backtracks": 503,
+       "terminated_reason": "solved",
+       "ms": 3.1415409757755697,
+       "index": 12,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 1744,
+       "backtracks": 1689,
+       "terminated_reason": "solved",
+       "ms": 9.979624999687076,
+       "index": 13,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 564,
+       "backtracks": 509,
+       "terminated_reason": "solved",
+       "ms": 4.0853749960660934,
+       "index": 14,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 3776,
+       "backtracks": 3721,
+       "terminated_reason": "solved",
+       "ms": 26.87574998708442,
+       "index": 15,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 538,
+       "backtracks": 483,
+       "terminated_reason": "solved",
+       "ms": 4.24366700462997,
+       "index": 16,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 850,
+       "backtracks": 795,
+       "terminated_reason": "solved",
+       "ms": 6.498707982245833,
+       "index": 17,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 469,
+       "backtracks": 414,
+       "terminated_reason": "solved",
+       "ms": 3.5080420202575624,
+       "index": 18,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 660,
+       "backtracks": 605,
+       "terminated_reason": "solved",
+       "ms": 4.901750013232231,
+       "index": 19,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 28316,
+       "backtracks": 28261,
+       "terminated_reason": "solved",
+       "ms": 203.8140830118209,
+       "index": 20,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 158,
+       "backtracks": 103,
+       "terminated_reason": "solved",
+       "ms": 1.0221669799648225,
+       "index": 21,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 47112,
+       "backtracks": 47057,
+       "terminated_reason": "solved",
+       "ms": 226.97720798896626,
+       "index": 22,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 4219,
+       "backtracks": 4164,
+       "terminated_reason": "solved",
+       "ms": 17.425708007067442,
+       "index": 23,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 111,
+       "backtracks": 56,
+       "terminated_reason": "solved",
+       "ms": 0.5486250156536698,
+       "index": 24,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 229,
+       "backtracks": 174,
+       "terminated_reason": "solved",
+       "ms": 1.0115000186488032,
+       "index": 25,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 31791,
+       "backtracks": 31736,
+       "terminated_reason": "solved",
+       "ms": 159.76133302319795,
+       "index": 26,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 721,
+       "backtracks": 666,
+       "terminated_reason": "solved",
+       "ms": 3.36883298587054,
+       "index": 27,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 170,
+       "backtracks": 115,
+       "terminated_reason": "solved",
+       "ms": 0.8742909994907677,
+       "index": 28,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 611,
+       "backtracks": 556,
+       "terminated_reason": "solved",
+       "ms": 2.930041984654963,
+       "index": 29,
+       "seed": null
+      }
+     ]
+    },
+    "forward_checking": {
+     "runs": 30,
+     "solved": 30,
+     "reasons": {
+      "solved": 30
+     },
+     "nodes_all": [
+      55,
+      55,
+      55,
+      55,
+      55,
+      55,
+      55,
+      55,
+      55,
+      55,
+      56,
+      57,
+      57,
+      58,
+      59,
+      59,
+      59,
+      60,
+      62,
+      63,
+      75,
+      78,
+      84,
+      91,
+      120,
+      128,
+      130,
+      138,
+      215,
+      412
+     ],
+     "nodes_solved_median": 59.0,
+     "nodes_solved_p90": 130.8,
+     "nodes_worst": 412,
+     "ms_median": 1.4240829914342612,
+     "ms_p10": 1.098966394783929,
+     "ms_p90": 6.648616638267413,
+     "ms_worst": 25.1474580145441,
+     "per_run": [
+      {
+       "solved": true,
+       "nodes": 62,
+       "backtracks": 6,
+       "terminated_reason": "solved",
+       "ms": 1.5540000167675316,
+       "index": 0,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 59,
+       "backtracks": 3,
+       "terminated_reason": "solved",
+       "ms": 1.308874983806163,
+       "index": 1,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 75,
+       "backtracks": 22,
+       "terminated_reason": "solved",
+       "ms": 2.548417018260807,
+       "index": 2,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 130,
+       "backtracks": 92,
+       "terminated_reason": "solved",
+       "ms": 6.861166039016098,
+       "index": 3,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 57,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.152167038526386,
+       "index": 4,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 60,
+       "backtracks": 5,
+       "terminated_reason": "solved",
+       "ms": 1.4808339765295386,
+       "index": 5,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 63,
+       "backtracks": 8,
+       "terminated_reason": "solved",
+       "ms": 1.6606670105829835,
+       "index": 6,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 138,
+       "backtracks": 87,
+       "terminated_reason": "solved",
+       "ms": 6.625000038184226,
+       "index": 7,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 78,
+       "backtracks": 26,
+       "terminated_reason": "solved",
+       "ms": 2.78320797951892,
+       "index": 8,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 215,
+       "backtracks": 175,
+       "terminated_reason": "solved",
+       "ms": 12.005208001937717,
+       "index": 9,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 55,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.1106670135632157,
+       "index": 10,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 55,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.0923329973593354,
+       "index": 11,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 84,
+       "backtracks": 32,
+       "terminated_reason": "solved",
+       "ms": 3.134917002171278,
+       "index": 12,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 55,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.095667015761137,
+       "index": 13,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 55,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.1093749781139195,
+       "index": 14,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 120,
+       "backtracks": 75,
+       "terminated_reason": "solved",
+       "ms": 5.853875016327947,
+       "index": 15,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 55,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.099332992453128,
+       "index": 16,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 55,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.1123750009573996,
+       "index": 17,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 55,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.0950000141747296,
+       "index": 18,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 91,
+       "backtracks": 47,
+       "terminated_reason": "solved",
+       "ms": 4.1357079753652215,
+       "index": 19,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 59,
+       "backtracks": 7,
+       "terminated_reason": "solved",
+       "ms": 1.5869580092839897,
+       "index": 20,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 55,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.1154160019941628,
+       "index": 21,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 55,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.1548749753274024,
+       "index": 22,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 55,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.1131250066682696,
+       "index": 23,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 58,
+       "backtracks": 5,
+       "terminated_reason": "solved",
+       "ms": 1.4291250263340771,
+       "index": 24,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 57,
+       "backtracks": 3,
+       "terminated_reason": "solved",
+       "ms": 1.2982500484213233,
+       "index": 25,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 412,
+       "backtracks": 386,
+       "terminated_reason": "solved",
+       "ms": 25.1474580145441,
+       "index": 26,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 59,
+       "backtracks": 5,
+       "terminated_reason": "solved",
+       "ms": 1.4190409565344453,
+       "index": 27,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 56,
+       "backtracks": 2,
+       "terminated_reason": "solved",
+       "ms": 1.2060420121997595,
+       "index": 28,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 128,
+       "backtracks": 81,
+       "terminated_reason": "solved",
+       "ms": 6.163917016237974,
+       "index": 29,
+       "seed": null
+      }
+     ]
+    },
+    "ac3": {
+     "runs": 30,
+     "solved": 30,
+     "reasons": {
+      "solved": 30
+     },
+     "nodes_all": [
+      46,
+      47,
+      51,
+      55,
+      55,
+      56,
+      56,
+      56,
+      56,
+      57,
+      57,
+      57,
+      58,
+      58,
+      61,
+      63,
+      64,
+      64,
+      64,
+      66,
+      66,
+      68,
+      72,
+      73,
+      76,
+      78,
+      85,
+      133,
+      179,
+      280
+     ],
+     "nodes_solved_median": 62.0,
+     "nodes_solved_p90": 89.80000000000007,
+     "nodes_worst": 280,
+     "ms_median": 19.407979008974507,
+     "ms_p10": 18.58467470156029,
+     "ms_p90": 20.371028588851914,
+     "ms_worst": 21.1690419819206,
+     "per_run": [
+      {
+       "solved": true,
+       "nodes": 64,
+       "backtracks": 6,
+       "terminated_reason": "solved",
+       "ms": 19.452292006462812,
+       "index": 0,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 55,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.854583031497896,
+       "index": 1,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 57,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 19.338041020091623,
+       "index": 2,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 78,
+       "backtracks": 20,
+       "terminated_reason": "solved",
+       "ms": 19.197082961909473,
+       "index": 3,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 58,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.868874991312623,
+       "index": 4,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 57,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 19.439333002083004,
+       "index": 5,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 64,
+       "backtracks": 6,
+       "terminated_reason": "solved",
+       "ms": 19.585124973673373,
+       "index": 6,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 179,
+       "backtracks": 121,
+       "terminated_reason": "solved",
+       "ms": 21.1690419819206,
+       "index": 7,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 72,
+       "backtracks": 14,
+       "terminated_reason": "solved",
+       "ms": 19.57499998388812,
+       "index": 8,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 66,
+       "backtracks": 11,
+       "terminated_reason": "solved",
+       "ms": 19.948041008319706,
+       "index": 9,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 73,
+       "backtracks": 18,
+       "terminated_reason": "solved",
+       "ms": 19.603208056651056,
+       "index": 10,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 46,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 20.36941598635167,
+       "index": 11,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 56,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.838832969777286,
+       "index": 12,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 47,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 19.514165993314236,
+       "index": 13,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 51,
+       "backtracks": 2,
+       "terminated_reason": "solved",
+       "ms": 19.56824999069795,
+       "index": 14,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 85,
+       "backtracks": 31,
+       "terminated_reason": "solved",
+       "ms": 19.640207989141345,
+       "index": 15,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 63,
+       "backtracks": 7,
+       "terminated_reason": "solved",
+       "ms": 18.630792037583888,
+       "index": 16,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 61,
+       "backtracks": 5,
+       "terminated_reason": "solved",
+       "ms": 18.586457998026162,
+       "index": 17,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 57,
+       "backtracks": 3,
+       "terminated_reason": "solved",
+       "ms": 19.124333979561925,
+       "index": 18,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 66,
+       "backtracks": 10,
+       "terminated_reason": "solved",
+       "ms": 18.486166023649275,
+       "index": 19,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 68,
+       "backtracks": 13,
+       "terminated_reason": "solved",
+       "ms": 18.568625033367425,
+       "index": 20,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 56,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.695666978601366,
+       "index": 21,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 64,
+       "backtracks": 12,
+       "terminated_reason": "solved",
+       "ms": 19.508542027324438,
+       "index": 22,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 58,
+       "backtracks": 5,
+       "terminated_reason": "solved",
+       "ms": 19.425750011578202,
+       "index": 23,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 56,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.668957985937595,
+       "index": 24,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 56,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.478749960195273,
+       "index": 25,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 133,
+       "backtracks": 81,
+       "terminated_reason": "solved",
+       "ms": 20.38554201135412,
+       "index": 26,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 76,
+       "backtracks": 25,
+       "terminated_reason": "solved",
+       "ms": 19.390208006370813,
+       "index": 27,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 55,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 19.075416959822178,
+       "index": 28,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 280,
+       "backtracks": 224,
+       "terminated_reason": "solved",
+       "ms": 21.12216700334102,
+       "index": 29,
+       "seed": null
+      }
+     ]
+    },
+    "min_conflicts": {
+     "runs": 90,
+     "solved": 83,
+     "reasons": {
+      "solved": 83,
+      "max_steps": 7
+     },
+     "nodes_all": [
+      68,
+      70,
+      107,
+      109,
+      112,
+      122,
+      135,
+      159,
+      169,
+      173,
+      174,
+      187,
+      199,
+      201,
+      207,
+      227,
+      228,
+      237,
+      243,
+      246,
+      248,
+      255,
+      260,
+      269,
+      273,
+      304,
+      314,
+      315,
+      316,
+      316,
+      322,
+      330,
+      338,
+      356,
+      377,
+      390,
+      417,
+      422,
+      424,
+      448,
+      471,
+      478,
+      480,
+      500,
+      567,
+      570,
+      571,
+      617,
+      643,
+      663,
+      667,
+      689,
+      704,
+      800,
+      815,
+      836,
+      836,
+      882,
+      924,
+      969,
+      989,
+      1019,
+      1028,
+      1080,
+      1085,
+      1086,
+      1092,
+      1138,
+      1221,
+      1382,
+      1394,
+      1495,
+      1601,
+      1641,
+      1784,
+      2230,
+      3054,
+      3068,
+      3146,
+      4344,
+      8806,
+      11300,
+      19248,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000
+     ],
+     "nodes_solved_median": 478,
+     "nodes_solved_p90": 1755.3999999999996,
+     "nodes_worst": 200000,
+     "ms_median": 87.16458303388208,
+     "ms_p10": 24.13717081071809,
+     "ms_p90": 1211.4471872046106,
+     "ms_worst": 35710.24095802568,
+     "per_run": [
+      {
+       "solved": true,
+       "nodes": 571,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 79.67000000644475,
+       "index": 0,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 480,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 67.03662499785423,
+       "index": 0,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 836,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 117.08066699793562,
+       "index": 0,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 1085,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 153.09641702333465,
+       "index": 1,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 187,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 26.538042002357543,
+       "index": 1,
+       "seed": 1
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 35710.24095802568,
+       "index": 1,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 199,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 27.85100002074614,
+       "index": 2,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 448,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 62.607833999209106,
+       "index": 2,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 70,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 10.090542025864124,
+       "index": 2,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 800,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 111.67629197007045,
+       "index": 3,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 3054,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 426.29812500672415,
+       "index": 3,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 1495,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 209.34454101370648,
+       "index": 3,
+       "seed": 2
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 27409.540167020168,
+       "index": 4,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 169,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 23.50308297900483,
+       "index": 4,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 260,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 36.18308296427131,
+       "index": 4,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 1086,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 151.36262500891462,
+       "index": 5,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 3068,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 429.9759580171667,
+       "index": 5,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 109,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 15.212625032290816,
+       "index": 5,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 122,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 16.962333000265062,
+       "index": 6,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 228,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 31.859499984420836,
+       "index": 6,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 207,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 28.8712500478141,
+       "index": 6,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 248,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 34.575500001665205,
+       "index": 7,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 989,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 137.22616602899507,
+       "index": 7,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 663,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 91.73037501750514,
+       "index": 7,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 173,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 24.207625014241785,
+       "index": 8,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 269,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 37.35095803858712,
+       "index": 8,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 356,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 49.57945900969207,
+       "index": 8,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 667,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 92.2785839647986,
+       "index": 9,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 314,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 43.98437502095476,
+       "index": 9,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 107,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 15.064082981552929,
+       "index": 9,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 924,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 123.93754196818918,
+       "index": 10,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 567,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 75.65083302324638,
+       "index": 10,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 704,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 93.98687502834946,
+       "index": 10,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 570,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 76.56300003873184,
+       "index": 11,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 315,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 42.50166699057445,
+       "index": 11,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 330,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 44.37579197110608,
+       "index": 11,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 159,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 21.40570798655972,
+       "index": 12,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 882,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 120.62850000802428,
+       "index": 12,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 255,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 34.03275000164285,
+       "index": 12,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 68,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 9.271832997910678,
+       "index": 13,
+       "seed": 0
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 29268.404584028758,
+       "index": 13,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 478,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 67.91495799552649,
+       "index": 13,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 1784,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 337.3924579937011,
+       "index": 14,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 112,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 15.141291019972414,
+       "index": 14,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 500,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 143.76416598679498,
+       "index": 14,
+       "seed": 2
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 32443.70516698109,
+       "index": 15,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 969,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 170.31625000527129,
+       "index": 15,
+       "seed": 1
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 33108.4248329862,
+       "index": 15,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 689,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 93.85241597192362,
+       "index": 16,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 304,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 41.05387500021607,
+       "index": 16,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 316,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 42.51604195451364,
+       "index": 16,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 1601,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 216.25920804217458,
+       "index": 17,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 377,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 50.982708984520286,
+       "index": 17,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 643,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 86.13408304518089,
+       "index": 17,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 1092,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 158.7735420325771,
+       "index": 18,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 390,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 52.309166989289224,
+       "index": 18,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 174,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 24.36858305009082,
+       "index": 18,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 1080,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 176.22245801612735,
+       "index": 19,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 422,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 88.19508302258328,
+       "index": 19,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 316,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 42.93937498005107,
+       "index": 19,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 1394,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 224.71033298643306,
+       "index": 20,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 617,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 92.60095795616508,
+       "index": 20,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 424,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 60.5937919463031,
+       "index": 20,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 135,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.173167016357183,
+       "index": 21,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 1221,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 179.3051669956185,
+       "index": 21,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 4344,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 734.659833018668,
+       "index": 21,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 237,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 35.14979098690674,
+       "index": 22,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 1028,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 138.6361249606125,
+       "index": 22,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 322,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 44.13104197010398,
+       "index": 22,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 246,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 33.074792008847,
+       "index": 23,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 836,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 111.90216598333791,
+       "index": 23,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 3146,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 421.07870802283287,
+       "index": 23,
+       "seed": 2
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 32228.795417002402,
+       "index": 24,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 243,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 47.10583301493898,
+       "index": 24,
+       "seed": 1
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 30805.647666973528,
+       "index": 24,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 471,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 64.57295798463747,
+       "index": 25,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 1138,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 151.89475001534447,
+       "index": 25,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 1019,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 136.16658298997208,
+       "index": 25,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 11300,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1512.6544999657199,
+       "index": 26,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 19248,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 2575.90637501562,
+       "index": 26,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 8806,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1177.9797080089338,
+       "index": 26,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 273,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 36.90683300374076,
+       "index": 27,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 227,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 31.30495798541233,
+       "index": 27,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 201,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 30.454125022515655,
+       "index": 27,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 1382,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 220.26212501805276,
+       "index": 28,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 338,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 55.33962498884648,
+       "index": 28,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 815,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 239.69054099870846,
+       "index": 28,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 417,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 134.52233403222635,
+       "index": 29,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 1641,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 347.6231250097044,
+       "index": 29,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 2230,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 334.69245897140354,
+       "index": 29,
+       "seed": 2
+      }
+     ]
+    }
+   }
+  },
+  "hard": {
+   "n": 30,
+   "algos": {
+    "backtracking": {
+     "runs": 30,
+     "solved": 28,
+     "reasons": {
+      "solved": 28,
+      "max_steps": 2
+     },
+     "nodes_all": [
+      139,
+      140,
+      229,
+      308,
+      415,
+      439,
+      465,
+      627,
+      797,
+      872,
+      917,
+      1002,
+      1519,
+      1697,
+      2164,
+      2644,
+      2953,
+      3461,
+      4174,
+      4693,
+      4756,
+      5215,
+      5540,
+      5561,
+      13727,
+      15448,
+      32662,
+      42240,
+      1400000,
+      1400000
+     ],
+     "nodes_solved_median": 1930.5,
+     "nodes_solved_p90": 14243.300000000001,
+     "nodes_worst": 1400000,
+     "ms_median": 11.983020493062213,
+     "ms_p10": 1.3137460977304727,
+     "ms_p90": 154.12142501445493,
+     "ms_worst": 9971.771665965207,
+     "per_run": [
+      {
+       "solved": true,
+       "nodes": 797,
+       "backtracks": 740,
+       "terminated_reason": "solved",
+       "ms": 3.4375410177744925,
+       "index": 0,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 439,
+       "backtracks": 382,
+       "terminated_reason": "solved",
+       "ms": 1.7368749831803143,
+       "index": 1,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 5215,
+       "backtracks": 5158,
+       "terminated_reason": "solved",
+       "ms": 20.91633400414139,
+       "index": 2,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 4756,
+       "backtracks": 4699,
+       "terminated_reason": "solved",
+       "ms": 19.90787504473701,
+       "index": 3,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 627,
+       "backtracks": 570,
+       "terminated_reason": "solved",
+       "ms": 3.117209009360522,
+       "index": 4,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 4693,
+       "backtracks": 4636,
+       "terminated_reason": "solved",
+       "ms": 21.009292046073824,
+       "index": 5,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 13727,
+       "backtracks": 13670,
+       "terminated_reason": "solved",
+       "ms": 64.50091698206961,
+       "index": 6,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 32662,
+       "backtracks": 32605,
+       "terminated_reason": "solved",
+       "ms": 150.6715000141412,
+       "index": 7,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 917,
+       "backtracks": 860,
+       "terminated_reason": "solved",
+       "ms": 4.343667009379715,
+       "index": 8,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 5540,
+       "backtracks": 5483,
+       "terminated_reason": "solved",
+       "ms": 24.903541954699904,
+       "index": 9,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 140,
+       "backtracks": 86,
+       "terminated_reason": "solved",
+       "ms": 0.6837910041213036,
+       "index": 10,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 2644,
+       "backtracks": 2589,
+       "terminated_reason": "solved",
+       "ms": 13.942082994617522,
+       "index": 11,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 308,
+       "backtracks": 255,
+       "terminated_reason": "solved",
+       "ms": 1.330166996922344,
+       "index": 12,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 5561,
+       "backtracks": 5507,
+       "terminated_reason": "solved",
+       "ms": 26.885291968937963,
+       "index": 13,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 1519,
+       "backtracks": 1465,
+       "terminated_reason": "solved",
+       "ms": 7.5084579875692725,
+       "index": 14,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 42240,
+       "backtracks": 42185,
+       "terminated_reason": "solved",
+       "ms": 185.1707500172779,
+       "index": 15,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 139,
+       "backtracks": 82,
+       "terminated_reason": "solved",
+       "ms": 0.7501670042984188,
+       "index": 16,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 872,
+       "backtracks": 816,
+       "terminated_reason": "solved",
+       "ms": 4.541790985967964,
+       "index": 17,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 229,
+       "backtracks": 174,
+       "terminated_reason": "solved",
+       "ms": 1.1659580050036311,
+       "index": 18,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 415,
+       "backtracks": 362,
+       "terminated_reason": "solved",
+       "ms": 1.9374580006115139,
+       "index": 19,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 4174,
+       "backtracks": 4120,
+       "terminated_reason": "solved",
+       "ms": 18.806374981068075,
+       "index": 20,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 1002,
+       "backtracks": 947,
+       "terminated_reason": "solved",
+       "ms": 3.7367920158430934,
+       "index": 21,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 3461,
+       "backtracks": 3406,
+       "terminated_reason": "solved",
+       "ms": 14.97845898848027,
+       "index": 22,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 2164,
+       "backtracks": 2106,
+       "terminated_reason": "solved",
+       "ms": 10.023957991506904,
+       "index": 23,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 1697,
+       "backtracks": 1641,
+       "terminated_reason": "solved",
+       "ms": 7.807333022356033,
+       "index": 24,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 2953,
+       "backtracks": 2900,
+       "terminated_reason": "solved",
+       "ms": 14.693874982185662,
+       "index": 25,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 15448,
+       "backtracks": 15394,
+       "terminated_reason": "solved",
+       "ms": 68.12458398053423,
+       "index": 26,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 465,
+       "backtracks": 409,
+       "terminated_reason": "solved",
+       "ms": 1.9662500126287341,
+       "index": 27,
+       "seed": null
+      },
+      {
+       "solved": false,
+       "nodes": 1400000,
+       "backtracks": 1399966,
+       "terminated_reason": "max_steps",
+       "ms": 7947.2377090132795,
+       "index": 28,
+       "seed": null
+      },
+      {
+       "solved": false,
+       "nodes": 1400000,
+       "backtracks": 1399969,
+       "terminated_reason": "max_steps",
+       "ms": 9971.771665965207,
+       "index": 29,
+       "seed": null
+      }
+     ]
+    },
+    "forward_checking": {
+     "runs": 30,
+     "solved": 30,
+     "reasons": {
+      "solved": 30
+     },
+     "nodes_all": [
+      54,
+      54,
+      54,
+      55,
+      56,
+      56,
+      57,
+      57,
+      57,
+      57,
+      58,
+      59,
+      60,
+      60,
+      62,
+      63,
+      63,
+      64,
+      72,
+      81,
+      89,
+      93,
+      97,
+      110,
+      128,
+      130,
+      163,
+      278,
+      1298,
+      149731
+     ],
+     "nodes_solved_median": 62.5,
+     "nodes_solved_p90": 174.50000000000017,
+     "nodes_worst": 149731,
+     "ms_median": 2.3656250268686563,
+     "ms_p10": 1.4715411176439375,
+     "ms_p90": 12.654858257155878,
+     "ms_worst": 12489.47691702051,
+     "per_run": [
+      {
+       "solved": true,
+       "nodes": 57,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.7435000045225024,
+       "index": 0,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 57,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.7307089874520898,
+       "index": 1,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 63,
+       "backtracks": 7,
+       "terminated_reason": "solved",
+       "ms": 2.425124985165894,
+       "index": 2,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 1298,
+       "backtracks": 1469,
+       "terminated_reason": "solved",
+       "ms": 140.0417090044357,
+       "index": 3,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 64,
+       "backtracks": 11,
+       "terminated_reason": "solved",
+       "ms": 2.4451659992337227,
+       "index": 4,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 128,
+       "backtracks": 77,
+       "terminated_reason": "solved",
+       "ms": 7.909582986030728,
+       "index": 5,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 163,
+       "backtracks": 119,
+       "terminated_reason": "solved",
+       "ms": 11.792624951340258,
+       "index": 6,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 81,
+       "backtracks": 28,
+       "terminated_reason": "solved",
+       "ms": 3.8398340111598372,
+       "index": 7,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 60,
+       "backtracks": 5,
+       "terminated_reason": "solved",
+       "ms": 1.9359170109964907,
+       "index": 8,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 278,
+       "backtracks": 238,
+       "terminated_reason": "solved",
+       "ms": 20.41495800949633,
+       "index": 9,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 58,
+       "backtracks": 5,
+       "terminated_reason": "solved",
+       "ms": 2.0494170021265745,
+       "index": 10,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 57,
+       "backtracks": 3,
+       "terminated_reason": "solved",
+       "ms": 1.6825830098241568,
+       "index": 11,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 72,
+       "backtracks": 23,
+       "terminated_reason": "solved",
+       "ms": 3.3398749656043947,
+       "index": 12,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 89,
+       "backtracks": 42,
+       "terminated_reason": "solved",
+       "ms": 4.848417011089623,
+       "index": 13,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 54,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.4169579953886569,
+       "index": 14,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 55,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.6735829995013773,
+       "index": 15,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 97,
+       "backtracks": 51,
+       "terminated_reason": "solved",
+       "ms": 5.771750002168119,
+       "index": 16,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 56,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.4766660169698298,
+       "index": 17,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 93,
+       "backtracks": 42,
+       "terminated_reason": "solved",
+       "ms": 5.470708012580872,
+       "index": 18,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 59,
+       "backtracks": 7,
+       "terminated_reason": "solved",
+       "ms": 2.334167016670108,
+       "index": 19,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 54,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.6672919737175107,
+       "index": 20,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 57,
+       "backtracks": 3,
+       "terminated_reason": "solved",
+       "ms": 1.7231249948963523,
+       "index": 21,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 110,
+       "backtracks": 60,
+       "terminated_reason": "solved",
+       "ms": 6.7182089551351964,
+       "index": 22,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 60,
+       "backtracks": 3,
+       "terminated_reason": "solved",
+       "ms": 2.0642909803427756,
+       "index": 23,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 63,
+       "backtracks": 8,
+       "terminated_reason": "solved",
+       "ms": 2.3970830370672047,
+       "index": 24,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 130,
+       "backtracks": 90,
+       "terminated_reason": "solved",
+       "ms": 8.914083009585738,
+       "index": 25,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 54,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.4254170237109065,
+       "index": 26,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 62,
+       "backtracks": 8,
+       "terminated_reason": "solved",
+       "ms": 2.161917043849826,
+       "index": 27,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 149731,
+       "backtracks": 180927,
+       "terminated_reason": "solved",
+       "ms": 12489.47691702051,
+       "index": 28,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 56,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1.1135420063510537,
+       "index": 29,
+       "seed": null
+      }
+     ]
+    },
+    "ac3": {
+     "runs": 30,
+     "solved": 30,
+     "reasons": {
+      "solved": 30
+     },
+     "nodes_all": [
+      48,
+      52,
+      52,
+      53,
+      54,
+      55,
+      55,
+      55,
+      56,
+      56,
+      57,
+      58,
+      58,
+      58,
+      58,
+      59,
+      60,
+      67,
+      68,
+      72,
+      73,
+      81,
+      90,
+      91,
+      95,
+      123,
+      142,
+      155,
+      253,
+      1235
+     ],
+     "nodes_solved_median": 58.5,
+     "nodes_solved_p90": 143.3,
+     "nodes_worst": 1235,
+     "ms_median": 19.525917014107108,
+     "ms_p10": 18.7067958060652,
+     "ms_p90": 22.25317908450961,
+     "ms_worst": 36.290124990046024,
+     "per_run": [
+      {
+       "solved": true,
+       "nodes": 58,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 19.21437500277534,
+       "index": 0,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 57,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 19.63383302791044,
+       "index": 1,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 60,
+       "backtracks": 4,
+       "terminated_reason": "solved",
+       "ms": 19.674125011079013,
+       "index": 2,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 1235,
+       "backtracks": 1180,
+       "terminated_reason": "solved",
+       "ms": 36.290124990046024,
+       "index": 3,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 58,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 19.028541981242597,
+       "index": 4,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 253,
+       "backtracks": 199,
+       "terminated_reason": "solved",
+       "ms": 22.486541012767702,
+       "index": 5,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 58,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 19.127917010337114,
+       "index": 6,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 58,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 19.0089579555206,
+       "index": 7,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 55,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 19.641124992631376,
+       "index": 8,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 90,
+       "backtracks": 32,
+       "terminated_reason": "solved",
+       "ms": 19.383834034670144,
+       "index": 9,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 123,
+       "backtracks": 69,
+       "terminated_reason": "solved",
+       "ms": 19.476458022836596,
+       "index": 10,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 56,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.305000034160912,
+       "index": 11,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 52,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.16974999383092,
+       "index": 12,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 91,
+       "backtracks": 37,
+       "terminated_reason": "solved",
+       "ms": 18.900041992310435,
+       "index": 13,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 72,
+       "backtracks": 18,
+       "terminated_reason": "solved",
+       "ms": 18.92466703429818,
+       "index": 14,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 81,
+       "backtracks": 25,
+       "terminated_reason": "solved",
+       "ms": 18.71012500487268,
+       "index": 15,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 142,
+       "backtracks": 85,
+       "terminated_reason": "solved",
+       "ms": 22.227249981369823,
+       "index": 16,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 56,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 20.720832981169224,
+       "index": 17,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 67,
+       "backtracks": 11,
+       "terminated_reason": "solved",
+       "ms": 21.24795800773427,
+       "index": 18,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 54,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.831332970876247,
+       "index": 19,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 55,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 19.790792022831738,
+       "index": 20,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 73,
+       "backtracks": 17,
+       "terminated_reason": "solved",
+       "ms": 18.6768330167979,
+       "index": 21,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 52,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 19.558875006623566,
+       "index": 22,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 55,
+       "backtracks": 3,
+       "terminated_reason": "solved",
+       "ms": 23.181333031971008,
+       "index": 23,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 53,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 20.985959039535373,
+       "index": 24,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 155,
+       "backtracks": 101,
+       "terminated_reason": "solved",
+       "ms": 18.94079096382484,
+       "index": 25,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 48,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 20.37874999223277,
+       "index": 26,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 59,
+       "backtracks": 4,
+       "terminated_reason": "solved",
+       "ms": 19.49295902159065,
+       "index": 27,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 68,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 21.42158296192065,
+       "index": 28,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 95,
+       "backtracks": 41,
+       "terminated_reason": "solved",
+       "ms": 19.7424580110237,
+       "index": 29,
+       "seed": null
+      }
+     ]
+    },
+    "min_conflicts": {
+     "runs": 90,
+     "solved": 85,
+     "reasons": {
+      "solved": 85,
+      "max_steps": 5
+     },
+     "nodes_all": [
+      112,
+      118,
+      138,
+      142,
+      142,
+      152,
+      166,
+      196,
+      200,
+      210,
+      215,
+      246,
+      298,
+      309,
+      316,
+      318,
+      318,
+      334,
+      339,
+      356,
+      359,
+      371,
+      371,
+      373,
+      392,
+      408,
+      449,
+      457,
+      458,
+      513,
+      541,
+      543,
+      604,
+      659,
+      688,
+      695,
+      726,
+      731,
+      763,
+      776,
+      792,
+      846,
+      847,
+      863,
+      908,
+      911,
+      923,
+      958,
+      993,
+      1017,
+      1042,
+      1083,
+      1106,
+      1162,
+      1192,
+      1241,
+      1333,
+      1409,
+      1436,
+      1508,
+      1517,
+      1523,
+      1594,
+      1770,
+      1785,
+      1922,
+      2037,
+      2039,
+      2065,
+      2260,
+      2361,
+      2392,
+      2473,
+      2535,
+      2597,
+      2636,
+      2858,
+      3120,
+      3307,
+      3737,
+      4523,
+      5570,
+      6216,
+      8142,
+      9877,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000
+     ],
+     "nodes_solved_median": 847,
+     "nodes_solved_p90": 2769.199999999999,
+     "nodes_worst": 200000,
+     "ms_median": 134.38508348190226,
+     "ms_p10": 32.68249582615681,
+     "ms_p90": 741.3601708074557,
+     "ms_worst": 31040.47620797064,
+     "per_run": [
+      {
+       "solved": true,
+       "nodes": 112,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 15.65374998608604,
+       "index": 0,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 215,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 32.81375003280118,
+       "index": 0,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 993,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 149.40208301413804,
+       "index": 0,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 2260,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 381.32879202021286,
+       "index": 1,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 318,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 73.05937499040738,
+       "index": 1,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 2597,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 450.37674997001886,
+       "index": 1,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 908,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 130.93370804563165,
+       "index": 2,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 1517,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 226.2859169859439,
+       "index": 2,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 1017,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 179.74699998740107,
+       "index": 2,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 9877,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 2396.2707919999957,
+       "index": 3,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 2636,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 725.7956250105053,
+       "index": 3,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 5570,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1174.1373750264756,
+       "index": 3,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 659,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 94.39120802562684,
+       "index": 4,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 152,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 21.360000013373792,
+       "index": 4,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 911,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 127.7020409470424,
+       "index": 4,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 2473,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 343.66833401145414,
+       "index": 5,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 3737,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 515.7317909761332,
+       "index": 5,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 3307,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 514.8977920180187,
+       "index": 5,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 763,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 122.15445801848546,
+       "index": 6,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 118,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 18.748041009530425,
+       "index": 6,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 695,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 109.97633298393339,
+       "index": 6,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 3120,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 441.41933298669755,
+       "index": 7,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 356,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 49.223250010982156,
+       "index": 7,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 1042,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 150.26862500235438,
+       "index": 7,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 2065,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 324.6415000176057,
+       "index": 8,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 196,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 31.50120796635747,
+       "index": 8,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 371,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 58.788708003703505,
+       "index": 8,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 847,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 133.32624995382503,
+       "index": 9,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 1162,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 191.05950003722683,
+       "index": 9,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 792,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 124.4079580064863,
+       "index": 9,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 846,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 126.1833340395242,
+       "index": 10,
+       "seed": 0
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 30477.061125042383,
+       "index": 10,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 449,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 78.8369580404833,
+       "index": 10,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 776,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 141.50212501408532,
+       "index": 11,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 958,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 170.93066597590223,
+       "index": 11,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 408,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 84.26420902833343,
+       "index": 11,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 373,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 76.52670796960592,
+       "index": 12,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 1594,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 363.7931249686517,
+       "index": 12,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 138,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 37.32758300611749,
+       "index": 12,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 541,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 109.41883298801258,
+       "index": 13,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 604,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 102.21708397148177,
+       "index": 13,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 457,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 73.1693750130944,
+       "index": 13,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 1333,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 239.7594579961151,
+       "index": 14,
+       "seed": 0
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 31040.47620797064,
+       "index": 14,
+       "seed": 1
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 26523.105499974918,
+       "index": 14,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 200,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 29.241250013001263,
+       "index": 15,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 142,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 22.20495801884681,
+       "index": 15,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 543,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 84.10537499003112,
+       "index": 15,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 246,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 38.70445798384026,
+       "index": 16,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 688,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 107.85020899493247,
+       "index": 16,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 731,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 114.19374996330589,
+       "index": 16,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 2361,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 351.3870409806259,
+       "index": 17,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 316,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 43.19383297115564,
+       "index": 17,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 1241,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 169.9736249865964,
+       "index": 17,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 6216,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 881.4410829800181,
+       "index": 18,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 458,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 61.347999959252775,
+       "index": 18,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 1770,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 237.36208403715864,
+       "index": 18,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 2039,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 264.0241669723764,
+       "index": 19,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 142,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 21.204041957389563,
+       "index": 19,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 166,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 24.517250014469028,
+       "index": 19,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 1106,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 164.61062501184642,
+       "index": 20,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 1192,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 162.55008400185034,
+       "index": 20,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 339,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 44.64574996381998,
+       "index": 20,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 863,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 123.98420902900398,
+       "index": 21,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 1436,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 212.50475000124425,
+       "index": 21,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 371,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 49.98362500919029,
+       "index": 21,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 8142,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1141.4581250282936,
+       "index": 22,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 726,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 97.57420798996463,
+       "index": 22,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 1785,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 239.88200002349913,
+       "index": 22,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 1508,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 213.47133297240362,
+       "index": 23,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 1523,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 215.7316249795258,
+       "index": 23,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 309,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 44.21520803589374,
+       "index": 23,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 1922,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 263.52175005013123,
+       "index": 24,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 1409,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 193.6999160097912,
+       "index": 24,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 2392,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 331.19570900453255,
+       "index": 24,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 318,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 43.81612496217713,
+       "index": 25,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 923,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 135.4439170099795,
+       "index": 25,
+       "seed": 1
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 26890.939874981996,
+       "index": 25,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 2535,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 338.92054203897715,
+       "index": 26,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 359,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 47.56033403100446,
+       "index": 26,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 210,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 27.980249957181513,
+       "index": 26,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 1083,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 147.78374996967614,
+       "index": 27,
+       "seed": 0
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 29821.8247499899,
+       "index": 27,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 4523,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 640.8195829717442,
+       "index": 27,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 2037,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 365.36350002279505,
+       "index": 28,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 2858,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 463.98487500846386,
+       "index": 28,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 298,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 48.55558299459517,
+       "index": 28,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 392,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 53.725624980870634,
+       "index": 29,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 513,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 70.45895897317678,
+       "index": 29,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 334,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 45.93008302617818,
+       "index": 29,
+       "seed": 2
+      }
+     ]
+    }
+   }
+  },
+  "extreme": {
+   "n": 12,
+   "algos": {
+    "backtracking": {
+     "runs": 12,
+     "solved": 6,
+     "reasons": {
+      "solved": 6,
+      "max_steps": 6
+     },
+     "nodes_all": [
+      8969,
+      45012,
+      49558,
+      304053,
+      334006,
+      1114771,
+      1400000,
+      1400000,
+      1400000,
+      1400000,
+      1400000,
+      1400000
+     ],
+     "nodes_solved_median": 176805.5,
+     "nodes_solved_p90": 724388.5,
+     "nodes_worst": 1400000,
+     "ms_median": 5652.994312491501,
+     "ms_p10": 207.3575210873969,
+     "ms_p90": 6508.779216435505,
+     "ms_worst": 9573.548083018977,
+     "per_run": [
+      {
+       "solved": true,
+       "nodes": 8969,
+       "backtracks": 8911,
+       "terminated_reason": "solved",
+       "ms": 42.83879202557728,
+       "index": 0,
+       "seed": null
+      },
+      {
+       "solved": false,
+       "nodes": 1400000,
+       "backtracks": 1399978,
+       "terminated_reason": "max_steps",
+       "ms": 6248.398458992597,
+       "index": 1,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 49558,
+       "backtracks": 49498,
+       "terminated_reason": "solved",
+       "ms": 220.8337080082856,
+       "index": 2,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 1114771,
+       "backtracks": 1114711,
+       "terminated_reason": "solved",
+       "ms": 5074.566291994415,
+       "index": 3,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 304053,
+       "backtracks": 303993,
+       "terminated_reason": "solved",
+       "ms": 1413.8459169771522,
+       "index": 4,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 334006,
+       "backtracks": 333942,
+       "terminated_reason": "solved",
+       "ms": 1772.6784170372412,
+       "index": 5,
+       "seed": null
+      },
+      {
+       "solved": false,
+       "nodes": 1400000,
+       "backtracks": 1399970,
+       "terminated_reason": "max_steps",
+       "ms": 9573.548083018977,
+       "index": 6,
+       "seed": null
+      },
+      {
+       "solved": false,
+       "nodes": 1400000,
+       "backtracks": 1399975,
+       "terminated_reason": "max_steps",
+       "ms": 6422.429917030968,
+       "index": 7,
+       "seed": null
+      },
+      {
+       "solved": false,
+       "nodes": 1400000,
+       "backtracks": 1399968,
+       "terminated_reason": "max_steps",
+       "ms": 6231.422332988586,
+       "index": 8,
+       "seed": null
+      },
+      {
+       "solved": false,
+       "nodes": 1400000,
+       "backtracks": 1399970,
+       "terminated_reason": "max_steps",
+       "ms": 6518.373583036009,
+       "index": 9,
+       "seed": null
+      },
+      {
+       "solved": false,
+       "nodes": 1400000,
+       "backtracks": 1399967,
+       "terminated_reason": "max_steps",
+       "ms": 6368.529208994005,
+       "index": 10,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 45012,
+       "backtracks": 44956,
+       "terminated_reason": "solved",
+       "ms": 205.86016698507592,
+       "index": 11,
+       "seed": null
+      }
+     ]
+    },
+    "forward_checking": {
+     "runs": 12,
+     "solved": 12,
+     "reasons": {
+      "solved": 12
+     },
+     "nodes_all": [
+      71,
+      175,
+      374,
+      1744,
+      4125,
+      9467,
+      10339,
+      11224,
+      13017,
+      13082,
+      14319,
+      44331
+     ],
+     "nodes_solved_median": 9903.0,
+     "nodes_solved_p90": 14195.300000000001,
+     "nodes_worst": 44331,
+     "ms_median": 747.0422920014244,
+     "ms_p10": 10.264916392043235,
+     "ms_p90": 1011.20719142491,
+     "ms_worst": 3256.761708005797,
+     "per_run": [
+      {
+       "solved": true,
+       "nodes": 175,
+       "backtracks": 122,
+       "terminated_reason": "solved",
+       "ms": 8.667332993354648,
+       "index": 0,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 4125,
+       "backtracks": 4788,
+       "terminated_reason": "solved",
+       "ms": 307.84441699506715,
+       "index": 1,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 13017,
+       "backtracks": 14312,
+       "terminated_reason": "solved",
+       "ms": 923.7389170448296,
+       "index": 2,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 1744,
+       "backtracks": 1858,
+       "terminated_reason": "solved",
+       "ms": 115.02029199618846,
+       "index": 3,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 14319,
+       "backtracks": 15527,
+       "terminated_reason": "solved",
+       "ms": 991.2326670018956,
+       "index": 4,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 9467,
+       "backtracks": 10662,
+       "terminated_reason": "solved",
+       "ms": 731.7021670169197,
+       "index": 5,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 44331,
+       "backtracks": 51044,
+       "terminated_reason": "solved",
+       "ms": 3256.761708005797,
+       "index": 6,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 10339,
+       "backtracks": 11869,
+       "terminated_reason": "solved",
+       "ms": 762.382416985929,
+       "index": 7,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 13082,
+       "backtracks": 15775,
+       "terminated_reason": "solved",
+       "ms": 1013.4265830274671,
+       "index": 8,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 11224,
+       "backtracks": 12496,
+       "terminated_reason": "solved",
+       "ms": 786.8774170055985,
+       "index": 9,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 374,
+       "backtracks": 368,
+       "terminated_reason": "solved",
+       "ms": 24.643166980240494,
+       "index": 10,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 71,
+       "backtracks": 18,
+       "terminated_reason": "solved",
+       "ms": 2.344625012483448,
+       "index": 11,
+       "seed": null
+      }
+     ]
+    },
+    "ac3": {
+     "runs": 12,
+     "solved": 12,
+     "reasons": {
+      "solved": 12
+     },
+     "nodes_all": [
+      73,
+      109,
+      1703,
+      3515,
+      4865,
+      5216,
+      9403,
+      10833,
+      11951,
+      15545,
+      64739,
+      100560
+     ],
+     "nodes_solved_median": 7309.5,
+     "nodes_solved_p90": 59819.60000000002,
+     "nodes_worst": 100560,
+     "ms_median": 124.35997900320217,
+     "ms_p10": 24.417225329671055,
+     "ms_p90": 871.8786128098147,
+     "ms_worst": 1410.1123749860562,
+     "per_run": [
+      {
+       "solved": true,
+       "nodes": 1703,
+       "backtracks": 1644,
+       "terminated_reason": "solved",
+       "ms": 42.92962502222508,
+       "index": 0,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 4865,
+       "backtracks": 4801,
+       "terminated_reason": "solved",
+       "ms": 90.85679100826383,
+       "index": 1,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 9403,
+       "backtracks": 9342,
+       "terminated_reason": "solved",
+       "ms": 151.99008298804983,
+       "index": 2,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 100560,
+       "backtracks": 100499,
+       "terminated_reason": "solved",
+       "ms": 1410.1123749860562,
+       "index": 3,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 5216,
+       "backtracks": 5155,
+       "terminated_reason": "solved",
+       "ms": 96.7298750183545,
+       "index": 4,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 10833,
+       "backtracks": 10768,
+       "terminated_reason": "solved",
+       "ms": 175.61904195463285,
+       "index": 5,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 64739,
+       "backtracks": 64674,
+       "terminated_reason": "solved",
+       "ms": 941.198542015627,
+       "index": 6,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 11951,
+       "backtracks": 11887,
+       "terminated_reason": "solved",
+       "ms": 190.56562503101304,
+       "index": 7,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 15545,
+       "backtracks": 15481,
+       "terminated_reason": "solved",
+       "ms": 247.9992499575019,
+       "index": 8,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 3515,
+       "backtracks": 3451,
+       "terminated_reason": "solved",
+       "ms": 72.08345900289714,
+       "index": 9,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 109,
+       "backtracks": 44,
+       "terminated_reason": "solved",
+       "ms": 22.360292030498385,
+       "index": 10,
+       "seed": null
+      },
+      {
+       "solved": true,
+       "nodes": 73,
+       "backtracks": 18,
+       "terminated_reason": "solved",
+       "ms": 20.09683399228379,
+       "index": 11,
+       "seed": null
+      }
+     ]
+    },
+    "min_conflicts": {
+     "runs": 36,
+     "solved": 4,
+     "reasons": {
+      "max_steps": 32,
+      "solved": 4
+     },
+     "nodes_all": [
+      3333,
+      9872,
+      44509,
+      46884,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000,
+      200000
+     ],
+     "nodes_solved_median": 27190.5,
+     "nodes_solved_p90": 46171.5,
+     "nodes_worst": 200000,
+     "ms_median": 31714.875187521102,
+     "ms_p10": 17295.92491648509,
+     "ms_p90": 38248.29235402285,
+     "ms_worst": 49125.04524999531,
+     "per_run": [
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 28317.54037499195,
+       "index": 0,
+       "seed": 0
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 28172.285666980315,
+       "index": 0,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 9872,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 1394.6133749559522,
+       "index": 0,
+       "seed": 2
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 38142.235875013284,
+       "index": 1,
+       "seed": 0
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 37208.86299997801,
+       "index": 1,
+       "seed": 1
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 49125.04524999531,
+       "index": 1,
+       "seed": 2
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 38185.73295802344,
+       "index": 2,
+       "seed": 0
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 37340.88387497468,
+       "index": 2,
+       "seed": 1
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 38310.851750022266,
+       "index": 2,
+       "seed": 2
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 33495.54350000108,
+       "index": 3,
+       "seed": 0
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 31479.144792014267,
+       "index": 3,
+       "seed": 1
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 29385.785207967274,
+       "index": 3,
+       "seed": 2
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 29249.548291962128,
+       "index": 4,
+       "seed": 0
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 31756.121999991592,
+       "index": 4,
+       "seed": 1
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 31844.145958020817,
+       "index": 4,
+       "seed": 2
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 31291.325917001814,
+       "index": 5,
+       "seed": 0
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 44316.58004201017,
+       "index": 5,
+       "seed": 1
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 47446.97991601424,
+       "index": 5,
+       "seed": 2
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 32301.116041024216,
+       "index": 6,
+       "seed": 0
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 31587.62766700238,
+       "index": 6,
+       "seed": 1
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 32880.67729200702,
+       "index": 6,
+       "seed": 2
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 31303.1312499661,
+       "index": 7,
+       "seed": 0
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 32905.15191596933,
+       "index": 7,
+       "seed": 1
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 31255.642791977152,
+       "index": 7,
+       "seed": 2
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 34294.85454200767,
+       "index": 8,
+       "seed": 0
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 31225.46687501017,
+       "index": 8,
+       "seed": 1
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 31128.88362503145,
+       "index": 8,
+       "seed": 2
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 31673.62837505061,
+       "index": 9,
+       "seed": 0
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 31245.815582980867,
+       "index": 9,
+       "seed": 1
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 31769.789250043686,
+       "index": 9,
+       "seed": 2
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 31297.633167007007,
+       "index": 10,
+       "seed": 0
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 37633.019375032745,
+       "index": 10,
+       "seed": 1
+      },
+      {
+       "solved": false,
+       "nodes": 200000,
+       "backtracks": 0,
+       "terminated_reason": "max_steps",
+       "ms": 37660.65033397172,
+       "index": 10,
+       "seed": 2
+      },
+      {
+       "solved": true,
+       "nodes": 3333,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 475.0926669803448,
+       "index": 11,
+       "seed": 0
+      },
+      {
+       "solved": true,
+       "nodes": 46884,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 6419.564165989868,
+       "index": 11,
+       "seed": 1
+      },
+      {
+       "solved": true,
+       "nodes": 44509,
+       "backtracks": 0,
+       "terminated_reason": "solved",
+       "ms": 6066.538666957058,
+       "index": 11,
+       "seed": 2
+      }
+     ]
+    }
+   }
+  }
+ }
+}
