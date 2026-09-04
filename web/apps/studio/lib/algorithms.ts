@@ -36,7 +36,7 @@ export const ALGOS: AlgoMeta[] = [
     strengths:
       "Trivial to implement and low overhead per step. On the easy and medium sets it solves every puzzle, median 2,025 and 786 search nodes. When a puzzle has enough clues to keep branches short, it is genuinely quick — low single-digit milliseconds.",
     weaknesses:
-      "No pruning means no protection against a bad branch. Worst case on the easy set alone is 254,857 nodes — one puzzle where the digit order happened to be adversarial. On the extreme set it exhausts a 1.4-million-node budget on half the puzzles and solves 6 of 12 — the ones with enough clues to keep branches short.",
+      "No pruning means no protection against a bad branch. Worst case on the easy set alone is 254,857 nodes — one puzzle where the digit order happened to be adversarial. On the extreme set it exhausts a 1.4-million-node budget on half the puzzles — it clears 6 of 12, and every one it fails is a 17-clue minimum.",
     verdict:
       "Wins on well-constrained puzzles where its lack of bookkeeping is pure speed. Loses the moment the puzzle is sparse enough that a wrong early guess hides a contradiction thousands of levels down — it cannot see that coming, so it pays the full price every time.",
   },

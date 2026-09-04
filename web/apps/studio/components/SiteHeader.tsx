@@ -16,6 +16,10 @@ export function SiteHeader() {
             input
           </Link>
           <span className="text-text-faint">·</span>
+          <Link href="/benchmarks" className="hover:text-text">
+            benchmarks
+          </Link>
+          <span className="text-text-faint">·</span>
           <a
             href="https://github.com"
             className="hover:text-text"
