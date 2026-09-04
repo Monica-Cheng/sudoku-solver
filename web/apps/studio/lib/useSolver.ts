@@ -72,8 +72,12 @@ export function useSolver() {
       (err: unknown) => {
         const cancelled = err instanceof Error && err.name === "CancelledError";
         setStatus(cancelled ? "stopped" : "error");
+        // A cancelled run (algorithm switch / restart) is not an outcome the
+        // caller needs — it already moved on to a fresh run. Only report a
+        // genuine failure.
+        if (cancelled) return;
         opts.onSettled({
-          status: cancelled ? "stopped" : "error",
+          status: "error",
           result: null,
           message: err instanceof Error ? err.message : String(err),
         });

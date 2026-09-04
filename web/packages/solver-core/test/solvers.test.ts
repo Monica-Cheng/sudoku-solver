@@ -61,6 +61,32 @@ describe("basic correctness", () => {
     expect(r.solved).toBe(false);
     expect(r.terminatedReason).toBe("no_solution");
   });
+
+  it("a rule-legal but unsolvable grid never reports 'error' — the UI depends on this", () => {
+    // 1..8 across row 0 (cols 0-7) forces r0c8 = 9, but a 9 in r1c8 blocks it:
+    // no legal value for r0c8, so no completion exists. The grid itself is legal.
+    const g = "0".repeat(81).split("");
+    "12345678".split("").forEach((d, i) => (g[i] = d));
+    g[9 + 8] = "9";
+    const puzzle = g.join("");
+
+    for (const algo of NAMES) {
+      const r = solve(puzzle, algo, { seed: 0, maxSteps: 300_000 });
+      expect(r.solved).toBe(false);
+      // every reason here is a legitimate, non-error outcome
+      expect(["exhausted", "no_solution", "max_steps"]).toContain(r.terminatedReason);
+    }
+
+    // the complete searches can prove it; the deterministic three do so fast
+    for (const algo of ["backtracking", "forward_checking", "ac3"] as const) {
+      const r = solve(puzzle, algo, { seed: 0, maxSteps: 300_000 });
+      expect(["exhausted", "no_solution"]).toContain(r.terminatedReason);
+    }
+
+    // min_conflicts can't prove unsolvability — it runs to the cap
+    const mc = solve(puzzle, "min_conflicts", { seed: 0, maxSteps: 20_000 });
+    expect(mc.terminatedReason).toBe("max_steps");
+  });
 });
 
 describe("determinism", () => {

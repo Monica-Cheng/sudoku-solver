@@ -7,8 +7,9 @@ import { Board } from "@/components/Board";
 import { Metric, fmtInt, fmtMs } from "@/components/Metrics";
 import { GridModel } from "@/lib/gridState";
 import { useSolver } from "@/lib/useSolver";
-import { ALGOS, ALGO_BY_ID, budgetFor, failureText } from "@/lib/algorithms";
+import { ALGOS, ALGO_BY_ID, budgetFor } from "@/lib/algorithms";
 import { AlgoExplainer } from "@/components/AlgoExplainer";
+import { OutcomeBanner } from "@/components/OutcomeBanner";
 
 interface Props {
   puzzle: string;
@@ -263,61 +264,3 @@ function PlaybackBar({
   );
 }
 
-function OutcomeBanner({
-  running,
-  settled,
-  puzzle,
-  algo,
-}: {
-  running: boolean;
-  settled: null | { status: string; result: SolveResult | null; message?: string };
-  puzzle: string;
-  algo: AlgorithmName;
-}) {
-  if (running || !settled) return null;
-  const clues = 81 - (puzzle.match(/0/g)?.length ?? 0);
-  const r = settled.result;
-
-  if (r?.terminatedReason === "solved") {
-    return (
-      <div className="rounded border border-ok/40 bg-ok/5 p-3 text-[12px] leading-relaxed text-text-dim">
-        <span className="num text-ok">solved</span> — {fmtInt(r.nodes)} nodes,{" "}
-        {fmtInt(r.backtracks)} backtracks in {fmtMs(r.runtimeMs)}.
-      </div>
-    );
-  }
-  if (r?.terminatedReason === "max_steps") {
-    return (
-      <div className="rounded border border-accent/40 bg-accent/5 p-3 text-[12px] leading-relaxed text-text-dim">
-        <p>
-          <span className="num text-accent">gave up</span> —{" "}
-          {failureText(algo, {
-            clues,
-            nodes: r.nodes,
-            cap: budgetFor(puzzle).maxSteps,
-          })}
-        </p>
-        <p className="mt-1.5 text-text-faint">
-          That&rsquo;s the designed outcome, not an error — see{" "}
-          <a href="/benchmarks" className="text-accent hover:underline">
-            benchmarks
-          </a>{" "}
-          for how often each algorithm hits this.
-        </p>
-      </div>
-    );
-  }
-  if (r?.terminatedReason === "no_solution") {
-    return (
-      <div className="rounded border border-fail/40 bg-fail/5 p-3 text-[12px] text-text-dim">
-        <span className="num text-fail">no solution</span> — the givens contradict
-        each other.
-      </div>
-    );
-  }
-  return (
-    <div className="rounded border border-fail/40 bg-fail/5 p-3 text-[12px] text-text-dim">
-      <span className="num text-fail">error</span> — {settled.message ?? "run failed"}
-    </div>
-  );
-}

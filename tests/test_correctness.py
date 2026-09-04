@@ -72,6 +72,28 @@ def test_no_solution_detected():
     assert not r.solved and r.terminated_reason == "no_solution"
 
 
+def test_rule_legal_but_unsolvable_grid():
+    """1..8 across row 0 forces r0c8 = 9, but a 9 at r1c8 blocks it: no legal
+    value for r0c8, so no completion exists. The grid breaks no rule.
+    Every solver must end non-solved with a legitimate reason (never an error)."""
+    g = list("0" * 81)
+    for i, d in enumerate("12345678"):
+        g[i] = d
+    g[9 + 8] = "9"
+    puzzle = "".join(g)
+
+    for algo in SOLVERS:
+        r = solve(puzzle, algo, seed=0, max_steps=300_000)
+        assert not r.solved
+        assert r.terminated_reason in {"exhausted", "no_solution", "max_steps"}
+
+    # the complete searches prove unsolvability; local search cannot
+    for algo in DETERMINISTIC:
+        r = solve(puzzle, algo, seed=0, max_steps=300_000)
+        assert r.terminated_reason in {"exhausted", "no_solution"}
+    assert solve(puzzle, "min_conflicts", seed=0, max_steps=20_000).terminated_reason == "max_steps"
+
+
 def test_max_steps_stops_deterministically():
     p = "000000010400000000020000000000050407008000300001090000300400200050100000000806000"
     a = solve(p, "backtracking", max_steps=1234)

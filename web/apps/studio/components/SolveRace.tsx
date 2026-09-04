@@ -8,6 +8,7 @@ import { fmtInt, fmtMs } from "@/components/Metrics";
 import { GridModel } from "@/lib/gridState";
 import { useSolver } from "@/lib/useSolver";
 import { ALGOS, budgetFor } from "@/lib/algorithms";
+import { outcomeFor, TONE_TEXT, type SettledRun } from "@/lib/outcomes";
 
 const EVENTS_PER_FRAME = 900; // per grid
 
@@ -79,6 +80,19 @@ export function SolveRace({ puzzle }: { puzzle: string }) {
     ? performance.now() - startedAtRef.current
     : Math.max(...settledRef.current.map((s) => s?.result?.runtimeMs ?? 0));
 
+  // teaching moment: a complete search can prove no solution exists; local
+  // search (min-conflicts) can only fail to find one and run to its cap.
+  const provedUnsolvable =
+    !anyRunning &&
+    ALGOS.some((a, i) => {
+      if (a.id === "min_conflicts") return false;
+      const reason = settledRef.current[i]?.result?.terminatedReason;
+      return reason === "exhausted" || reason === "no_solution";
+    });
+  const mcIdx = ALGOS.findIndex((a) => a.id === "min_conflicts");
+  const mcCapped =
+    settledRef.current[mcIdx]?.result?.terminatedReason === "max_steps";
+
   return (
     <div className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-4 px-4 py-6">
       <div className="flex items-center justify-between num text-[12px] text-text-dim">
@@ -127,44 +141,61 @@ export function SolveRace({ puzzle }: { puzzle: string }) {
           <RaceCell
             key={a.id}
             label={a.label}
+            algo={a.id}
+            puzzle={puzzle}
             model={modelsRef.current[i]}
             settled={settledRef.current[i]}
             hiddenOnMobile={tab !== i}
           />
         ))}
       </div>
+
+      {provedUnsolvable && (
+        <p className="rounded border border-border bg-bg-raised p-3 text-[12px] leading-relaxed text-text-dim">
+          <span className="num text-text-dim">no solution exists.</span>{" "}
+          {mcCapped ? (
+            <>
+              backtracking, forward-checking and AC-3 each explored the whole
+              space and <em>proved</em> it. Min-conflicts can&rsquo;t: local
+              search only ever reports &ldquo;didn&rsquo;t find one&rdquo;, so it
+              runs to its {fmtInt(budget.maxSteps)}-iteration cap.
+            </>
+          ) : (
+            <>
+              the complete searches explored every possibility and found no valid
+              completion — the givens contradict each other.
+            </>
+          )}
+        </p>
+      )}
     </div>
   );
 }
 
 function RaceCell({
   label,
+  algo,
+  puzzle,
   model,
   settled,
   hiddenOnMobile,
 }: {
   label: string;
+  algo: AlgorithmName;
+  puzzle: string;
   model: GridModel;
-  settled: null | { status: string; result: SolveResult | null; message?: string };
+  settled: SettledRun | null;
   hiddenOnMobile: boolean;
 }) {
   const running = settled === null;
-  const r = settled?.result;
-  const outcome = running
-    ? "running"
-    : r?.terminatedReason === "solved"
-      ? "solved"
-      : r?.terminatedReason === "max_steps"
-        ? "gave up"
-        : r?.terminatedReason === "no_solution"
-          ? "no solution"
-          : "error";
-  const outcomeColor =
-    outcome === "solved"
-      ? "text-ok"
-      : outcome === "running"
-        ? "text-text-dim"
-        : "text-accent";
+  const r = settled?.result ?? null;
+  const outcome = outcomeFor(settled, { puzzle, algo });
+  const statusLabel = running ? "running" : (outcome?.label ?? "—");
+  const statusColor = running
+    ? "text-text-dim"
+    : outcome
+      ? TONE_TEXT[outcome.tone]
+      : "text-text-faint";
 
   return (
     <div
@@ -174,7 +205,7 @@ function RaceCell({
     >
       <div className="flex items-center justify-between num text-[11px]">
         <span className="text-text">{label}</span>
-        <span className={outcomeColor}>{outcome}</span>
+        <span className={statusColor}>{statusLabel}</span>
       </div>
 
       <div className="mx-auto w-full max-w-[360px]">
