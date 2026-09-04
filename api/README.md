@@ -39,9 +39,11 @@ No TensorFlow, matplotlib, imutils, or file I/O on the request path.
 
 ## Local dev
 
+Run from the repo root:
+
 ```
-.venv/bin/python dev_server.py          # http://localhost:8000/api
-curl -s --data-binary @../tests/fixtures/images/1.jpg \
+.venv/bin/python api/dev_server.py      # http://localhost:8000/api
+curl -s --data-binary @tests/fixtures/images/1.jpg \
      -H 'Content-Type: image/jpeg' http://localhost:8000/api | python -m json.tool
 ```
 

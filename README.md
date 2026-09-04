@@ -180,11 +180,15 @@ r.solution, r.solved, r.nodes, r.backtracks, r.runtime_ms
 ### Inference API
 
 ```bash
-pip install -r requirements.txt          # TensorFlow, OpenCV, etc.
-python dev_server.py                      # http://localhost:8000/api
+pip install -r requirements.txt          # numpy, onnxruntime, opencv-headless
+python api/dev_server.py                  # http://localhost:8000/api
 curl -s --data-binary @tests/fixtures/images/1.jpg \
      -H 'Content-Type: image/jpeg' http://localhost:8000/api | python -m json.tool
 ```
+
+`api/requirements.txt` is the minimal set Vercel installs (no TensorFlow).
+`requirements-dev.txt` adds TensorFlow / Keras / tf2onnx for retraining and
+exporting the model (`scripts/export_model.py`, `cnn/train.py`).
 
 ### Frontend
 
@@ -209,15 +213,20 @@ harness/              dumps reference output (solution, counts, events) for the 
 tests/                pytest suite; tests/fixtures/ holds the 24-grid eval set
 benchmarks/           puzzle sets, benchmark scripts, results/ JSON
 
-CNN/cv-sudoku-solver/ original CV + Keras pipeline (training, TF inference)
-api/                  TensorFlow-free inference API: OpenCV + ONNX, Vercel handler
-                      + dev_server.py; model loaded once at import
-sudoku_integrated_solver.py   original coursework end-to-end script (CNN → CSP)
+cnn/                  Keras training (train.py) + the reference CV pipeline
+                      (sudoku_utils.py) used by the accuracy regression test
+api/                  TensorFlow-free inference API: OpenCV + ONNX, Vercel handler,
+                      dev_server.py; model loaded once at import
 
 web/packages/solver-core/   TypeScript port of the four solvers; zero deps;
                             SolverClient Web Worker wrapper with event batching
 web/apps/studio/            Next.js frontend (input / verify / solve / benchmarks)
 ```
+
+`api/_pipeline.py` re-implements `cnn/sudoku_utils.py`'s grid detection and cell
+segmentation without TensorFlow; `tests/test_cv_pipeline_parity.py` asserts the
+two produce identical cells on every fixture so the deployed path can't drift
+from the tested one.
 
 Data flows one direction: `harness/` freezes Python behaviour into
 `tests/fixtures/solver_reference.json`, and the TypeScript package's test suite
@@ -230,7 +239,7 @@ so one renderer consumes either backend.
 
 | suite | count | covers |
 |---|---|---|
-| `pytest` | 41 | solver correctness, determinism, event schema, inference API |
+| `pytest` | 42 | solver correctness, determinism, event schema, inference API, CV-pipeline parity |
 | `web/packages/solver-core` (vitest) | 77 | port correctness, MT19937, Worker wrapper |
 | `web/apps/studio` (vitest) | 55 | grid editing, legality checks, benchmark-data consistency |
 | parity harness | 576 rows + 76,074 events | Python ↔ TypeScript, exact |
@@ -241,8 +250,9 @@ npm test --prefix web                     # both vitest suites
 pytest -m slow                            # full parity + hard-puzzle runs (minutes)
 ```
 
-The CNN recognition regression test needs TensorFlow + OpenCV installed; it
-skips cleanly without them.
+Two pytest tests need the dev extras (`pip install -r requirements-dev.txt`) —
+the CNN accuracy regression and the CV-pipeline parity check both drive the
+Keras pipeline. They skip cleanly without TensorFlow.
 
 ---
 
