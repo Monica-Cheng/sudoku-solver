@@ -9,12 +9,13 @@ import { useAppStore } from "@/lib/store";
 import { recognizeImage } from "@/lib/api";
 import type { RecognitionResult } from "@/lib/types";
 import { PUZZLE_LIBRARY, type LibraryPuzzle } from "@/lib/puzzles.generated";
+import { TIER_IDS, TIER_LABEL, type TierId } from "@/lib/tiers";
 
 const BLANK = "0".repeat(81);
 const TABS = ["library", "manual", "image"] as const;
 type Tab = (typeof TABS)[number];
-const TIERS = ["easy", "medium", "hard", "bench-hard"] as const;
-type Tier = (typeof TIERS)[number];
+const TIERS = TIER_IDS;
+type Tier = TierId;
 
 function isComplete81(p: string) {
   return p.length === 81 && /^[0-9]+$/.test(p);
@@ -205,13 +206,13 @@ function LibraryPanel({
           <button
             key={t}
             onClick={() => setTier(t)}
-            className={`rounded-full border px-2.5 py-1 transition-colors ${
+            className={`rounded-full border px-2.5 py-1 capitalize transition-colors ${
               tier === t
                 ? "border-accent/60 bg-accent/10 text-accent"
                 : "border-border text-text-dim hover:text-text"
             }`}
           >
-            {t}
+            {TIER_LABEL[t]}
           </button>
         ))}
       </div>
@@ -234,7 +235,7 @@ function LibraryPanel({
       </div>
       <p className="text-[11px] leading-relaxed text-text-faint">
         {tier === "bench-hard"
-          ? "17-clue minimums and named hardest puzzles. Backtracking flails, AC-3 barely blinks."
+          ? "The hardest puzzles in the literature — named puzzles and ten 17-clue minimums. Backtracking flails here; AC-3 barely blinks."
           : "Pick one and hit solve — no photo needed."}
       </p>
     </div>
