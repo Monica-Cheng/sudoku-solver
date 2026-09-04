@@ -1,8 +1,16 @@
-# Pinned to the versions verified during Phase 1 cleanup (Python 3.11).
-tabulate==0.10.0
-imutils==0.5.4
-matplotlib==3.11.1
-numpy==1.26.4
-tensorflow==2.20.0
-keras==3.15.1                      # model_fonts_mnist.keras is a Keras 3 artifact
-opencv-python-headless==4.11.0.86  # was opencv-python; this repo makes no cv2 GUI calls
+# Runtime + test dependencies for the solver package and the non-model tests.
+# Pinned to the versions verified on Python 3.11 during the Phase 7 cleanup.
+#
+#   pip install -r requirements.txt        -> solvers/, harness/, and 40/41 pytest
+#   pip install -r requirements-dev.txt    -> + the CNN model export / accuracy test / benchmarks
+#
+# The deployed inference function has its own minimal set in api/requirements.txt
+# (no TensorFlow); nothing here is installed on Vercel.
+
+pytest==9.1.1
+tabulate==0.10.0                   # optional: solvers.cli tables (falls back if absent)
+
+# needed so tests/test_inference_api.py and scripts/pick_threshold.py import
+numpy==2.4.6
+onnxruntime==1.22.1
+opencv-python-headless==4.11.0.86  # this repo makes no cv2 GUI calls

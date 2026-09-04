@@ -1,0 +1,15 @@
+# Development extras: retraining / exporting the digit CNN, the CNN accuracy
+# regression test (tests/test_cnn_recognition.py), and the full benchmark suite
+# (benchmarks/run_cnn_bench.py, scripts/export_model.py).
+#
+#   pip install -r requirements-dev.txt
+#
+# None of this is needed to run the solvers or the deployed inference API.
+
+-r requirements.txt
+
+tensorflow==2.20.0
+keras==3.15.1                      # model_fonts_mnist.keras is a Keras 3 artifact
+tf2onnx==1.17.0
+imutils==0.5.4                     # cnn/sudoku_utils.py (legacy CV pipeline)
+matplotlib==3.11.1                 # cnn/sudoku_utils.py imports it at module scope
