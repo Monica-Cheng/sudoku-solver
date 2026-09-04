@@ -9,6 +9,8 @@
   "scripts": {
     "build:core": "npm run build -w @sudoku/solver-core",
     "test:core": "npm test -w @sudoku/solver-core",
+    "test:studio": "npm test -w studio",
+    "test": "npm run test:core && npm run test:studio",
     "dev": "npm run dev -w studio",
     "build": "npm run build:core && npm run build -w studio"
   }
