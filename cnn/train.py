@@ -1,12 +1,24 @@
-import os
+"""Train the digit CNN (MNIST 1-9 + a font-rendered digit set) and save it as
+``model_fonts_mnist.keras``. This is the script that produced the checked-in
+``cnn/models/model_fonts_mnist.keras``; the font dataset it needs
+(``data/digit_images/<1..9>/*.png``) is not in the repo.
+
+    python cnn/train.py --data-dir path/to/digit_images --out cnn/models/model_fonts_mnist.keras
+"""
+import argparse
 import glob
+import os
+
 import cv2
 import numpy as np
-import tensorflow as tf
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
-from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.datasets import mnist
+from tensorflow.keras.layers import Conv2D, Dense, Dropout, Flatten, MaxPooling2D
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.utils import to_categorical
+
+_HERE = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_DATA_DIR = os.path.join(_HERE, "data", "digit_images")
+DEFAULT_OUT = os.path.join(_HERE, "models", "model_fonts_mnist.keras")
 
 # 1️ Load MNIST (digits 1–9 only)
 def load_mnist_data():
@@ -36,7 +48,7 @@ def load_mnist_data():
     return x_train, y_train, x_test, y_test
 
 # 2️ Load FONT dataset (supports both “1–9” and “Sample002–010” folders)
-def load_font_data(data_dir="/content/cv-sudoku-solver/data/digit_images"):
+def load_font_data(data_dir=DEFAULT_DATA_DIR):
     x, y = [], []
 
     # Detect folder naming pattern automatically
@@ -105,9 +117,9 @@ def build_model():
     return model
 
 # 4️ Train and Save
-def train_model():
+def train_model(data_dir=DEFAULT_DATA_DIR, out_path=DEFAULT_OUT):
     x_train_m, y_train_m, x_test_m, y_test_m = load_mnist_data()
-    x_font, y_font = load_font_data("/content/cv-sudoku-solver/data/digit_images")
+    x_font, y_font = load_font_data(data_dir)
 
     # Match dataset sizes before combining
     min_len = min(len(x_train_m), len(x_font))
@@ -132,12 +144,16 @@ def train_model():
         verbose=1
     )
 
-    os.makedirs("/content/cv-sudoku-solver/models", exist_ok=True)
-    model_path = "/content/cv-sudoku-solver/models/model_fonts_mnist.keras"
-    model.save(model_path)
-    print(f"Model saved to {model_path}")
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    model.save(out_path)
+    print(f"Model saved to {out_path}")
 
 
 # 5️ Run script
 if __name__ == "__main__":
-    train_model()
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--data-dir", default=DEFAULT_DATA_DIR,
+                    help="font digit-image dataset (subfolders 1..9 or Sample002..010)")
+    ap.add_argument("--out", default=DEFAULT_OUT, help="output .keras path")
+    args = ap.parse_args()
+    train_model(args.data_dir, args.out)

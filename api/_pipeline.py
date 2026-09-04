@@ -1,6 +1,6 @@
 """TensorFlow-free computer-vision pipeline: photo -> 81 deskewed cell images.
 
-Lifted verbatim (behaviour-wise) from CNN/cv-sudoku-solver/sudoku_utils.py, with
+Lifted verbatim (behaviour-wise) from cnn/sudoku_utils.py, with
 the TensorFlow / matplotlib / imutils / file-I/O / print()s removed.
 
 Dependencies: opencv-python-headless, numpy.

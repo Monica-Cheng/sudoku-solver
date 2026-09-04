@@ -6,7 +6,6 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
-from sudoku_solver_class import SudokuSolver
 
 
 def resize_and_maintain_aspect_ratio(input_image, new_width):

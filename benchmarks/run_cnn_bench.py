@@ -1,6 +1,6 @@
 """CNN digit-recognition benchmark for the /benchmarks page.
 
-Runs the real CNN/cv-sudoku-solver pipeline (TensorFlow + OpenCV) over the 24
+Runs the real cnn/ pipeline (TensorFlow + OpenCV) over the 24
 fixture images and records:
   - per-digit accuracy and the full truth x prediction confusion matrix
   - the blank/digit detector's FP/FN
@@ -17,7 +17,7 @@ import os
 import sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CNN_DIR = os.path.join(REPO, "CNN", "cv-sudoku-solver")
+CNN_DIR = os.path.join(REPO, "cnn")
 FIX = os.path.join(REPO, "tests", "fixtures")
 MODEL = os.path.join(CNN_DIR, "models", "model_fonts_mnist.keras")
 

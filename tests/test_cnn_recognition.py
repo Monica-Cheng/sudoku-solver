@@ -4,7 +4,7 @@ Run:  python tests/test_cnn_recognition.py
 Needs: tensorflow, opencv-python, imutils, numpy, matplotlib (same as the repo).
 
 Loads every image in fixtures/gt.json, runs the real
-CNN/cv-sudoku-solver pipeline (grid detection -> cell segmentation ->
+cnn/ pipeline (grid detection -> cell segmentation ->
 get_predicted_sudoku_grid), and compares to the transcribed givens.
 
 Baseline (model_fonts_mnist.keras, /255 normalisation, erode + INTER_AREA):
@@ -18,7 +18,7 @@ import os
 import sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CNN_DIR = os.path.join(REPO, "CNN", "cv-sudoku-solver")
+CNN_DIR = os.path.join(REPO, "cnn")
 FIX = os.path.join(REPO, "tests", "fixtures")
 
 MODEL = os.path.join(CNN_DIR, "models", "model_fonts_mnist.keras")

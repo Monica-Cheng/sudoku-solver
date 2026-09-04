@@ -1,7 +1,7 @@
 """Local dev server for the inference endpoint - the exact same `handler` Vercel
 runs, served over http.server.
 
-    .venv/bin/python dev_server.py            # serves on http://localhost:8000/api
+    .venv/bin/python api/dev_server.py        # serves on http://localhost:8000/api
     curl -s --data-binary @tests/fixtures/images/1.jpg \
          -H 'Content-Type: image/jpeg' http://localhost:8000/api | python -m json.tool
 """
@@ -9,7 +9,7 @@ import os
 import sys
 from http.server import ThreadingHTTPServer
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "api"))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from index import handler  # noqa: E402
 
 PORT = int(os.environ.get("PORT", "8000"))

@@ -13,7 +13,7 @@ import numpy as np
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "api"))
 
-KERAS_MODEL = os.path.join(ROOT, "CNN", "cv-sudoku-solver", "models", "model_fonts_mnist.keras")
+KERAS_MODEL = os.path.join(ROOT, "cnn", "models", "model_fonts_mnist.keras")
 OUT = os.path.join(ROOT, "api", "model", "sudoku_digit_cnn.onnx")
 
 

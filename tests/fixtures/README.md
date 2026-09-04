@@ -1,6 +1,6 @@
 # CNN recognition regression fixtures
 
-Frozen baseline for the photo → 9×9 grid pipeline in `CNN/cv-sudoku-solver/`.
+Frozen baseline for the photo → 9×9 grid pipeline in `cnn/`.
 Use it to check that changes to the vision code (grid detection, cell
 segmentation, preprocessing, the model) do not regress digit-recognition
 accuracy.
@@ -10,7 +10,7 @@ accuracy.
 | path | what |
 |---|---|
 | `gt.json` | ground-truth givens for 24 images: `{ "<file>.jpg": "<81 chars>" }`, row-major, `0` = blank |
-| `images/` | the 24 source photos `gt.json` refers to (copied verbatim from `CNN/cv-sudoku-solver/data/sudoku_images/`) |
+| `images/` | the 24 source photos `gt.json` refers to (originally from the `cnn/` project's `data/sudoku_images/`, which is not in this repo) |
 | `predictions/pred_<n>.txt` | what the pipeline produced at the time the baseline was captured — two 9×9 blocks per file: `RAW` (0–255 input, the old shipped behaviour) and `NORMALIZED` (`/255`) |
 
 25 prediction files are kept (every image that survives grid detection).

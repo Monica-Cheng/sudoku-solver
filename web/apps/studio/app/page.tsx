@@ -281,7 +281,7 @@ function ImagePanel({
           <p className="mt-1 num text-[11px] text-text-faint">{upload.message}</p>
           <p className="mt-2">
             Is it running?{" "}
-            <span className="num">python dev_server.py</span> — or{" "}
+            <span className="num">python api/dev_server.py</span> — or{" "}
             <button className="text-accent underline" onClick={onManual}>
               enter the grid by hand
             </button>
