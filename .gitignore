@@ -17,3 +17,4 @@ dist/
 # the digit CNN is deliberately committed despite the glob below
 *.keras
 !cnn/models/model_fonts_mnist.keras
+.vercel
