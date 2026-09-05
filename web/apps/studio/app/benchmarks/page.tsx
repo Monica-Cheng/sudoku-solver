@@ -33,11 +33,11 @@ export default function BenchmarksPage() {
       <header className="mb-10">
         <h1 className="num text-[15px] text-text">benchmarks</h1>
         <p className="mt-3 max-w-[62ch] text-[13px] leading-relaxed text-text-dim">
-          Every number on this page was measured, not estimated. The solver
-          figures come from re-running all four algorithms over the same 102
-          puzzles; the recognition figures from running the vision pipeline over
-          24 photographed grids. The scripts are in{" "}
-          <code className="num text-[12px] text-text-faint">benchmarks/</code>.
+          Every number on this page came from an actual run, not a guess. The
+          solver numbers come from running all four algorithms on the same 102
+          puzzles; the digit-reading numbers come from running that pipeline on
+          24 real photographed grids. Want to check our work? The scripts are
+          in <code className="num text-[12px] text-text-faint">benchmarks/</code>.
         </p>
       </header>
 
@@ -56,11 +56,15 @@ export default function BenchmarksPage() {
       {/* ---------- solve rate ---------- */}
       <Section id="solve-rate" title="Solve rate">
         <p className="mb-4 max-w-[62ch] text-[13px] leading-relaxed text-text-dim">
-          How many puzzles each algorithm actually finished before hitting its
-          cap. The deterministic three clear everything down to the extreme set;
-          there, backtracking finishes only 6 of 12. min-conflicts is run with
-          three random seeds per puzzle, so its denominators are 3× — and it
-          fails a slice of every tier, badly on the extreme set.
+          One &ldquo;attempt&rdquo; means one algorithm running one puzzle,
+          one time. A lower solve rate means the algorithm gave up before it
+          found the answer — it hit its cap (ran out of guesses, or swaps)
+          with the puzzle still unsolved. Backtracking, forward-checking, and
+          AC-3 each get one attempt per puzzle, and clear almost everything —
+          except backtracking, which finishes only 6 of 12 on the hardest set.
+          Min-conflicts is different: it gets three random starts per puzzle,
+          so its totals are 3× bigger than the others&rsquo;. It also fails
+          more often — badly, on the hardest set.
         </p>
         <SolveRateMatrix
           algos={ALGOS.map((id) => ({ id, label: ALGO_LABEL[id] }))}
@@ -70,20 +74,24 @@ export default function BenchmarksPage() {
           )}
         />
         <Caption>
-          Shaded by miss rate. backtracking 6/12 and min-conflicts 4/36 on the
-          extreme set are the headline failures.
+          Darker cells mean more failed attempts. The two big ones: backtracking
+          6/12 and min-conflicts 4/36, both on the extreme set.
         </Caption>
       </Section>
 
       {/* ---------- search size ---------- */}
       <Section id="nodes" title="Search size">
         <p className="mb-4 max-w-[62ch] text-[13px] leading-relaxed text-text-dim">
-          Search nodes per solve — for min-conflicts, repair iterations. Log
-          scale: the range runs from <span className="num text-text">56</span>{" "}
-          (forward-checking and AC-3, median, easy) to{" "}
-          <span className="num text-text">1,400,000</span> (backtracking against
-          the cap). The bar is the tier median; the red tick is the worst single
-          puzzle in that tier.
+          A &ldquo;node&rdquo; is one guess the algorithm makes while searching
+          — for min-conflicts, it&rsquo;s one swap instead. Fewer nodes means
+          less work, which usually means a smarter search. This is a log
+          scale (each gridline is 10× the last one, not evenly spaced) because
+          the numbers here are so spread out: from just{" "}
+          <span className="num text-text">56</span> nodes (forward-checking
+          and AC-3&rsquo;s median on easy puzzles) up to{" "}
+          <span className="num text-text">1,400,000</span> (backtracking
+          slamming into its cap). Each bar is the typical case for that tier;
+          the red tick is the single worst puzzle in it.
         </p>
         <div className="flex flex-col gap-7">
           {TIERS.map((tier) => (
@@ -108,8 +116,10 @@ export default function BenchmarksPage() {
           ))}
         </div>
         <Caption>
-          Median bar, worst-case tick. backtracking&rsquo;s worst is the cap
-          itself on hard and extreme; AC-3&rsquo;s worst never exceeds 100,560.
+          The bar is the typical case, the tick is the worst case.
+          Backtracking&rsquo;s worst case on hard and extreme is literally
+          the cap — it just runs out of budget. AC-3&rsquo;s worst case never
+          goes above 100,560, even on the puzzles that beat everyone else.
         </Caption>
       </Section>
 
@@ -117,40 +127,46 @@ export default function BenchmarksPage() {
       <Section id="fc-vs-ac3" title="Why forward-checking usually beats AC-3">
         <div className="space-y-3 text-[13px] leading-relaxed text-text-dim">
           <p>
-            AC-3 is the more thorough technique: before it makes a single guess
-            it propagates every constraint repeatedly until nothing more can be
-            eliminated, which often shrinks the puzzle dramatically.
-            Forward-checking only looks one move ahead. You would expect AC-3 to
-            win. Mostly it doesn&rsquo;t.
+            AC-3 does its homework before guessing anything: it repeatedly
+            crosses off digits that can&rsquo;t possibly work anywhere else on
+            the board, based on what&rsquo;s already placed — a process called
+            constraint propagation. Forward-checking is lazier: it only
+            rechecks the cells affected by the very last guess, one move
+            ahead. You&rsquo;d expect all that extra homework to make AC-3 win
+            more often. Mostly, it doesn&rsquo;t.
           </p>
           <p>
-            On the easy, medium and hard sets the two explore an almost identical
-            number of nodes — medians of 56–63 either way. But forward-checking
-            gets there in about{" "}
-            <span className="num text-text">0.15 ms</span> and AC-3 in about{" "}
-            <span className="num text-text">1.6 ms</span> (TypeScript). That
-            10× gap is the upfront propagation pass: AC-3 pays it on every solve
-            whether the puzzle needed it or not, and usually it didn&rsquo;t —
-            forward-checking&rsquo;s minimum-remaining-values ordering walked
-            straight to a solution anyway.
+            On the easy, medium, and hard sets the two end up making almost the
+            same number of guesses — medians of 56–63 either way. But
+            forward-checking gets there in about{" "}
+            <span className="num text-text">0.15 ms</span> and AC-3 takes about{" "}
+            <span className="num text-text">1.6 ms</span> (measured in
+            TypeScript). That roughly 10× gap is the cost of AC-3&rsquo;s
+            upfront propagation: it pays that cost on every solve, whether the
+            puzzle needed it or not — and usually it didn&rsquo;t, because
+            forward-checking&rsquo;s cell-picking rule (called MRV, short for
+            &ldquo;minimum remaining values&rdquo; — always guess the cell
+            with the fewest options left) walked straight to a solution
+            anyway.
           </p>
           <p>
-            The cost is worth paying on the hard puzzles. On the hard set there
-            is a single puzzle where a one-move look-ahead misses a contradiction
-            that propagation catches — forward-checking spent{" "}
-            <span className="num text-text">149,731</span> nodes on it; AC-3
-            spent <span className="num text-text">68</span>. And on the
-            extreme set AC-3 searches less on average — median{" "}
-            <span className="num text-text">7,310</span> nodes to
+            The homework pays off on harder puzzles. On the hard set there is
+            one puzzle where a one-move lookahead misses a contradiction that
+            AC-3&rsquo;s deeper propagation catches — forward-checking burns{" "}
+            <span className="num text-text">149,731</span> guesses on it; AC-3
+            needs just <span className="num text-text">68</span>. On the
+            extreme set AC-3 also searches less on average — a median of{" "}
+            <span className="num text-text">7,310</span> guesses against
             forward-checking&rsquo;s <span className="num text-text">9,903</span>{" "}
-            — which in Python makes it 6× faster there,{" "}
-            <span className="num text-text">124 ms</span> against{" "}
-            <span className="num text-text">747 ms</span>. In the TypeScript port
-            AC-3&rsquo;s per-node cost is higher, so forward-checking still edges
-            it on wall-clock. The robust statement is about nodes, not
-            milliseconds: AC-3&rsquo;s worst case across all 102 puzzles is
-            100,560; forward-checking and backtracking can both be driven to
-            millions.
+            — which makes it 6× faster in Python:{" "}
+            <span className="num text-text">124 ms</span> versus{" "}
+            <span className="num text-text">747 ms</span>. In the TypeScript
+            port, though, each of AC-3&rsquo;s guesses costs more to compute,
+            so forward-checking still wins on wall-clock there. The number
+            that actually matters is guesses made, not milliseconds spent:
+            AC-3&rsquo;s worst case across all 102 puzzles tops out at
+            100,560, while forward-checking and backtracking can both spiral
+            into the millions.
           </p>
         </div>
       </Section>
@@ -158,8 +174,15 @@ export default function BenchmarksPage() {
       {/* ---------- timing ---------- */}
       <Section id="timing" title="Timing">
         <p className="mb-4 max-w-[62ch] text-[13px] leading-relaxed text-text-dim">
-          Median wall-clock per solve, by tier. Log scale. Both languages shown —
-          same algorithm, same puzzles, same caps.
+          This is wall-clock time — actual milliseconds, stopwatch style —
+          by tier, so lower bars are better. Log scale again, same reason as
+          before. Both languages ran the same algorithm on the same puzzles
+          with the same caps; the only thing that changed is which language
+          executed the code. TypeScript comes out faster here, but not
+          because it&rsquo;s doing something smarter. The JavaScript engine
+          compiles the code down to native machine instructions while it
+          runs — a trick called JIT (just-in-time) compilation — while Python
+          is interpreting it line by line the whole time.
         </p>
         <div className="flex flex-col gap-7">
           {TIERS.map((tier) => (
@@ -194,23 +217,44 @@ export default function BenchmarksPage() {
           ))}
         </div>
         <Caption>
-          TypeScript (solid accent) and Python for each algorithm. min-conflicts
-          on the extreme set runs the full 200,000-iteration budget every time.
+          <span className="mr-3 inline-flex items-center gap-1.5 align-middle">
+            <span
+              aria-hidden
+              className="inline-block h-2.5 w-2.5 rounded-sm"
+              style={{ background: "var(--color-accent)" }}
+            />
+            TypeScript
+          </span>
+          <span className="mr-1 inline-flex items-center gap-1.5 align-middle">
+            <span
+              aria-hidden
+              className="inline-block h-2.5 w-2.5 rounded-sm"
+              style={{
+                background:
+                  "color-mix(in oklab, var(--color-accent) 34%, var(--color-bg-raised))",
+              }}
+            />
+            Python
+          </span>
+          — for each algorithm. min-conflicts on the extreme set always burns
+          through its whole 200,000-iteration budget, no matter which
+          language runs it.
         </Caption>
       </Section>
 
       {/* ---------- TS vs PY ---------- */}
       <Section id="ts-vs-py" title="TypeScript vs Python">
         <p className="mb-4 max-w-[62ch] text-[13px] leading-relaxed text-text-dim">
-          The port is behaviour-identical — same node counts, same solutions — so
-          this is purely the runtime difference. TypeScript runs the same
-          algorithms 2–27× faster, with no dependencies. The gap is widest where
+          The TypeScript port behaves exactly like the Python original — same
+          node counts, same solutions — so this section is measuring pure
+          speed, nothing else. TypeScript runs the same algorithms 2–27×
+          faster, with zero external dependencies. The gap is biggest wherever
           the inner loop does the most arithmetic per step: min-conflicts is
-          19–27× faster across the board, AC-3 8–13× on ordinary puzzles.
-          Backtracking&rsquo;s loop is already lean, so it gains the least
-          (2–4×), and on the extreme set — where every runtime spends nearly all
-          its time in that one loop — the margin for backtracking and AC-3
-          narrows to 2–3×.
+          19–27× faster across the board, AC-3 is 8–13× faster on ordinary
+          puzzles. Backtracking&rsquo;s loop is already about as simple as it
+          gets, so it gains the least (2–4×). And on the extreme set — where
+          almost all the time is spent inside that one loop anyway — even
+          backtracking and AC-3&rsquo;s edge narrows to 2–3×.
         </p>
         <SpeedupTable />
       </Section>
@@ -218,9 +262,14 @@ export default function BenchmarksPage() {
       {/* ---------- CNN ---------- */}
       <Section id="cnn" title="Digit recognition">
         <p className="mb-5 max-w-[62ch] text-[13px] leading-relaxed text-text-dim">
-          The CNN reads photographed grids one cell at a time. Measured on the{" "}
-          {CNN.images} fixture images ({CNN.distinctPuzzles} distinct puzzles),
-          on the {CNN.digitCells} cells where a digit is actually present.
+          CNN stands for convolutional neural network — it&rsquo;s the model
+          that looks at a photo of a Sudoku grid and reads the digit in each
+          cell. We tested it on {CNN.images} hand-checked photos of real
+          puzzles ({CNN.distinctPuzzles} different puzzles — some got
+          photographed more than once), so we already know the right answer
+          for every cell going in. Across the {CNN.digitCells} cells that
+          actually had a digit written in them, it got{" "}
+          {pct(CNN.perDigitAccuracy)} right.
         </p>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           <Stat value={pct(CNN.perDigitAccuracy)} label="per-digit accuracy" accent />
@@ -236,16 +285,25 @@ export default function BenchmarksPage() {
           confusion matrix
         </h3>
         <p className="mb-3 max-w-[62ch] text-[12.5px] leading-relaxed text-text-dim">
-          Every misread is a <span className="num text-text">9</span> read as a 7
-          or an 8, except one <span className="num text-text">4</span> read as a
-          5. The digit 9 is the only one below 100% — its open loop degrades to a
-          7 or 8 when the scan is thin.
+          A confusion matrix just shows which digits get mixed up with which —
+          for every true digit, what did the model actually guess. Here,
+          almost every mistake is a <span className="num text-text">9</span>{" "}
+          misread as a 7 or an 8, plus one lone{" "}
+          <span className="num text-text">4</span> misread as a 5. In fact, 9
+          is the only digit that isn&rsquo;t 100% accurate — its open loop can
+          look like a 7 or an 8 when the scan comes out thin.
         </p>
         <ConfusionGrid counts={CNN.confusion} />
 
         <h3 className="num mt-8 mb-2 text-[11px] uppercase tracking-wider text-text-faint">
           the three misreads
         </h3>
+        <p className="mb-2 max-w-[62ch] text-[12.5px] leading-relaxed text-text-dim">
+          Confidence is just how sure the model is about its own guess, from
+          0 to 1. The bad case isn&rsquo;t low confidence — that at least
+          warns you. It&rsquo;s high confidence on a wrong answer, because
+          then the model has no idea it screwed up.
+        </p>
         <ul className="flex flex-col gap-1 text-[12.5px] text-text-dim">
           {CNN.misreads.map((m) => (
             <li key={m.image} className="num">
@@ -264,12 +322,18 @@ export default function BenchmarksPage() {
       {/* ---------- ablation ---------- */}
       <Section id="ablation" title="Preprocessing ablation">
         <p className="mb-4 max-w-[62ch] text-[13px] leading-relaxed text-text-dim">
-          Two cheap steps carry most of the accuracy. Eroding each 28×28 cell by
-          one pixel thins the strokes toward what the model trained on; resizing
-          with <code className="num text-[12px]">INTER_AREA</code> instead of{" "}
-          <code className="num text-[12px]">INTER_NEAREST</code> keeps the
-          antialiased edges the model expects. Same model, same images, only the
-          preprocessing changed.
+          Same model, same photos — here we only changed how the images get
+          prepared before the model ever sees them. Start with neither trick
+          and accuracy is just 88.61%. Resizing with{" "}
+          <code className="num text-[12px]">INTER_AREA</code> — a resize
+          method that blends neighboring pixels together instead of just
+          picking one, which keeps edges smooth when shrinking the image down
+          to 28×28 pixels — is worth 7.8 percentage points on its own.
+          Thinning the digit strokes by one pixel, a step called erosion, so
+          they match what the model saw during training, is worth 6.3
+          percentage points on its own. Do both, and accuracy jumps 10.9
+          points in total, from 88.61% up to 99.55% — the version we actually
+          ship.
         </p>
         <Bars
           scale="linear"
@@ -285,25 +349,31 @@ export default function BenchmarksPage() {
           labelWidth={260}
         />
         <Caption>
-          Erosion is worth {ABLATION_DELTAS.erode.toFixed(1)} points,{" "}
-          INTER_AREA {ABLATION_DELTAS.interpolation.toFixed(1)} points, the two
-          together {ABLATION_DELTAS.both.toFixed(1)}.
+          Erosion alone: +{ABLATION_DELTAS.erode.toFixed(1)} points.
+          INTER_AREA alone: +{ABLATION_DELTAS.interpolation.toFixed(1)} points.
+          Both together: +{ABLATION_DELTAS.both.toFixed(1)} points.
         </Caption>
       </Section>
 
       {/* ---------- threshold ---------- */}
       <Section id="threshold" title="Confidence threshold">
         <p className="mb-4 max-w-[62ch] text-[13px] leading-relaxed text-text-dim">
-          A recognised digit below{" "}
-          <span className="num text-text">{CHOSEN_THRESHOLD.toFixed(2)}</span>{" "}
-          confidence is flagged for the reviewer on{" "}
+          The threshold is just a cutoff: if the model&rsquo;s confidence in a
+          digit drops below{" "}
+          <span className="num text-text">{CHOSEN_THRESHOLD.toFixed(2)}</span>
+          , we flag that cell and ask you to confirm it on{" "}
           <Link href="/verify" className="text-accent hover:underline">
             /verify
           </Link>
-          . Correct predictions average {CNN.meanConfCorrect.toFixed(2)}{" "}
-          confidence, wrong ones {CNN.meanConfWrong.toFixed(2)} — but the tails
-          overlap: the lowest correct is {CNN.minConfCorrect.toFixed(2)}, the
-          highest wrong is {CNN.maxConfWrong.toFixed(2)}.
+          . Set the threshold lower and you flag more cells — more false
+          alarms, but fewer real mistakes slip through. Set it higher and you
+          flag fewer cells — less annoying, but riskier.{" "}
+          {CHOSEN_THRESHOLD.toFixed(2)} is the balance point we landed on.
+          On our data, correct guesses average {CNN.meanConfCorrect.toFixed(2)}{" "}
+          confidence and wrong ones average {CNN.meanConfWrong.toFixed(2)} —
+          but the two overlap at the edges: the least-confident correct guess
+          was only {CNN.minConfCorrect.toFixed(2)}, and the most-confident
+          wrong guess still hit {CNN.maxConfWrong.toFixed(2)}.
         </p>
         <SweepChart
           points={THRESHOLD_SWEEP.map((s) => ({
@@ -314,16 +384,19 @@ export default function BenchmarksPage() {
           chosen={CHOSEN_THRESHOLD}
         />
         <p className="mt-4 max-w-[62ch] text-[13px] leading-relaxed text-text-dim">
-          Below <span className="num text-text">0.80</span> the flag misses two
-          of the three misreads. From <span className="num text-text">0.80</span>{" "}
-          to <span className="num text-text">0.85</span> it catches the same two
-          — the third is a confident misread on a blurred photo (0.95) that no
-          threshold below 0.97 reaches. Going past 0.85 only piles on false
-          alarms: 4.5% of correct cells flagged at 0.85, 8.4% at 0.90, 19% at
-          0.95. 0.85 keeps a margin above the worst caught misread (0.76) without
-          drowning the reviewer. The legality check — two of the same digit in a
-          row, column or box — is the more decisive net, and it flags all three
-          fixture images with misreads.
+          Below <span className="num text-text">0.80</span>, the flag misses
+          two of the three misreads — not good. From{" "}
+          <span className="num text-text">0.80</span> to{" "}
+          <span className="num text-text">0.85</span> it catches the same
+          two, but no more: the third misread is a confident 0.95 guess on a
+          blurry photo, and nothing below a 0.97 threshold would catch it.
+          Push past 0.85 and you just pile on false alarms for no extra
+          benefit: 4.5% of correct cells get flagged at 0.85, 8.4% at 0.90,
+          19% at 0.95. So 0.85 is the sweet spot — it sits safely above the
+          worst misread it does catch (0.76) without burying the reviewer in
+          false alarms. The bigger safety net, honestly, is the legality
+          check — spotting the same digit twice in a row, column, or box —
+          which alone catches all three fixture photos that had a misread.
         </p>
       </Section>
 

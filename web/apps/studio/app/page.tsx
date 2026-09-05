@@ -83,17 +83,6 @@ export default function InputPage() {
 
   return (
     <div className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-6 px-4 py-8">
-      <p className="max-w-[78ch] text-[13px] leading-relaxed text-text-dim">
-        Sudoku is a <span className="text-text">constraint satisfaction problem</span>:
-        81 variables (the cells), each with a domain of 1–9, and constraints saying
-        no digit repeats in a row, column, or box. It&rsquo;s the standard compact
-        benchmark for CSP search — small enough to watch step by step, hard enough
-        in the worst case to tell the techniques apart. The same methods shown here —
-        backtracking, constraint propagation, fail-first variable ordering, local
-        search — are what solve scheduling, crew assignment, resource allocation,
-        and timetabling; Sudoku is just the toy.
-      </p>
-
       <div className="grid flex-1 gap-8 lg:grid-cols-[minmax(0,1fr)_380px]">
       {/* ---- the grid, centre of the screen ---- */}
       <section className="flex flex-col items-center justify-start gap-3">
@@ -268,9 +257,7 @@ function LibraryPanel({
         })}
       </div>
       <p className="text-[11px] leading-relaxed text-text-faint">
-        {tier === "bench-hard"
-          ? "The hardest puzzles in the literature — named puzzles and seven 17-clue minimums. Backtracking flails here; AC-3 barely blinks."
-          : "Pick one and hit solve — no photo needed."}
+        Pick one and hit solve — no photo needed.
       </p>
     </div>
   );

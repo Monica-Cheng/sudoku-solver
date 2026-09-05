@@ -6,9 +6,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-11 max-w-[1400px] items-center justify-between px-4">
         <Link href="/" className="group flex items-baseline gap-2">
           <span className="num text-[13px] tracking-tight text-text">
-            sudoku<span className="text-text-faint">/</span>solver
-            <span className="text-text-faint">/</span>
-            <span className="text-accent">studio</span>
+            Sudoku Solver
           </span>
         </Link>
         <nav className="num flex items-center gap-4 text-[12px] text-text-dim">
