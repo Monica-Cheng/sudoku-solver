@@ -18,5 +18,5 @@ export const TIER_BLURB: Record<TierId, string> = {
   medium: "30 puzzles, 24–26 clues — need some pencil-marking.",
   hard: "30 puzzles, 14–28 clues — real branching required.",
   "bench-hard":
-    "The hardest puzzles in the literature: AI Escargot, Platinum Blonde, Golden Nugget, ten 17-clue minimums. Naive backtracking flails here; AC-3 barely blinks.",
+    "The hardest puzzles in the literature: AI Escargot, Platinum Blonde, Golden Nugget, seven 17-clue minimums. Naive backtracking flails here; AC-3 barely blinks.",
 };

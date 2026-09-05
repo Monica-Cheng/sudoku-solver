@@ -23,7 +23,7 @@ export const METHODOLOGY = {
   parity:
     "The TypeScript port is checked against the Python reference on 576 rows of (solution, nodes, backtracks, terminated_reason) — identical, including min-conflicts under a CPython-compatible Mersenne Twister. So solve rates and node counts are language-independent; only wall-clock differs.",
   puzzleSets:
-    "easy / medium / hard are 30 puzzles each (from puzzles/). extreme is the 12 in benchmarks/hard.txt — AI Escargot, Platinum Blonde, Golden Nugget, Fata Morgana and eight more, ten of them 17-clue minimums.",
+    "easy / medium / hard are 30 puzzles each (from puzzles/). extreme is the 12 in benchmarks/hard.txt — AI Escargot, Platinum Blonde, Golden Nugget, Fata Morgana and eight more, seven of them 17-clue minimums.",
 } as const;
 
 export type AlgoId = "backtracking" | "forward_checking" | "ac3" | "min_conflicts";

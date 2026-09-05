@@ -139,7 +139,7 @@ export default function BenchmarksPage() {
             is a single puzzle where a one-move look-ahead misses a contradiction
             that propagation catches — forward-checking spent{" "}
             <span className="num text-text">149,731</span> nodes on it; AC-3
-            spent <span className="num text-text">1,235</span>. And on the
+            spent <span className="num text-text">68</span>. And on the
             extreme set AC-3 searches less on average — median{" "}
             <span className="num text-text">7,310</span> nodes to
             forward-checking&rsquo;s <span className="num text-text">9,903</span>{" "}

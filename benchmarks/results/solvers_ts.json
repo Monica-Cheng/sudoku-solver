@@ -18,7 +18,7 @@
      "reasons": {
       "solved": 30
      },
-     "nodesSolvedMedian": 2199,
+     "nodesSolvedMedian": 2025,
      "nodesWorst": 254857,
      "msMedian": 3.2439580000000205,
      "msP10": 0.35151659999999935,
@@ -31,7 +31,7 @@
      "reasons": {
       "solved": 30
      },
-     "nodesSolvedMedian": 57,
+     "nodesSolvedMedian": 56,
      "nodesWorst": 183,
      "msMedian": 0.14179199999989578,
      "msP10": 0.1106872000001431,
@@ -44,7 +44,7 @@
      "reasons": {
       "solved": 30
      },
-     "nodesSolvedMedian": 58,
+     "nodesSolvedMedian": 55.5,
      "nodesWorst": 384,
      "msMedian": 1.5370419999999285,
      "msP10": 1.3829663999999866,
@@ -76,7 +76,7 @@
      "reasons": {
       "solved": 30
      },
-     "nodesSolvedMedian": 850,
+     "nodesSolvedMedian": 785.5,
      "nodesWorst": 133270,
      "msMedian": 1.3199589999994714,
      "msP10": 0.30775390000026165,
@@ -102,7 +102,7 @@
      "reasons": {
       "solved": 30
      },
-     "nodesSolvedMedian": 63,
+     "nodesSolvedMedian": 62,
      "nodesWorst": 280,
      "msMedian": 1.524833000000399,
      "msP10": 1.4395284999995965,
@@ -135,7 +135,7 @@
       "solved": 28,
       "max_steps": 2
      },
-     "nodesSolvedMedian": 2164,
+     "nodesSolvedMedian": 1930.5,
      "nodesWorst": 1400000,
      "msMedian": 5.218124999999418,
      "msP10": 0.5972166999974433,
@@ -148,7 +148,7 @@
      "reasons": {
       "solved": 30
      },
-     "nodesSolvedMedian": 63,
+     "nodesSolvedMedian": 62.5,
      "nodesWorst": 149731,
      "msMedian": 0.2523750000000291,
      "msP10": 0.1905170000012731,
@@ -161,7 +161,7 @@
      "reasons": {
       "solved": 30
      },
-     "nodesSolvedMedian": 59,
+     "nodesSolvedMedian": 58.5,
      "nodesWorst": 1235,
      "msMedian": 2.28741699999955,
      "msP10": 2.0837961000008365,
@@ -194,7 +194,7 @@
       "solved": 6,
       "max_steps": 6
      },
-     "nodesSolvedMedian": 304053,
+     "nodesSolvedMedian": 176805.5,
      "nodesWorst": 1400000,
      "msMedian": 1876.9361250000002,
      "msP10": 63.89621659999757,
@@ -207,7 +207,7 @@
      "reasons": {
       "solved": 12
      },
-     "nodesSolvedMedian": 10339,
+     "nodesSolvedMedian": 9903,
      "nodesWorst": 44331,
      "msMedian": 43.70599999999831,
      "msP10": 0.6412868999977946,
@@ -220,7 +220,7 @@
      "reasons": {
       "solved": 12
      },
-     "nodesSolvedMedian": 9403,
+     "nodesSolvedMedian": 7309.5,
      "nodesWorst": 100560,
      "msMedian": 56.78595800000039,
      "msP10": 3.1598047999978016,
@@ -234,7 +234,7 @@
       "max_steps": 32,
       "solved": 4
      },
-     "nodesSolvedMedian": 44509,
+     "nodesSolvedMedian": 27190.5,
      "nodesWorst": 200000,
      "msMedian": 1351.4618340000015,
      "msP10": 673.042042000001,

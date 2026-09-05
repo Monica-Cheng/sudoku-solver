@@ -36,7 +36,8 @@ const REPS = 3;
 
 function median(xs: number[]): number {
   const s = [...xs].sort((a, b) => a - b);
-  return s[Math.floor(s.length / 2)];
+  const mid = Math.floor(s.length / 2);
+  return s.length % 2 === 0 ? (s[mid - 1] + s[mid]) / 2 : s[mid];
 }
 function pct(sorted: number[], p: number): number {
   if (!sorted.length) return NaN;

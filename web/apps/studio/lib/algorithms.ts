@@ -62,7 +62,7 @@ export const ALGOS: AlgoMeta[] = [
     strengths:
       "The MRV rule flattens difficulty. Median search is 56, 59, and 63 nodes on easy, medium, and hard — essentially the same tiny number regardless of tier. It solves all 90 puzzles in those three sets and all 12 in the extreme set. Fastest of the four in wall-clock terms on ordinary puzzles: about 0.14 ms in the TypeScript port.",
     weaknesses:
-      "It only checks one step ahead. It can still walk into a trap where no single placement empties a list but the combination is already unsatisfiable — its one pathological hard-set puzzle took 149,731 nodes where AC-3 took 1,235. On the extreme set its median is 9,903 nodes against AC-3's 7,310 — AC-3's deeper propagation starts to earn its keep.",
+      "It only checks one step ahead. It can still walk into a trap where no single placement empties a list but the combination is already unsatisfiable — its one pathological hard-set puzzle took 149,731 nodes where AC-3 took just 68 on that same puzzle. On the extreme set its median is 9,903 nodes against AC-3's 7,310 — AC-3's deeper propagation starts to earn its keep.",
     verdict:
       "Wins on the vast majority of puzzles: same node count as AC-3 with far less overhead, because it does no upfront work. Loses on the rare puzzle whose contradictions are two or more moves deep — there, the heavier propagation AC-3 does before searching would have paid off.",
   },
@@ -108,7 +108,7 @@ export const ALGOS: AlgoMeta[] = [
     weaknesses:
       "Incomplete: it can get permanently stuck, and on Sudoku it often does. It times out on 5–7 of every 90 attempts across the easy, medium, and hard sets even with three random starts each, and on the extreme set it solves just 4 of 36. That isn't about clue count — it's that tight constraints make the conflict landscape almost all local minima, plateaus, and ridges.",
     verdict:
-      "Wins on loosely constrained problems where solutions are dense and a systematic search would run out of memory — the textbook case is N-Queens, where min-conflicts places a million queens in seconds. Sudoku is the opposite: tightly constrained, very few solutions, a landscape full of traps. Our numbers show the split — 253 of 270 easy/medium/hard attempts solved (94%), but only 4 of 36 on the extreme set (ten of its twelve puzzles are 17-clue minimums). It's the constraint tightness that breaks it, not the number of givens.",
+      "Wins on loosely constrained problems where solutions are dense and a systematic search would run out of memory — the textbook case is N-Queens, where min-conflicts places a million queens in seconds. Sudoku is the opposite: tightly constrained, very few solutions, a landscape full of traps. Our numbers show the split — 253 of 270 easy/medium/hard attempts solved (94%), but only 4 of 36 on the extreme set (seven of its twelve puzzles are 17-clue minimums). It's the constraint tightness that breaks it, not the number of givens.",
   },
 ];
 

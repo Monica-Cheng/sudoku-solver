@@ -234,9 +234,9 @@ describe("confidence-threshold sweep traces to benchmarks/results/threshold_swee
  *   finding recorded in prose (README.md, run_solver_bench.py's docstring)
  *   with no committed before/after measurement file to check it against.
  *
- * - The "extreme set" puzzle-mix descriptions (METHODOLOGY.puzzleSets, plus
- *   the tier blurbs on / and the min-conflicts verdict) say "ten of them
- *   17-clue minimums". Counting non-zero characters in benchmarks/hard.txt
- *   directly gives 7 of the 12 lines at exactly 17 clues, not 10 - see the
- *   report.
+ * - The "extreme set" puzzle-mix descriptions (METHODOLOGY.puzzleSets, the
+ *   tier blurbs on / and lib/tiers.ts, and the min-conflicts verdict) said
+ *   "ten of them 17-clue minimums". Counting non-zero characters in
+ *   benchmarks/hard.txt gives 7 of the 12 lines at exactly 17 clues, not 10 -
+ *   corrected in all five places.
  */

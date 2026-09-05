@@ -269,7 +269,7 @@ function LibraryPanel({
       </div>
       <p className="text-[11px] leading-relaxed text-text-faint">
         {tier === "bench-hard"
-          ? "The hardest puzzles in the literature — named puzzles and ten 17-clue minimums. Backtracking flails here; AC-3 barely blinks."
+          ? "The hardest puzzles in the literature — named puzzles and seven 17-clue minimums. Backtracking flails here; AC-3 barely blinks."
           : "Pick one and hit solve — no photo needed."}
       </p>
     </div>
