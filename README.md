@@ -145,20 +145,6 @@ from 56 to 1.4M on a log scale, TypeScript-vs-Python timing (2–27×), and the 
 accuracy / confusion / ablation / threshold data. Methodology is stated on the
 page.
 
-### Screenshots
-
-_Add PNGs at these paths:_
-
-**Race mode** — `docs/race-mode.png`
-
-![Race mode: four algorithms solving one puzzle](docs/race-mode.png)
-
-**Benchmark page** — `docs/benchmarks.png`
-
-![Benchmark page: solve rates and node counts](docs/benchmarks.png)
-
----
-
 ## Run it locally
 
 Requires Python 3.9+ and Node 20+ (Node 22+ to run `bench.ts` directly).
